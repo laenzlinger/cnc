@@ -35,8 +35,8 @@ axes:
     soft_limits: true
     homing:
       cycle: 2
-      positive_direction: false
-      mpos_mm: 0.000
+      positive_direction: true
+      mpos_mm: 44.000
       feed_mm_per_min: 100.000
       seek_mm_per_min: 500.000
       settle_ms: 500
@@ -44,18 +44,18 @@ axes:
       feed_scaler: 1.100
 
     motor0:
-      limit_neg_pin: gpio.33:low:pu
+      limit_pos_pin: gpio.33:low:pu
       hard_limits: true
       pulloff_mm: 2.000
       stepstick:
         step_pin: I2SO.1
-        direction_pin: I2SO.2
+        direction_pin: I2SO.2:low
         disable_pin: I2SO.0
 
     # use E0 driver for 2nd X axis motor
     motor1:
       hard_limits: true
-      pulloff_mm: 4.000
+      pulloff_mm: 2.000
       stepstick:
         step_pin: I2SO.10
         direction_pin: I2SO.11
