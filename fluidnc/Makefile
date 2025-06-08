@@ -2,6 +2,7 @@
 FLUIDNC_VERSION ?= v3.9.7
 RELEASE = https://github.com/bdring/FluidNC/releases/download/$(FLUIDNC_VERSION)/fluidnc-$(FLUIDNC_VERSION)-posix.zip
 CONFIG = $(PWD)/mks-tinybee/config.yaml
+BASE_URL = http://fluidnc.home
 
 .PHONY: help clean
 
@@ -28,8 +29,10 @@ upload-config: ## install config to FluidNC
 	@cd fluidnc && ./fluidterm.sh --echo --upload $(CONFIG) /dev/cnc
 
 upload-config-http: ## install config to FluidNC
-	@echo "Uploading config $(CONFIG) to FluidNC"
-	curl -F "file=@./mks-tinybee/config.yaml;filename=/config.yaml" http://fluidnc.home/files
+	@echo "Uploading config to FluidNC"
+	curl -F "file=@./mks-tinybee/config.yaml;filename=/config.yaml" $(BASE_URL)/files
+	curl $(BASE_URL)/command?commandText=%18
+
 
 
 help:
