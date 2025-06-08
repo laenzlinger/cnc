@@ -1,6 +1,7 @@
 
 FLUIDNC_VERSION ?= v3.9.7
 RELEASE = https://github.com/bdring/FluidNC/releases/download/$(FLUIDNC_VERSION)/fluidnc-$(FLUIDNC_VERSION)-posix.zip
+CONFIG = $(PWD)/mks-tinybee/config.yaml
 
 .PHONY: help clean
 
@@ -21,8 +22,10 @@ fluidterm: ## open terminal to fluidnc
 	cd fluidnc && ./fluidterm.sh --echo /dev/cnc
 
 upload-config: ## install config to FluidNC
-	@echo "Uploading config to FluidNC"
-	@cd fluidnc && ./fluidterm.sh --echo /dev/cnc --upload-config
+	@echo "Uploading config $(CONFIG) to FluidNC"
+	# remove the following line once the PR is merged and released
+	@cp ../../fluidnc/fluidterm/fluidterm.py fluidnc/common
+	@cd fluidnc && ./fluidterm.sh --echo --upload $(CONFIG) /dev/cnc
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
