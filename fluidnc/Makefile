@@ -27,6 +27,11 @@ upload-config: ## install config to FluidNC
 	@cp ../../fluidnc/fluidterm/fluidterm.py fluidnc/common
 	@cd fluidnc && ./fluidterm.sh --echo --upload $(CONFIG) /dev/cnc
 
+upload-config-http: ## install config to FluidNC
+	@echo "Uploading config $(CONFIG) to FluidNC"
+	curl -F "file=@./mks-tinybee/config.yaml;filename=/config.yaml" http://fluidnc.home/files
+
+
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
