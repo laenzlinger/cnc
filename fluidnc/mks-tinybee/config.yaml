@@ -1,5 +1,5 @@
 board: MKS TinyBee V1.0
-name: laenzi
+name: SRcnc
 
 kinematics:
   Cartesian:
@@ -19,9 +19,12 @@ sdcard:
   # uses TH2 IO34 active low - MAKE SURE jumper J2 is set to SDDET!!!
   card_detect_pin: gpio.34:low
 
+# Pendant
 uart1:
-  txd_pin: gpio.17
-  rxd_pin: gpio.16
+  # EXP2 Pin 5 (yellow)
+  txd_pin: gpio.12
+  # EXP2 Pin 3 (blue)
+  rxd_pin: gpio.14
   rts_pin: NO_PIN
   cts_pin: NO_PIN
   baud: 1000000
