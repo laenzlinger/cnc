@@ -1,7 +1,7 @@
 
 FLUIDNC_VERSION ?= v3.9.7
 RELEASE = https://github.com/bdring/FluidNC/releases/download/$(FLUIDNC_VERSION)/fluidnc-$(FLUIDNC_VERSION)-posix.zip
-CONFIG = $(PWD)/mks-tinybee/config.yaml
+CONFIG = mks-tinybee/config.yaml
 FLUIDNC_FQDN = fluidnc.home
 
 .PHONY: help clean
@@ -26,11 +26,11 @@ upload-config-fd: ## install config uisng fluidterm
 	@echo "Uploading config $(CONFIG) to FluidNC"
 	# remove the following line once the PR is merged and released
 	@cp ../../fluidnc/fluidterm/fluidterm.py fluidnc/common
-	@cd fluidnc && ./fluidterm.sh --echo --upload $(CONFIG) /dev/cnc
+	@cd fluidnc && ./fluidterm.sh --echo --upload $(PWD)/$(CONFIG) /dev/cnc
 
 upload-config: ## install config using web API
 	@echo "Uploading config to FluidNC"
-	curl -F "file=@./mks-tinybee/config.yaml;filename=/config.yaml" http://$(FLUIDNC_FQDN)/files
+	curl -F "file=@./$(CONFIG);filename=/config.yaml" http://$(FLUIDNC_FQDN)/files
 	curl http://$(FLUIDNC_FQDN)/command?commandText=%18
 
 web-socket: ## open web socket to FluidNC
