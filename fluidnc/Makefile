@@ -1,7 +1,7 @@
 
 FLUIDNC_VERSION ?= v3.9.7
 RELEASE = https://github.com/bdring/FluidNC/releases/download/$(FLUIDNC_VERSION)/fluidnc-$(FLUIDNC_VERSION)-posix.zip
-CONFIG = mks-tinybee/config.yaml
+CONFIG = SRcnc/config.yaml
 FLUIDNC_FQDN = fluidnc.home
 
 .PHONY: help clean
