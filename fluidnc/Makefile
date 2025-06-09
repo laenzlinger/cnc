@@ -2,7 +2,7 @@
 FLUIDNC_VERSION ?= v3.9.7
 RELEASE = https://github.com/bdring/FluidNC/releases/download/$(FLUIDNC_VERSION)/fluidnc-$(FLUIDNC_VERSION)-posix.zip
 CONFIG = $(PWD)/mks-tinybee/config.yaml
-BASE_URL = http://fluidnc.home
+FLUIDNC_FQDN = fluidnc.home
 
 .PHONY: help clean
 
@@ -22,18 +22,20 @@ clean: ## clean temporary files
 fluidterm: ## open terminal to fluidnc
 	cd fluidnc && ./fluidterm.sh --echo /dev/cnc
 
-upload-config: ## install config to FluidNC
+upload-config-fd: ## install config uisng fluidterm
 	@echo "Uploading config $(CONFIG) to FluidNC"
 	# remove the following line once the PR is merged and released
 	@cp ../../fluidnc/fluidterm/fluidterm.py fluidnc/common
 	@cd fluidnc && ./fluidterm.sh --echo --upload $(CONFIG) /dev/cnc
 
-upload-config-http: ## install config to FluidNC
+upload-config: ## install config using web API
 	@echo "Uploading config to FluidNC"
-	curl -F "file=@./mks-tinybee/config.yaml;filename=/config.yaml" $(BASE_URL)/files
-	curl $(BASE_URL)/command?commandText=%18
+	curl -F "file=@./mks-tinybee/config.yaml;filename=/config.yaml" http://$(FLUIDNC_FQDN)/files
+	curl http://$(FLUIDNC_FQDN)/command?commandText=%18
 
-
+web-socket: ## open web socket to FluidNC
+	@echo "Opening web socket to FluidNC"
+	websocat ws://$(FLUIDNC_FQDN):81 | grep -v "PING:1"
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
