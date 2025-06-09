@@ -31,6 +31,7 @@ upload-config-fd: ## install config uisng fluidterm
 upload-config: ## install config using web API
 	@echo "Uploading config to FluidNC"
 	curl -F "file=@./$(CONFIG);filename=/config.yaml" http://$(FLUIDNC_FQDN)/files
+	curl -F "file=@./SRcnc/macrocfg.json;filename=/macrocfg.json" http://$(FLUIDNC_FQDN)/files
 	curl http://$(FLUIDNC_FQDN)/command?commandText=%18
 
 web-socket: ## open web socket to FluidNC
