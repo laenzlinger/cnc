@@ -35,7 +35,7 @@ upload-config: ## install config using web API
 
 web-socket: ## open web socket to FluidNC
 	@echo "Opening web socket to FluidNC"
-	websocat ws://$(FLUIDNC_FQDN):81 | grep -v "PING:1"
+	websocat ws://$(FLUIDNC_FQDN):81 | grep -v "^PING:."
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

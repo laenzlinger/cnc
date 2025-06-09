@@ -1,5 +1,5 @@
-board: MKS TinyBee V1.0 laenzi
-name:
+board: MKS TinyBee V1.0
+name: laenzi
 
 kinematics:
   Cartesian:
