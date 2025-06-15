@@ -1,6 +1,8 @@
 include <BOSL2/screws.scad>
 include <BOSL2/std.scad>
 
+$fn = 100;
+
 diff()
 {
     cube([ 150, 40, 10 ], anchor = [ 0, 0 ])
@@ -17,9 +19,9 @@ diff()
 
 module sbr12()
 {
-    fwd(13) left(14) screw_hole("M5,15", thread = true, anchor = TOP);
-    fwd(13) right(14) screw_hole("M5,15", thread = true, anchor = TOP);
-    back(13) left(14) screw_hole("M5,15", thread = true, anchor = TOP);
-    back(13) right(14) screw_hole("M5,15", thread = true, anchor = TOP);
+    fwd(13) left(14) screw_hole("M5,15", anchor = TOP);
+    fwd(13) right(14) screw_hole("M5,15", anchor = TOP);
+    back(13) left(14) screw_hole("M5,15", anchor = TOP);
+    back(13) right(14) screw_hole("M5,15", anchor = TOP);
     //  down(24) cube([ 40, 39, 27.6 ], anchor = [ 0, 0 ]);
 }
