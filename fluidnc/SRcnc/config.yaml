@@ -30,6 +30,13 @@ uart1:
   baud: 1000000
   mode: 8N1
 
+# TMC-2209 drivers
+uart2:
+  txd_pin: gpio.17
+  rxd_pin: gpio.16
+  baud: 115200
+  mode: 8N1
+
 uart_channel1:
   report_interval_ms: 75
   uart_num: 1
@@ -62,19 +69,35 @@ axes:
       limit_pos_pin: gpio.33:low:pu
       hard_limits: true
       pulloff_mm: 2.000
-      stepstick:
+      tmc_2209:
+        uart_num: 2
+        addr: 0
+        cs_pin: NO_PIN
+        r_sense_ohms: 0.110
+        run_amps: 1.000
+        hold_amps: 0.500
+        microsteps: 16
+        stallguard: 0
+        stallguard_debug: false
+        toff_disable: 0
+        toff_stealthchop: 5
+        toff_coolstep: 3
+        run_mode: StealthChop
+        homing_mode: StealthChop
+        homing_amps: 0.50
+        use_enable: false
         step_pin: I2SO.1
         direction_pin: I2SO.2:low
         disable_pin: I2SO.0
 
     # use E0 driver for 2nd X axis motor
-    motor1:
-      hard_limits: true
-      pulloff_mm: 2.000
-      stepstick:
-        step_pin: I2SO.10
-        direction_pin: I2SO.11
-        disable_pin: I2SO.9
+  #    motor1:
+  #      hard_limits: true
+  #      pulloff_mm: 2.000
+  #      stepstick:
+  #        step_pin: I2SO.10
+  #        direction_pin: I2SO.11
+  #        disable_pin: I2SO.9
 
   y:
     steps_per_mm: 1280
@@ -96,20 +119,36 @@ axes:
       limit_neg_pin: gpio.32:low:pu
       hard_limits: false
       pulloff_mm: 4.000
-      stepstick:
+      tmc_2209:
+        uart_num: 2
+        addr: 1
+        cs_pin: NO_PIN
+        r_sense_ohms: 0.110
+        run_amps: 1.000
+        hold_amps: 0.500
+        microsteps: 16
+        stallguard: 0
+        stallguard_debug: false
+        toff_disable: 0
+        toff_stealthchop: 5
+        toff_coolstep: 3
+        run_mode: StealthChop
+        homing_mode: StealthChop
+        homing_amps: 0.50
+        use_enable: false
         step_pin: I2SO.4
         direction_pin: I2SO.5
         disable_pin: I2SO.3
 
     # use E1 driver for 2nd Y axis motor
-    motor1:
-      limit_neg_pin: NO_PIN
-      hard_limits: false
-      pulloff_mm: 4.000
-      stepstick:
-        step_pin: I2SO.13
-        direction_pin: I2SO.14
-        disable_pin: I2SO.12
+  #    motor1:
+  #      limit_neg_pin: NO_PIN
+  #      hard_limits: false
+  #      pulloff_mm: 4.000
+  #      stepstick:
+  #        step_pin: I2SO.13
+  #        direction_pin: I2SO.14
+  #        disable_pin: I2SO.12
 
   z:
     steps_per_mm: 800.000
@@ -131,7 +170,23 @@ axes:
       limit_pos_pin: gpio.22:low:pu
       hard_limits: true
       pulloff_mm: 3.000
-      stepstick:
+      tmc_2209:
+        uart_num: 2
+        addr: 2
+        cs_pin: NO_PIN
+        r_sense_ohms: 0.110
+        run_amps: 1.000
+        hold_amps: 0.500
+        microsteps: 16
+        stallguard: 0
+        stallguard_debug: false
+        toff_disable: 0
+        toff_stealthchop: 5
+        toff_coolstep: 3
+        run_mode: StealthChop
+        homing_mode: StealthChop
+        homing_amps: 0.50
+        use_enable: false
         step_pin: I2SO.7
         direction_pin: I2SO.8
         disable_pin: I2SO.6
