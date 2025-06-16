@@ -1,3 +1,6 @@
+// a jig to hold a dial indicator in place
+// to adjust the x-axes rails (SBR 12)
+
 include <BOSL2/screws.scad>
 include <BOSL2/std.scad>
 
