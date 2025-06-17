@@ -38,7 +38,7 @@ module sbr12()
 
 module mounting_hole()
 {
-    screw_hole("M5x1,15", head = "button", anchor = TOP);
+    screw_hole("M5,15", head = "button", anchor = TOP);
 }
 
 module nut_housing()
@@ -53,6 +53,6 @@ module nut_housing()
 
 module zmount()
 {
-    left(30) screw_hole("M5x1,15", anchor = TOP);
-    right(30) screw_hole("M5x1,15", anchor = TOP);
+    left(30) screw_hole("M5,15", anchor = TOP);
+    right(30) screw_hole("M5,15", anchor = TOP);
 }
