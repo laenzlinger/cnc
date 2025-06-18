@@ -26,8 +26,8 @@ module sbr12()
     J = 28;
     K = 26;
 
-    width = J / 2;
-    height = K / 2;
+    width = K / 2;
+    height = J / 2;
 
     left(width) fwd(height) mounting_hole();
     right(width) fwd(height) mounting_hole();
