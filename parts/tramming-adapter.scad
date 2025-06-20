@@ -5,8 +5,8 @@ $fn = 100;
 
 diff()
 {
-    height = (32.5 + 15) - 40;
-    // see https://cnc4you.co.uk/resources/SBRxxUU.pdf
+    height = 40 - (22 + 15);
+    //  see https://cnc4you.co.uk/resources/SBRxxUU.pdf
     cube([ 36, 50, height ], anchor = [ 0, 0 ]) attach(TOP)
     {
         nut_housing();
