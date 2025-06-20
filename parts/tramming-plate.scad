@@ -53,6 +53,6 @@ module nut_housing()
 
 module zmount()
 {
-    left(30) screw_hole("M5,18", anchor = TOP);
-    right(30) screw_hole("M5,18", anchor = TOP);
+    left(30) screw_hole("M6,18", anchor = TOP);
+    right(30) screw_hole("M6,18", anchor = TOP);
 }
