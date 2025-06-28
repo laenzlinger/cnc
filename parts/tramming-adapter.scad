@@ -5,7 +5,8 @@ $fn = 100;
 
 diff()
 {
-    height = 40 - (22 + 15);
+    correction = -0.2;
+    height = 40 - (22 + 15) + correction;
     //  see https://cnc4you.co.uk/resources/SBRxxUU.pdf
     cube([ 36, 50, height ], anchor = [ 0, 0 ]) attach(TOP)
     {
