@@ -5,8 +5,8 @@ $fn = 100;
 
 difference()
 {
-    cuboid([ 20, 60, 8 ], anchor = [ 0, 0 ], rounding = 2);
-    cube([ 5.5, 40, 10 ], anchor = [ 0, 0 ]);
-    fwd(20) cylinder(d = 5.5, 10, center = true);
-    back(20) cylinder(d = 5.5, 10, center = true);
+    cuboid([ 16, 80, 12 ], anchor = [ 0, 0 ], rounding = 1, edges = "Z");
+    fwd(20) cuboid([ 6.2, 27, 14 ], anchor = [ 0, 0 ], rounding = 3);
+    back(15) cuboid([ 6.2, 27, 14 ], anchor = [ 0, 0 ], rounding = 3);
+    fwd(5) up(3) cube([ 25, 72, 10 ], anchor = [ 0, 0 ]);
 }
