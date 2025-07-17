@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "45degree_Vbit002",
+  "shape": "v-bit.fcstd",
+  "parameter": {
+    "Chipload": "0.00 mm",
+    "CuttingEdgeAngle": "45.00 \u00b0",
+    "CuttingEdgeHeight": "6.45 mm",
+    "Diameter": "12.90 mm",
+    "Flutes": "0",
+    "Length": "42.00 mm",
+    "Material": "HSS",
+    "ShankDiameter": "8.00 mm",
+    "TipDiameter": "0.10 mm"
+  },
+  "attribute": {}
+}
