@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "20.2mm Endmill (Technocraft)",
+  "shape": "endmill.fcstd",
+  "parameter": {
+    "Chipload": "0.00 mm",
+    "CuttingEdgeHeight": "19.30 mm",
+    "Diameter": "20.20 mm",
+    "Flutes": "2",
+    "Length": "52.00 mm",
+    "Material": "HSS",
+    "ShankDiameter": "8.00 mm",
+    "SpindleDirection": "Forward"
+  },
+  "attribute": {}
+}

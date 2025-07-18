@@ -1,0 +1,45 @@
+{
+  "tools": [
+    {
+      "nr": 1,
+      "path": "TC_3mm_Endmill.fctb"
+    },
+    {
+      "nr": 2,
+      "path": "TC_4mm_Endmill.fctb"
+    },
+    {
+      "nr": 3,
+      "path": "TC_6mm_Endmill.fctb"
+    },
+    {
+      "nr": 4,
+      "path": "TC_8.1mm_Endmill.fctb"
+    },
+    {
+      "nr": 5,
+      "path": "TC_10mm_Endmill.fctb"
+    },
+    {
+      "nr": 6,
+      "path": "TC_13mm_Endmill.fctb"
+    },
+    {
+      "nr": 7,
+      "path": "TC_14.5mm_Endmill.fctb"
+    },
+    {
+      "nr": 8,
+      "path": "TC_18.2mm_Endmill.fctb"
+    },
+    {
+      "nr": 9,
+      "path": "TC_20.2mm_Endmill.fctb"
+    },
+    {
+      "nr": 10,
+      "path": "TC_45degree_Vbit.fctb"
+    }
+  ],
+  "version": 1
+}

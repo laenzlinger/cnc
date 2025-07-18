@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "45degree_Vbit002",
+  "name": "45 deg. Vbit",
   "shape": "v-bit.fcstd",
   "parameter": {
     "Chipload": "0.00 mm",
