@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "Green_4mm_1F_Endmill",
+  "shape": "endmill.fcstd",
+  "parameter": {
+    "Chipload": "0.00 mm",
+    "CuttingEdgeHeight": "12.00 mm",
+    "Diameter": "4.00 mm",
+    "Flutes": "1",
+    "Length": "45.00 mm",
+    "Material": "HSS",
+    "ShankDiameter": "4.00 mm",
+    "SpindleDirection": "Forward"
+  },
+  "attribute": {}
+}

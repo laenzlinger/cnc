@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "XUHAN 4mm 4F Endmill",
+  "shape": "endmill.fcstd",
+  "parameter": {
+    "Chipload": "0.00 mm",
+    "CuttingEdgeHeight": "10.00 mm",
+    "Diameter": "4.00 mm",
+    "Flutes": "4",
+    "Length": "50.00 mm",
+    "Material": "Carbide",
+    "ShankDiameter": "4.00 mm",
+    "SpindleDirection": "Forward"
+  },
+  "attribute": {}
+}

@@ -1,0 +1,13 @@
+{
+  "tools": [
+    {
+      "nr": 1,
+      "path": "XUHAN_4mm_4F_Endmill.fctb"
+    },
+    {
+      "nr": 2,
+      "path": "Green_4mm_1F_Endmill.fctb"
+    }
+  ],
+  "version": 1
+}
