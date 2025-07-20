@@ -3,15 +3,21 @@ include <BOSL2/std.scad>
 
 $fn = 100;
 motor_cutout = 135;
-difference()
+
+waste_board();
+
+module waste_board()
 {
-    plate();
-    left(200 - motor_cutout / 2) down(3) cube([ motor_cutout + 0.1, 70, 12.1 ], anchor = [ 0, 0 ]);
-    left(60) back(74) sbr12();
-    right(60) back(74) sbr12();
-    left(60) fwd(74) sbr12();
-    right(60) fwd(74) sbr12();
-    nut_housing();
+    difference()
+    {
+        plate();
+        left(200 - motor_cutout / 2) down(3) cube([ motor_cutout + 0.1, 70, 12.1 ], anchor = [ 0, 0 ]);
+        left(60) back(74) sbr12();
+        right(60) back(74) sbr12();
+        left(60) fwd(74) sbr12();
+        right(60) fwd(74) sbr12();
+        nut_housing();
+    }
 }
 
 module plate()

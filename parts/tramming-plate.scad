@@ -3,17 +3,22 @@ include <BOSL2/std.scad>
 
 $fn = 100;
 
-diff()
+tramming_plate();
+
+module tramming_plate()
 {
-    cube([ 80, 200, 15 ], anchor = [ 0, 0 ]) attach(TOP)
+    diff()
     {
-        left(20.5) back(80) sbr12();
-        right(20.5) back(80) sbr12();
-        left(20.5) fwd(80) sbr12();
-        right(20.5) fwd(80) sbr12();
-        back(30) zmount();
-        fwd(50) zmount();
-        nut_housing();
+        cube([ 80, 200, 15 ], anchor = [ 0, 0 ]) attach(TOP)
+        {
+            left(20.5) back(80) sbr12();
+            right(20.5) back(80) sbr12();
+            left(20.5) fwd(80) sbr12();
+            right(20.5) fwd(80) sbr12();
+            back(30) zmount();
+            fwd(50) zmount();
+            nut_housing();
+        }
     }
 }
 
