@@ -34,11 +34,11 @@ module yaxis_assembly() assembly("yaxis")
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
     }
-    translate([ 80, 0, 0 ]) yrail_assembly();
-    translate([ -80, 0, 0 ]) yrail_assembly();
+    translate([ 80, 0, 0 ]) yrail();
+    translate([ -80, 0, 0 ]) yrail();
 }
 
-module yrail_assembly() assembly("yrail")
+module yrail()
 {
     rotate([ 90, 180, 0 ])
     {

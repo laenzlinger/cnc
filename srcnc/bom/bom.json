@@ -1,37 +1,11 @@
 [
     {
-        "name": "yrail_assembly",
-        "big": null,
-        "ngb": false,
-        "zoomed": 0,
-        "count": 2,
-        "assemblies": {},
-        "vitamins": {
-            "sbr_rail(12, 550): SBR12 rail, length 550mm": {
-                "count": 2
-            },
-            "sbr_bearing_block(SBR12UU): SBR12UU bearing block": {
-                "count": 4
-            },
-            "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
-                "count": 16
-            },
-            "screw(M5_cap_screw, 18): Screw M5 cap x 18mm": {
-                "count": 16
-            }
-        },
-        "printed": {},
-        "routed": {}
-    },
-    {
         "name": "yaxis_assembly",
         "big": null,
         "ngb": false,
         "zoomed": 0,
         "count": 1,
-        "assemblies": {
-            "yrail_assembly": 2
-        },
+        "assemblies": {},
         "vitamins": {
             "leadscrew(12, 550, 4, 1): Leadscrew 12 x 550mm, 4mm lead, 1 starts": {
                 "count": 1
@@ -44,6 +18,18 @@
             },
             "screw(M4_cap_screw, 15): Screw M4 cap x 15mm": {
                 "count": 6
+            },
+            "sbr_rail(12, 550): SBR12 rail, length 550mm": {
+                "count": 2
+            },
+            "sbr_bearing_block(SBR12UU): SBR12UU bearing block": {
+                "count": 4
+            },
+            "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
+                "count": 16
+            },
+            "screw(M5_cap_screw, 18): Screw M5 cap x 18mm": {
+                "count": 16
             }
         },
         "printed": {},
