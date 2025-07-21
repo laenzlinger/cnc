@@ -27,11 +27,11 @@ module yaxis_assembly() assembly("yaxis")
     {
         leadscrew(12, 550, 4, 1);
         leadnuthousing(LNH);
+        nut = leadnuthousing_nut(LNH);
         translate_z(leadnuthousing_height(LNH) / 2)
         {
-            leadnut(leadnuthousing_nut(LNH));
-            leadnuthousing_nut_screw_positions(LNH)
-                screw(leadnut_screw(leadnuthousing_nut(LNH)), leadnuthousing_nut_screw_length(LNH));
+            leadnut(nut);
+            leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
     }
     translate([ 80, 0, 0 ]) yrail_assembly();
@@ -42,9 +42,15 @@ module yrail_assembly() assembly("yrail")
 {
     rotate([ 90, 180, 0 ])
     {
-        sbr_rail(SBR12S, 550);
-        translate([ 00, 0, 60 ]) sbr_bearing_block(SBR12UU);
-        translate([ 00, 0, -60 ]) sbr_bearing_block(SBR12UU);
+        length = 550;
+        sheet = 8;
+        rail = SBR12S;
+        carriage = sbr_rail_carriage(rail);
+        sbr_rail(rail, length);
+        screw = sbr_rail_screw(rail);
+        translate([ 00, 0, 60 ]) sbr_bearing_block_assembly(carriage, sheet);
+        translate([ 00, 0, -60 ]) sbr_bearing_block_assembly(carriage, sheet);
+        sbr_screw_positions(rail, length) explode(20) rotate([ 90, 0, 0 ]) screw(screw, 18);
     }
 }
 
