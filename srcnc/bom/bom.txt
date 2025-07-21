@@ -4,6 +4,7 @@ Vitamins:
  a  a  x
  m  i  i
  e  n  s
+  |  | 1|  1 Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)
   |  | 1|  1 Leadscrew nut for SFU1204
   |  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
   |  |16| 16 Nut M5 x 4mm 
@@ -14,6 +15,7 @@ Vitamins:
   |  |16| 16 Screw M5 cap x 18mm
   |  |16| 16 Screw M5 cap x 20mm
 16|  |  | 16 Screw M6 cap x 55mm
+  |  | 1|  1 Shaft coupling SC_8x8_flex
  1|  |  |  1 Chipboard 360mm x 200mm x 40mm
  1|  |  |  1 Chipboard 360mm x 580mm x 40mm
  2|  |  |  2 Chipboard 400mm x 360mm x 40mm

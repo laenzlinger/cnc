@@ -35,11 +35,13 @@ Small rigid CNC.
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M5 cap x 18mm |
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M5 cap x 20mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M6 cap x 55mm |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Shaft coupling SC_8x8_flex |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Sheet MDF 356mm x 580mm x 15mm |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Stepper motor NEMA22 x 51.2mm (6.35x24 shaft) |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Threaded insert M6 x 15mm |
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Washer  M5 x 10mm x 1mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Washer  M6 x 12.5mm x 1.5mm |
-| &nbsp;&nbsp;80&nbsp; | &nbsp;&nbsp;52&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;132&nbsp; | &nbsp;&nbsp;Total vitamins count |
+| &nbsp;&nbsp;82&nbsp; | &nbsp;&nbsp;52&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;134&nbsp; | &nbsp;&nbsp;Total vitamins count |
 |  |  |  | | **CNC routed parts** |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_back_side.dxf |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_bottom_side.dxf |
@@ -66,7 +68,9 @@ Small rigid CNC.
 |6| Screw M4 cap x 15mm|
 |16| Screw M5 cap x 18mm|
 |16| Screw M5 cap x 20mm|
+|1| Shaft coupling SC_8x8_flex|
 |1| Sheet MDF 356mm x 580mm x 15mm|
+|1| Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)|
 |16| Washer  M5 x 10mm x 1mm|
 
 

@@ -22,7 +22,7 @@ SBR12S = [ "SBR12S", 12, 19, 32, 4, SBR12UU, 150, M5_cap_screw, 22, M4_cap_screw
 
 Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
 MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
-
+SC_8x8_flex = [ "SC_8x8_flex", 25, 19, 8, 8, true ];
 module yaxis_assembly() assembly("yaxis")
 {
     rotate([ 90, -90, 0 ])
@@ -35,6 +35,11 @@ module yaxis_assembly() assembly("yaxis")
             leadnut(nut);
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
+        translate([ 0, 0, -300 ])
+        {
+            explode(-100) NEMA(NEMA23_51);
+            translate([ 0, 0, 18 ]) explode(-20) shaft_coupling(SC_8x8_flex);
+        };
     }
     translate([ 80, 0, 0 ]) yrail();
     translate([ -80, 0, 0 ]) yrail();
