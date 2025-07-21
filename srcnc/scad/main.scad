@@ -22,7 +22,7 @@ SBR12S = [ "SBR12S", 12, 19, 32, 4, SBR12UU, 150, M5_cap_screw, 22, M4_cap_screw
 
 module yaxis_assembly() assembly("yaxis")
 {
-    rotate([ 90, -90, 0 ])
+    explode(50) rotate([ 90, -90, 0 ])
     {
         leadscrew(12, 550, 4, 1);
         leadnuthousing(LNH);
@@ -33,9 +33,9 @@ module yaxis_assembly() assembly("yaxis")
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
     }
-    translate([ 80, 0, 0 ]) yrail();
-    translate([ -80, 0, 0 ]) yrail();
-    translate([ 0, 0, -26.5 ]) explode(-50) render_2D_sheet(MDF15) yplate_dxf();
+    explode(50) translate([ 80, 0, 0 ]) yrail();
+    explode(50) translate([ -80, 0, 0 ]) yrail();
+    translate([ 0, 0, -26.5 ]) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module yrail()
