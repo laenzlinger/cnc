@@ -9,11 +9,18 @@
         "vitamins": {
             "sheet(Chipboard40, 400, 360): Chipboard 400mm x 360mm x 40mm": {
                 "count": 2
+            },
+            "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
+                "count": 1
             }
         },
         "printed": {},
         "routed": {
             "frame_right_side.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            },
+            "frame_back_side.dxf": {
                 "count": 1,
                 "colour": "#BEA587"
             },
@@ -24,49 +31,12 @@
         }
     },
     {
-        "name": "yaxis_assembly",
-        "big": null,
-        "ngb": false,
-        "zoomed": 0,
-        "count": 1,
-        "assemblies": {},
-        "vitamins": {
-            "leadscrew(12, 550, 4, 1): Leadscrew 12 x 550mm, 4mm lead, 1 starts": {
-                "count": 1
-            },
-            "nuthousing(LNH): Lead Screw Nut Housing": {
-                "count": 1
-            },
-            "leadnut(SFU1204): Leadscrew nut for SFU1204": {
-                "count": 1
-            },
-            "screw(M4_cap_screw, 15): Screw M4 cap x 15mm": {
-                "count": 6
-            },
-            "sbr_rail(12, 550): SBR12 rail, length 550mm": {
-                "count": 2
-            },
-            "sbr_bearing_block(SBR12UU): SBR12UU bearing block": {
-                "count": 4
-            },
-            "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
-                "count": 16
-            },
-            "screw(M5_cap_screw, 18): Screw M5 cap x 18mm": {
-                "count": 16
-            }
-        },
-        "printed": {},
-        "routed": {}
-    },
-    {
         "name": "main_assembly",
         "big": null,
         "ngb": false,
         "zoomed": 0,
         "count": 1,
         "assemblies": {
-            "yaxis_assembly": 1,
             "Frame_assembly": 1
         },
         "vitamins": {},

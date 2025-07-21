@@ -2,4 +2,3 @@ main_assembly:
 
 Assemblies:
   1 Frame_assembly
-  1 yaxis_assembly

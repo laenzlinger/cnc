@@ -59,6 +59,7 @@ Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
 module frame_assembly() assembly("Frame")
 {
     translate([ 180, 0, 0 ]) rotate([ 0, -90, 180 ]) render_2D_sheet((Chipboard40)) frame_right_side_dxf();
+    translate([ 0, 160, 100 ]) rotate([ 90, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_back_side_dxf();
     translate([ -180, 0, 0 ]) rotate([ 0, -90, 180 ]) render_2D_sheet((Chipboard40)) frame_left_side_dxf();
 }
 
@@ -68,6 +69,14 @@ module frame_left_side_dxf() dxf("frame_left_side")
     {
         sheet_2D(Chipboard40, 400, 360);
         frame_side_screw_positions() circle(5);
+    }
+}
+
+module frame_back_side_dxf() dxf("frame_back_side")
+{
+    difference()
+    {
+        sheet_2D(Chipboard40, 360, 200);
     }
 }
 
@@ -91,7 +100,7 @@ module frame_side_screw_positions()
 //! Assembly instructions in Markdown format in front of each module that makes an assembly.
 module main_assembly() assembly("main")
 {
-    yaxis_assembly();
+    //  yaxis_assembly();
     frame_assembly();
 }
 
