@@ -34,16 +34,16 @@ Small rigid CNC.
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M5 cap x 18mm |
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M5 cap x 20mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M6 cap x 55mm |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Sheet MDF 356mm x 580mm x 15mm |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Sheet MDF 356mm x 580mm x 15mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Washer  M6 x 12.5mm x 1.5mm |
-| &nbsp;&nbsp;47&nbsp; | &nbsp;&nbsp;37&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;84&nbsp; | &nbsp;&nbsp;Total vitamins count |
+| &nbsp;&nbsp;48&nbsp; | &nbsp;&nbsp;36&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;84&nbsp; | &nbsp;&nbsp;Total vitamins count |
 |  |  |  | | **CNC routed parts** |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_back_side.dxf |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_bottom_side.dxf |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_left_side.dxf |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_right_side.dxf |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;yplate.dxf |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;5&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;5&nbsp; | &nbsp;&nbsp;Total CNC routed parts count |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;yplate.dxf |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;5&nbsp; | &nbsp;&nbsp;Total CNC routed parts count |
 
 <span></span>
 [Top](#TOP)
@@ -62,12 +62,21 @@ Small rigid CNC.
 |6| Screw M4 cap x 15mm|
 |16| Screw M5 cap x 18mm|
 |16| Screw M5 cap x 20mm|
+|1| Sheet MDF 356mm x 580mm x 15mm|
+
+
+### CNC Routed parts
+
+| 1 x [yplate.dxf](dxfs/yplate.dxf) |
+|---|
+| ![yplate.dxf](dxfs/yplate.png) 
+
 
 
 ### Assembly instructions
-![yaxis_assembly](assemblies/yaxis_assembly_tn.png)
+![yaxis_assembly](assemblies/yaxis_assembly.png)
 
-![yaxis_assembled](assemblies/yaxis_assembled_tn.png)
+![yaxis_assembled](assemblies/yaxis_assembled.png)
 
 <span></span>
 [Top](#TOP)
@@ -82,7 +91,6 @@ Small rigid CNC.
 |1| Chipboard 360mm x 580mm x 40mm|
 |2| Chipboard 400mm x 360mm x 40mm|
 |16| Screw M6 cap x 55mm|
-|1| Sheet MDF 356mm x 580mm x 15mm|
 |16| Washer  M6 x 12.5mm x 1.5mm|
 
 
@@ -93,9 +101,9 @@ Small rigid CNC.
 | ![frame_back_side.dxf](dxfs/frame_back_side.png) | ![frame_bottom_side.dxf](dxfs/frame_bottom_side.png) | ![frame_left_side.dxf](dxfs/frame_left_side.png) 
 
 
-| 1 x [frame_right_side.dxf](dxfs/frame_right_side.dxf) | 1 x [yplate.dxf](dxfs/yplate.dxf) |
-|---|---|
-| ![frame_right_side.dxf](dxfs/frame_right_side.png) | ![yplate.dxf](dxfs/yplate.png) 
+| 1 x [frame_right_side.dxf](dxfs/frame_right_side.dxf) |
+|---|
+| ![frame_right_side.dxf](dxfs/frame_right_side.png) 
 
 
 

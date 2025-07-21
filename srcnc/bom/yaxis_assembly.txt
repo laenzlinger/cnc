@@ -8,3 +8,7 @@ Vitamins:
   6 Screw M4 cap x 15mm
  16 Screw M5 cap x 18mm
  16 Screw M5 cap x 20mm
+  1 Sheet MDF 356mm x 580mm x 15mm
+
+CNC cut:
+  1 yplate.dxf

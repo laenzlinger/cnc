@@ -35,6 +35,7 @@ module yaxis_assembly() assembly("yaxis")
     }
     translate([ 80, 0, 0 ]) yrail();
     translate([ -80, 0, 0 ]) yrail();
+    translate([ 0, 0, -26.5 ]) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module yrail()
@@ -79,7 +80,6 @@ module frame_assembly() assembly("Frame")
 
     translate([ 0, 160, 100 ]) rotate([ 90, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_back_side_dxf();
     translate([ -0, 0, -180 ]) render_2D_sheet(Chipboard40) frame_bottom_side_dxf();
-    translate([ -0, 0, -152 ]) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module frame_left_side_dxf() dxf("frame_left_side")
@@ -144,8 +144,9 @@ module frame_side_screw_positions()
 module main_assembly() assembly("main")
 {
     frame_assembly();
-    translate([ 0, 0, -125 ]) yaxis_assembly();
+    translate([ 0, 0, -126 ]) yaxis_assembly();
 }
 
 if ($preview)
     main_assembly();
+// yaxis_assembly();
