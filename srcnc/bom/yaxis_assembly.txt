@@ -2,6 +2,7 @@ yaxis_assembly:
 Vitamins:
   1 Leadscrew nut for SFU1204
   1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
+ 16 Nut M5 x 4mm 
   1 Lead Screw Nut Housing
   4 SBR12UU bearing block
   2 SBR12 rail, length 550mm
@@ -9,6 +10,7 @@ Vitamins:
  16 Screw M5 cap x 18mm
  16 Screw M5 cap x 20mm
   1 Sheet MDF 356mm x 580mm x 15mm
+ 16 Washer  M5 x 10mm x 1mm
 
 CNC cut:
   1 yplate.dxf

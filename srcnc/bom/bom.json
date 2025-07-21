@@ -31,6 +31,12 @@
             "screw(M5_cap_screw, 18): Screw M5 cap x 18mm": {
                 "count": 16
             },
+            "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
+                "count": 16
+            },
+            "nut(M5_nut): Nut M5 x 4mm ": {
+                "count": 16
+            },
             "sheet(MDF15, 356, 580): Sheet MDF 356mm x 580mm x 15mm": {
                 "count": 1
             }
@@ -58,6 +64,9 @@
                 "count": 16
             },
             "washer(M6_washer): Washer  M6 x 12.5mm x 1.5mm": {
+                "count": 16
+            },
+            "threaded_insert(M6x15): Threaded insert M6 x 15mm": {
                 "count": 16
             },
             "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {

@@ -4,6 +4,7 @@ Vitamins:
   1 Chipboard 360mm x 200mm x 40mm
   1 Chipboard 360mm x 580mm x 40mm
   2 Chipboard 400mm x 360mm x 40mm
+ 16 Threaded insert M6 x 15mm
  16 Washer  M6 x 12.5mm x 1.5mm
 
 CNC cut:
