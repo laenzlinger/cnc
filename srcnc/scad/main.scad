@@ -86,7 +86,7 @@ module frame_assembly() assembly("Frame")
         render_2D_sheet((Chipboard40)) frame_right_side_dxf();
         frame_side_screw_positions()
         {
-            translate([ 0, 0, 21.5 ])
+            translate([ 0, 0, 20 ])
             {
                 screw(M6_cap_screw, screw_length);
                 washer(M6_washer);
@@ -99,13 +99,13 @@ module frame_assembly() assembly("Frame")
         render_2D_sheet((Chipboard40)) frame_left_side_dxf();
         frame_side_screw_positions()
         {
-            translate([ 0, 0, -21.5 ])
+            translate([ 0, 0, -20 ])
             {
                 rotate([ 0, 180, 0 ])
                 {
                     screw(M6_cap_screw, screw_length);
                     washer(M6_washer);
-                    translate([ 0, 0, 40 ]) threaded_insert(M6x15);
+                    translate([ 0, 0, -40 ]) threaded_insert(M6x15);
                 }
             }
         }
