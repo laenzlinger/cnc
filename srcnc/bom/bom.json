@@ -1,5 +1,29 @@
 [
     {
+        "name": "Frame_assembly",
+        "big": null,
+        "ngb": false,
+        "zoomed": 0,
+        "count": 1,
+        "assemblies": {},
+        "vitamins": {
+            "sheet(Chipboard40, 400, 360): Chipboard 400mm x 360mm x 40mm": {
+                "count": 2
+            }
+        },
+        "printed": {},
+        "routed": {
+            "frame_right_side.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            },
+            "frame_left_side.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            }
+        }
+    },
+    {
         "name": "yaxis_assembly",
         "big": null,
         "ngb": false,
@@ -42,7 +66,8 @@
         "zoomed": 0,
         "count": 1,
         "assemblies": {
-            "yaxis_assembly": 1
+            "yaxis_assembly": 1,
+            "Frame_assembly": 1
         },
         "vitamins": {},
         "printed": {},

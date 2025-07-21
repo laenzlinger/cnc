@@ -1,18 +1,24 @@
 Vitamins:
-    Y
- M  a
- a  x
- i  i
- n  s
-  | 1|  1 Leadscrew nut for SFU1204
-  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
-  | 1|  1 Lead Screw Nut Housing
-  | 4|  4 SBR12UU bearing block
-  | 2|  2 SBR12 rail, length 550mm
-  | 6|  6 Screw M4 cap x 15mm
-  |16| 16 Screw M5 cap x 18mm
-  |16| 16 Screw M5 cap x 20mm
+ F     Y
+ r  M  a
+ a  a  x
+ m  i  i
+ e  n  s
+  |  | 1|  1 Leadscrew nut for SFU1204
+  |  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
+  |  | 1|  1 Lead Screw Nut Housing
+  |  | 4|  4 SBR12UU bearing block
+  |  | 2|  2 SBR12 rail, length 550mm
+  |  | 6|  6 Screw M4 cap x 15mm
+  |  |16| 16 Screw M5 cap x 18mm
+  |  |16| 16 Screw M5 cap x 20mm
+ 2|  |  |  2 Chipboard 400mm x 360mm x 40mm
+
+CNC cut:
+ 1|  |  |  1 frame_left_side.dxf
+ 1|  |  |  1 frame_right_side.dxf
 
 Assemblies:
+  1 Frame_assembly
   1 main_assembly
   1 yaxis_assembly

@@ -54,11 +54,45 @@ module yrail()
     }
 }
 
+Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
+
+module frame_assembly() assembly("Frame")
+{
+    translate([ 180, 0, 0 ]) rotate([ 0, -90, 180 ]) render_2D_sheet((Chipboard40)) frame_right_side_dxf();
+    translate([ -180, 0, 0 ]) rotate([ 0, -90, 180 ]) render_2D_sheet((Chipboard40)) frame_left_side_dxf();
+}
+
+module frame_left_side_dxf() dxf("frame_left_side")
+{
+    difference()
+    {
+        sheet_2D(Chipboard40, 400, 360);
+        frame_side_screw_positions() circle(5);
+    }
+}
+
+module frame_right_side_dxf() dxf("frame_right_side")
+{
+    difference()
+    {
+        sheet_2D(Chipboard40, 400, 360);
+        frame_side_screw_positions() circle(5);
+        translate([ 100, -110, 0 ]) circle(20);
+    }
+}
+
+module frame_side_screw_positions()
+{
+    for (i = [0:1:4])
+        translate([ -180, -160 + i * 80, 0 ]) children();
+    for (i = [0:1:3])
+        translate([ 20 + i * 80, -160, 0 ]) children();
+}
 //! Assembly instructions in Markdown format in front of each module that makes an assembly.
 module main_assembly() assembly("main")
 {
     yaxis_assembly();
-    //    ...
+    frame_assembly();
 }
 
 if ($preview)
