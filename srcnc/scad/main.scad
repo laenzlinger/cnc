@@ -4,24 +4,48 @@ $show_threads = true; // Show threads on leadscrews
 //! Small rigid CNC.
 
 include <NopSCADlib/lib.scad> // Includes all the vitamins and utilities in NopSCADlib but not the printed parts.
+include <NopSCADlib/vitamins/sbr_rails.scad>
+use <NopSCADlib/vitamins/sbr_rail.scad>
 
-module yaxis_assembly() assembly("yaxix")
+SFU1204 = [
+    "SFU1204", "Leadscrew nut for SFU1204", 12, 22, 35, 42, 8, 0, 6, 4.5, 32 / 2, M4_cap_screw, 4, 10, 30, "#DFDAC5"
+];
+
+LNH = [ "LNH", "Lead Screw Nut Housing", 30, 50, 36, -1, 24, 35, M5_cs_cap_screw, 15, SFU1204, 15 ];
+LM12UUOP = [ "LM12UUOP", 30, 21, 12, 1.3, 20.0, 23.0, 8 ];
+
+//                T  h   H   W   M   G     J   K   A  S1            I   LB                         S2 S2L
+SBR12UU =
+    [ "SBR12UU", 12, 25, 40, 41, 40, 27.6, 28, 26, 9, M5_cap_screw, 12, LM12UUOP, circlip_21i, 0, M5_grub_screw, 5 ];
+
+//                    d  h   B   T  carriage P    S2            C   S3            S3L
+SBR12S = [ "SBR12S", 12, 19, 32, 4, SBR12UU, 150, M5_cap_screw, 22, M4_cap_screw, 13 ];
+
+module yaxis_assembly() assembly("yaxis")
 {
-    SFU1204 = [
-        "SFU1204", "Leadscrew nut for SFU1204", 12, 22, 35, 42, 8, 0, 6, 4.5, 32 / 2, M4_cap_screw, 4, 10, 30, "#DFDAC5"
-    ];
-
-    LNH = [ "LNH", "Lead Screw Nut Housing", 30, 50, 36, -1, 24, 35, M5_cs_cap_screw, 15, SFU1204, 15 ];
-    leadnuthousing(LNH);
-    translate_z(leadnuthousing_height(LNH) / 2)
+    rotate([ 90, -90, 0 ])
     {
-        leadnut(leadnuthousing_nut(LNH));
-        leadnuthousing_nut_screw_positions(LNH)
-            screw(leadnut_screw(leadnuthousing_nut(LNH)), leadnuthousing_nut_screw_length(LNH));
+        leadscrew(12, 550, 4, 1);
+        leadnuthousing(LNH);
+        translate_z(leadnuthousing_height(LNH) / 2)
+        {
+            leadnut(leadnuthousing_nut(LNH));
+            leadnuthousing_nut_screw_positions(LNH)
+                screw(leadnut_screw(leadnuthousing_nut(LNH)), leadnuthousing_nut_screw_length(LNH));
+        }
     }
-    leadscrew(12, 550, 4, 1);
+    translate([ 80, 0, 0 ]) yrail_assembly();
+    translate([ -80, 0, 0 ]) yrail_assembly();
+}
 
-    //    ...
+module yrail_assembly() assembly("yrail")
+{
+    rotate([ 90, 180, 0 ])
+    {
+        sbr_rail(SBR12S, 550);
+        translate([ 00, 0, 60 ]) sbr_bearing_block(SBR12UU);
+        translate([ 00, 0, -60 ]) sbr_bearing_block(SBR12UU);
+    }
 }
 
 //! Assembly instructions in Markdown format in front of each module that makes an assembly.
