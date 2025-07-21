@@ -126,8 +126,8 @@ module frame_side_screw_positions()
 //! Assembly instructions in Markdown format in front of each module that makes an assembly.
 module main_assembly() assembly("main")
 {
-    frame_assembly();
     yaxis_assembly();
+    frame_assembly();
 }
 
 if ($preview)
