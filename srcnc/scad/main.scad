@@ -3,7 +3,7 @@ $show_threads = true; // Show threads on leadscrews
 
 //! Small rigid CNC.
 
-include <../../parts/NopSCADlib/lib.scad> // Includes all the vitamins and utilities in NopSCADlib but not the printed parts.
+include <NopSCADlib/lib.scad> // Includes all the vitamins and utilities in NopSCADlib but not the printed parts.
 
 module yaxis_assembly() assembly("yaxix")
 {
