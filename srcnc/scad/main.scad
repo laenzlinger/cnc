@@ -1,5 +1,4 @@
 $pp1_colour = "grey"; // Override any global defaults here if required, see NopSCADlib/global_defs.scad.
-$show_threads = true; // Show threads on leadscrews
 
 //! Small rigid CNC.
 
@@ -48,13 +47,14 @@ module yrail()
         carriage = sbr_rail_carriage(rail);
         sbr_rail(rail, length);
         screw = sbr_rail_screw(rail);
-        translate([ 00, 0, 60 ]) sbr_bearing_block_assembly(carriage, sheet);
-        translate([ 00, 0, -60 ]) sbr_bearing_block_assembly(carriage, sheet);
+        translate([ 0, 0, 60 ]) sbr_bearing_block_assembly(carriage, sheet);
+        translate([ 0, 0, -60 ]) sbr_bearing_block_assembly(carriage, sheet);
         sbr_screw_positions(rail, length) explode(20) rotate([ 90, 0, 0 ]) screw(screw, 18);
     }
 }
 
 Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
+MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
 
 module frame_assembly() assembly("Frame")
 {
@@ -63,8 +63,8 @@ module frame_assembly() assembly("Frame")
         render_2D_sheet((Chipboard40)) frame_right_side_dxf();
         frame_side_screw_positions()
         {
-            translate([ 0, 0, 20 ]) screw(M6_cap_screw, 55);
-            translate([ 0, 0, 20 ]) washer(M6_washer);
+            translate([ 0, 0, 21.5 ]) screw(M6_cap_screw, 55);
+            translate([ 0, 0, 21.5 ]) washer(M6_washer);
         }
     }
     translate([ -200, 0, 0 ]) rotate([ 0, -90, 180 ])
@@ -79,6 +79,7 @@ module frame_assembly() assembly("Frame")
 
     translate([ 0, 160, 100 ]) rotate([ 90, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_back_side_dxf();
     translate([ -0, 0, -180 ]) render_2D_sheet(Chipboard40) frame_bottom_side_dxf();
+    translate([ -0, 0, -152 ]) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module frame_left_side_dxf() dxf("frame_left_side")
@@ -86,7 +87,17 @@ module frame_left_side_dxf() dxf("frame_left_side")
     difference()
     {
         sheet_2D(Chipboard40, 400, 360);
-        frame_side_screw_positions() circle(5);
+        frame_side_screw_positions() circle(4);
+    }
+}
+
+module frame_right_side_dxf() dxf("frame_right_side")
+{
+    difference()
+    {
+        sheet_2D(Chipboard40, 400, 360);
+        frame_side_screw_positions() circle(4);
+        translate([ 100, -110, 0 ]) circle(20);
     }
 }
 
@@ -106,13 +117,19 @@ module frame_bottom_side_dxf() dxf("frame_bottom_side")
     }
 }
 
-module frame_right_side_dxf() dxf("frame_right_side")
+module yplate_dxf() dxf("yplate")
 {
     difference()
     {
-        sheet_2D(Chipboard40, 400, 360);
-        frame_side_screw_positions() circle(5);
-        translate([ 100, -110, 0 ]) circle(20);
+        sheet_2D(MDF15, 356, 580);
+        translate([ 140, 250, 0 ]) circle(4);
+        translate([ -140, 250, 0 ]) circle(4);
+        translate([ 140, -250, 0 ]) circle(4);
+        translate([ -140, -250, 0 ]) circle(4);
+        translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
+            cylinder(r = 3, h = 10);
+        translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
+            cylinder(r = 3, h = 10);
     }
 }
 
@@ -126,8 +143,8 @@ module frame_side_screw_positions()
 //! Assembly instructions in Markdown format in front of each module that makes an assembly.
 module main_assembly() assembly("main")
 {
-    yaxis_assembly();
     frame_assembly();
+    translate([ 0, 0, -125 ]) yaxis_assembly();
 }
 
 if ($preview)

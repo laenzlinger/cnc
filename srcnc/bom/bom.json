@@ -1,49 +1,5 @@
 [
     {
-        "name": "Frame_assembly",
-        "big": null,
-        "ngb": false,
-        "zoomed": 0,
-        "count": 1,
-        "assemblies": {},
-        "vitamins": {
-            "sheet(Chipboard40, 400, 360): Chipboard 400mm x 360mm x 40mm": {
-                "count": 2
-            },
-            "screw(M6_cap_screw, 55): Screw M6 cap x 55mm": {
-                "count": 16
-            },
-            "washer(M6_washer): Washer  M6 x 12.5mm x 1.5mm": {
-                "count": 16
-            },
-            "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
-                "count": 1
-            },
-            "sheet(Chipboard40, 360, 580): Chipboard 360mm x 580mm x 40mm": {
-                "count": 1
-            }
-        },
-        "printed": {},
-        "routed": {
-            "frame_right_side.dxf": {
-                "count": 1,
-                "colour": "#BEA587"
-            },
-            "frame_left_side.dxf": {
-                "count": 1,
-                "colour": "#BEA587"
-            },
-            "frame_back_side.dxf": {
-                "count": 1,
-                "colour": "#BEA587"
-            },
-            "frame_bottom_side.dxf": {
-                "count": 1,
-                "colour": "#BEA587"
-            }
-        }
-    },
-    {
         "name": "yaxis_assembly",
         "big": null,
         "ngb": false,
@@ -80,14 +36,65 @@
         "routed": {}
     },
     {
+        "name": "Frame_assembly",
+        "big": null,
+        "ngb": false,
+        "zoomed": 0,
+        "count": 1,
+        "assemblies": {},
+        "vitamins": {
+            "sheet(Chipboard40, 400, 360): Chipboard 400mm x 360mm x 40mm": {
+                "count": 2
+            },
+            "screw(M6_cap_screw, 55): Screw M6 cap x 55mm": {
+                "count": 16
+            },
+            "washer(M6_washer): Washer  M6 x 12.5mm x 1.5mm": {
+                "count": 16
+            },
+            "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
+                "count": 1
+            },
+            "sheet(Chipboard40, 360, 580): Chipboard 360mm x 580mm x 40mm": {
+                "count": 1
+            },
+            "sheet(MDF15, 356, 580): Sheet MDF 356mm x 580mm x 15mm": {
+                "count": 1
+            }
+        },
+        "printed": {},
+        "routed": {
+            "frame_right_side.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            },
+            "frame_left_side.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            },
+            "frame_back_side.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            },
+            "frame_bottom_side.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            },
+            "yplate.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            }
+        }
+    },
+    {
         "name": "main_assembly",
         "big": null,
         "ngb": false,
         "zoomed": 0,
         "count": 1,
         "assemblies": {
-            "yaxis_assembly": 1,
-            "Frame_assembly": 1
+            "Frame_assembly": 1,
+            "yaxis_assembly": 1
         },
         "vitamins": {},
         "printed": {},
