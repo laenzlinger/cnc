@@ -20,9 +20,12 @@ SBR12UU =
 //                    d  h   B   T  carriage P    S2            C   S3            S3L
 SBR12S = [ "SBR12S", 12, 19, 32, 4, SBR12UU, 150, M5_cap_screw, 22, M4_cap_screw, 13 ];
 
+Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
+MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
+
 module yaxis_assembly() assembly("yaxis")
 {
-    explode(50) rotate([ 90, -90, 0 ])
+    rotate([ 90, -90, 0 ])
     {
         leadscrew(12, 550, 4, 1);
         leadnuthousing(LNH);
@@ -33,9 +36,9 @@ module yaxis_assembly() assembly("yaxis")
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
     }
-    explode(50) translate([ 80, 0, 0 ]) yrail();
-    explode(50) translate([ -80, 0, 0 ]) yrail();
-    translate([ 0, 0, -26.5 ]) render_2D_sheet(MDF15) yplate_dxf();
+    translate([ 80, 0, 0 ]) yrail();
+    translate([ -80, 0, 0 ]) yrail();
+    translate([ 0, 0, -26.5 ]) explode(-100) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module yrail()
@@ -50,12 +53,25 @@ module yrail()
         screw = sbr_rail_screw(rail);
         translate([ 0, 0, 60 ]) sbr_bearing_block_assembly(carriage, sheet);
         translate([ 0, 0, -60 ]) sbr_bearing_block_assembly(carriage, sheet);
-        sbr_screw_positions(rail, length) explode(20) rotate([ 90, 0, 0 ]) screw(screw, 18);
+        sbr_screw_positions(rail, length) rotate([ 90, 0, 0 ]) explode(20) screw(screw, 18);
     }
 }
 
-Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
-MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
+module yplate_dxf() dxf("yplate")
+{
+    difference()
+    {
+        sheet_2D(MDF15, 356, 580);
+        translate([ 140, 250, 0 ]) circle(4);
+        translate([ -140, 250, 0 ]) circle(4);
+        translate([ 140, -250, 0 ]) circle(4);
+        translate([ -140, -250, 0 ]) circle(4);
+        translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
+            cylinder(r = 3, h = 10);
+        translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
+            cylinder(r = 3, h = 10);
+    }
+}
 
 module frame_assembly() assembly("Frame")
 {
@@ -64,8 +80,8 @@ module frame_assembly() assembly("Frame")
         render_2D_sheet((Chipboard40)) frame_right_side_dxf();
         frame_side_screw_positions()
         {
-            translate([ 0, 0, 21.5 ]) screw(M6_cap_screw, 55);
-            translate([ 0, 0, 21.5 ]) washer(M6_washer);
+            translate([ 0, 0, 21.5 ]) explode(100) screw(M6_cap_screw, 55);
+            translate([ 0, 0, 21.5 ]) explode(20) washer(M6_washer);
         }
     }
     translate([ -200, 0, 0 ]) rotate([ 0, -90, 180 ])
@@ -73,8 +89,8 @@ module frame_assembly() assembly("Frame")
         render_2D_sheet((Chipboard40)) frame_left_side_dxf();
         frame_side_screw_positions()
         {
-            translate([ 0, 0, -21.5 ]) rotate([ 0, 180, 0 ]) screw(M6_cap_screw, 55);
-            translate([ 0, 0, -21.5 ]) washer(M6_washer);
+            translate([ 0, 0, -21.5 ]) rotate([ 0, 180, 0 ]) explode(100) screw(M6_cap_screw, 55);
+            translate([ 0, 0, -21.5 ]) explode(20) washer(M6_washer);
         }
     }
 
@@ -114,22 +130,6 @@ module frame_bottom_side_dxf() dxf("frame_bottom_side")
     difference()
     {
         sheet_2D(Chipboard40, 360, 580);
-    }
-}
-
-module yplate_dxf() dxf("yplate")
-{
-    difference()
-    {
-        sheet_2D(MDF15, 356, 580);
-        translate([ 140, 250, 0 ]) circle(4);
-        translate([ -140, 250, 0 ]) circle(4);
-        translate([ 140, -250, 0 ]) circle(4);
-        translate([ -140, -250, 0 ]) circle(4);
-        translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
-            cylinder(r = 3, h = 10);
-        translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
-            cylinder(r = 3, h = 10);
     }
 }
 
