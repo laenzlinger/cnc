@@ -58,10 +58,27 @@ Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
 
 module frame_assembly() assembly("Frame")
 {
-    translate([ 200, 0, 0 ]) rotate([ 0, -90, 180 ]) render_2D_sheet((Chipboard40)) frame_right_side_dxf();
+    translate([ 200, 0, 0 ]) rotate([ 0, -90, 180 ])
+    {
+        render_2D_sheet((Chipboard40)) frame_right_side_dxf();
+        frame_side_screw_positions()
+        {
+            translate([ 0, 0, 20 ]) screw(M6_cap_screw, 55);
+            translate([ 0, 0, 20 ]) washer(M6_washer);
+        }
+    }
+    translate([ -200, 0, 0 ]) rotate([ 0, -90, 180 ])
+    {
+        render_2D_sheet((Chipboard40)) frame_left_side_dxf();
+        frame_side_screw_positions()
+        {
+            translate([ 0, 0, -21.5 ]) rotate([ 0, 180, 0 ]) screw(M6_cap_screw, 55);
+            translate([ 0, 0, -21.5 ]) washer(M6_washer);
+        }
+    }
+
     translate([ 0, 160, 100 ]) rotate([ 90, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_back_side_dxf();
-    translate([ -200, 0, 0 ]) rotate([ 0, -90, 180 ]) render_2D_sheet((Chipboard40)) frame_left_side_dxf();
-    translate([ -0, 0, -180 ]) render_2D_sheet((Chipboard40)) frame_bottom_side_dxf();
+    translate([ -0, 0, -180 ]) render_2D_sheet(Chipboard40) frame_bottom_side_dxf();
 }
 
 module frame_left_side_dxf() dxf("frame_left_side")
@@ -103,7 +120,7 @@ module frame_side_screw_positions()
 {
     for (i = [0:1:4])
         translate([ -180, -160 + i * 80, 0 ]) children();
-    for (i = [0:1:3])
+    for (i = [0:1:2])
         translate([ 20 + i * 80, -160, 0 ]) children();
 }
 //! Assembly instructions in Markdown format in front of each module that makes an assembly.

@@ -1,8 +1,10 @@
 Frame_assembly:
 Vitamins:
+ 16 Screw M6 cap x 55mm
   1 Chipboard 360mm x 200mm x 40mm
   1 Chipboard 360mm x 580mm x 40mm
   2 Chipboard 400mm x 360mm x 40mm
+ 16 Washer  M6 x 12.5mm x 1.5mm
 
 CNC cut:
   1 frame_back_side.dxf
