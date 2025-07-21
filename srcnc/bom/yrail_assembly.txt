@@ -1,0 +1,6 @@
+yrail_assemblies:
+Vitamins:
+  4 SBR12UU bearing block
+  2 SBR12 rail, length 550mm
+ 16 Screw M5 cap x 18mm
+ 16 Screw M5 cap x 20mm
