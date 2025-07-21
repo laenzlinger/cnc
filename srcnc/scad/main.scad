@@ -35,7 +35,7 @@ module yaxis_assembly() assembly("yaxis")
     }
     translate([ 80, 0, 0 ]) yrail();
     translate([ -80, 0, 0 ]) yrail();
-    translate([ 0, 0, -26.5 ]) explode(50) render_2D_sheet(MDF15) yplate_dxf();
+    translate([ 0, 0, -26.5 ]) explode(-50) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module yrail()
