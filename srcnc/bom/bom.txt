@@ -25,6 +25,9 @@ Vitamins:
   |  |16| 16 Washer  M5 x 10mm x 1mm
 16|  | 4| 20 Washer  M6 x 12.5mm x 1.5mm
 
+Printed:
+  |  | 1|  1 nut_housing_adapter.stl
+
 CNC cut:
  1|  |  |  1 frame_back_side.dxf
  1|  |  |  1 frame_bottom_side.dxf

@@ -25,6 +25,7 @@ MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
 SC_8x8_flex = [ "SC_8x8_flex", 25, 19, 8, 8, true ];
 module yaxis_assembly() assembly("yaxis")
 {
+    translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
     rotate([ 90, -90, 0 ])
     {
         leadscrew(12, 550, 4, 1);
@@ -50,8 +51,8 @@ module yaxis_assembly() assembly("yaxis")
         {
             translate([ 0, 0, 7.5 ])
             {
-                explode(50) screw(M6_cap_screw, 20);
-                explode(40) washer(M6_washer);
+                explode(40) screw(M6_cap_screw, 20);
+                explode(10) washer(M6_washer);
                 translate([ 0, 0, -15 ]) explode(-100) threaded_insert(M6x15);
             }
         }
@@ -100,6 +101,19 @@ module yplate_mounting_screw_positions()
     translate([ -x, y, 0 ]) children();
     translate([ x, -y, 0 ]) children();
     translate([ -x, -y, 0 ]) children();
+}
+
+module nut_housing_adapter_stl() stl("nut_housing_adapter")
+{
+    correction = -0.2;
+    height = 40 - (22 + 15) + correction;
+    //  see https://cnc4you.co.uk/resources/SBRxxUU.pdf
+
+    difference()
+    {
+        cube([ 36, 50, height ], center = true);
+        leadnuthousing_screw_positions(LNH) cylinder(r = 2.7, h = 10, center = true);
+    }
 }
 
 module frame_assembly() assembly("Frame")

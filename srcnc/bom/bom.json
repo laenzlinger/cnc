@@ -56,7 +56,13 @@
                 "count": 4
             }
         },
-        "printed": {},
+        "printed": {
+            "nut_housing_adapter.stl": {
+                "count": 1,
+                "colour": "[0, 0.572549, 0]",
+                "camera": "0,0,0,70,0,315,500"
+            }
+        },
         "routed": {
             "yplate.dxf": {
                 "count": 1,
