@@ -1,5 +1,3 @@
 *.FCBak
 .venv/
 
-*.stl
-*.pdf
