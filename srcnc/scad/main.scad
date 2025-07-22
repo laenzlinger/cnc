@@ -43,7 +43,19 @@ module yaxis_assembly() assembly("yaxis")
     }
     translate([ 80, 0, 0 ]) yrail();
     translate([ -80, 0, 0 ]) yrail();
-    translate([ 0, 0, -26.5 ]) explode(-50) render_2D_sheet(MDF15) yplate_dxf();
+    translate([ 0, 0, -26.5 ])
+    {
+        explode(-50) render_2D_sheet(MDF15) yplate_dxf();
+        yplate_mounting_screw_positions()
+        {
+            translate([ 0, 0, 7.5 ])
+            {
+                explode(50) screw(M6_cap_screw, 20);
+                explode(40) washer(M6_washer);
+                translate([ 0, 0, -15 ]) explode(-100) threaded_insert(M6x15);
+            }
+        }
+    }
 }
 
 module yrail()
@@ -60,7 +72,7 @@ module yrail()
         translate([ 0, 0, -60 ]) sbr_bearing_block_assembly(carriage, sheet);
         sbr_screw_positions(rail, length) rotate([ 90, 0, 0 ])
         {
-            explode(40) screw(screw, 18);
+            explode(20) screw(screw, 18);
             explode(-200) washer(M5_washer);
             explode(-220) nut(M5_nut);
         }
@@ -72,15 +84,22 @@ module yplate_dxf() dxf("yplate")
     difference()
     {
         sheet_2D(MDF15, 356, 580);
-        translate([ 140, 250, 0 ]) circle(4);
-        translate([ -140, 250, 0 ]) circle(4);
-        translate([ 140, -250, 0 ]) circle(4);
-        translate([ -140, -250, 0 ]) circle(4);
+        yplate_mounting_screw_positions() circle(4);
         translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
             cylinder(r = 3, h = 10);
         translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
             cylinder(r = 3, h = 10);
     }
+}
+
+module yplate_mounting_screw_positions()
+{
+    x = 140;
+    y = 250;
+    translate([ x, y, 0 ]) children();
+    translate([ -x, y, 0 ]) children();
+    translate([ x, -y, 0 ]) children();
+    translate([ -x, -y, 0 ]) children();
 }
 
 module frame_assembly() assembly("Frame")
@@ -95,7 +114,7 @@ module frame_assembly() assembly("Frame")
             {
                 screw(M6_cap_screw, screw_length);
                 washer(M6_washer);
-                translate([ 0, 0, -40 ]) threaded_insert(M6x15);
+                translate([ 0, 0, -40 ]) explode(-100) threaded_insert(M6x15);
             }
         }
     }

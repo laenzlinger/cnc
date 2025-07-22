@@ -45,6 +45,15 @@
             },
             "sheet(MDF15, 356, 580): Sheet MDF 356mm x 580mm x 15mm": {
                 "count": 1
+            },
+            "screw(M6_cap_screw, 20): Screw M6 cap x 20mm": {
+                "count": 4
+            },
+            "washer(M6_washer): Washer  M6 x 12.5mm x 1.5mm": {
+                "count": 4
+            },
+            "threaded_insert(M6x15): Threaded insert M6 x 15mm": {
+                "count": 4
             }
         },
         "printed": {},
