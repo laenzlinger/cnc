@@ -19,6 +19,15 @@
             "screw(M4_cap_screw, 15): Screw M4 cap x 15mm": {
                 "count": 6
             },
+            "floating_ball_screw_support(BF10): BF10 floating ball screw support": {
+                "count": 1
+            },
+            "ball_bearing(BB608): Ball bearing 608-2RS 8mm x 22mm x 7mm": {
+                "count": 1
+            },
+            "screw(M5_cap_screw, 37.5): Screw M5 cap x 37.5mm": {
+                "count": 2
+            },
             "NEMA(NEMA23_51): Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)": {
                 "count": 1
             },

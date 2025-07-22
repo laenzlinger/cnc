@@ -5,6 +5,8 @@ Vitamins:
  m  i  i
  e  n  s
   |  | 1|  1 Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)
+  |  | 1|  1 Ball bearing 608-2RS 8mm x 22mm x 7mm
+  |  | 1|  1 BF10 floating ball screw support
   |  | 1|  1 Leadscrew nut for SFU1204
   |  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
   |  |16| 16 Nut M5 x 4mm 
@@ -14,6 +16,7 @@ Vitamins:
   |  | 6|  6 Screw M4 cap x 15mm
   |  |16| 16 Screw M5 cap x 18mm
   |  |16| 16 Screw M5 cap x 20mm
+  |  | 2|  2 Screw M5 cap x 37.5mm
   |  | 4|  4 Screw M6 cap x 20mm
 16|  |  | 16 Screw M6 cap x 55mm
   |  | 1|  1 Shaft coupling SC_8x8_flex

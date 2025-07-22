@@ -4,7 +4,9 @@ $pp1_colour = "grey"; // Override any global defaults here if required, see NopS
 
 include <NopSCADlib/lib.scad> // Includes all the vitamins and utilities in NopSCADlib but not the printed parts.
 include <NopSCADlib/vitamins/sbr_rails.scad>
+include <ball_screw_supports.scad>
 use <NopSCADlib/vitamins/sbr_rail.scad>
+use <ball_screw_support.scad>
 
 SFU1204 = [
     "SFU1204", "Leadscrew nut for SFU1204", 12, 22, 35, 42, 8, 0, 6, 4.5, 32 / 2, M4_cap_screw, 4, 10, 30, "#DFDAC5"
@@ -25,10 +27,11 @@ MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
 SC_8x8_flex = [ "SC_8x8_flex", 25, 19, 8, 8, true ];
 module yaxis_assembly() assembly("yaxis")
 {
+    length = 550;
     translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
     rotate([ 90, -90, 0 ])
     {
-        leadscrew(12, 550, 4, 1);
+        leadscrew(12, length, 4, 1);
         leadnuthousing(LNH);
         nut = leadnuthousing_nut(LNH);
         translate_z(leadnuthousing_height(LNH) / 2)
@@ -36,6 +39,7 @@ module yaxis_assembly() assembly("yaxis")
             leadnut(nut);
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
+        translate([ 0, 0, length / 2 - 10 ]) rotate([ 0, 0, -90 ]) floating_ball_screw_support_assembly(BF10);
         translate([ 0, 0, -300 ])
         {
             explode(-100) NEMA(NEMA23_51);
@@ -86,6 +90,7 @@ module yplate_dxf() dxf("yplate")
     {
         sheet_2D(MDF15, 356, 580);
         yplate_mounting_screw_positions() circle(4);
+        translate([ 0, 550 / 2 - 10, 0 ]) floating_ball_screw_support_hole_positions(BF10) circle(3);
         translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
             cylinder(r = 3, h = 10);
         translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
