@@ -23,7 +23,6 @@ Small rigid CNC.
 |---:|---:|---:|---:|:---|
 |  |  |  | | **Vitamins** |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; BF10 floating ball screw support |
-| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Ball bearing 608-2RS 8mm x 22mm x 7mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Chipboard 360mm x 200mm x 40mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Chipboard 360mm x 580mm x 40mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; Chipboard 400mm x 360mm x 40mm |
@@ -45,7 +44,7 @@ Small rigid CNC.
 | &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;20&nbsp; | &nbsp;&nbsp; Threaded insert M6 x 15mm |
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Washer  M5 x 10mm x 1mm |
 | &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;20&nbsp; | &nbsp;&nbsp; Washer  M6 x 12.5mm x 1.5mm |
-| &nbsp;&nbsp;98&nbsp; | &nbsp;&nbsp;52&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;150&nbsp; | &nbsp;&nbsp;Total vitamins count |
+| &nbsp;&nbsp;97&nbsp; | &nbsp;&nbsp;52&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;149&nbsp; | &nbsp;&nbsp;Total vitamins count |
 |  |  |  | | **3D printed parts** |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;nut_housing_adapter.stl |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;Total 3D printed parts count |
@@ -67,7 +66,6 @@ Small rigid CNC.
 |Qty|Description|
 |---:|:----------|
 |1| BF10 floating ball screw support|
-|1| Ball bearing 608-2RS 8mm x 22mm x 7mm|
 |1| Lead Screw Nut Housing|
 |1| Leadscrew 12 x 550mm, 4mm lead, 1 starts|
 |1| Leadscrew nut for SFU1204|
