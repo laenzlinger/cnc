@@ -23,7 +23,13 @@
                 "count": 1
             },
             "screw(M5_cap_screw, 37.5): Screw M5 cap x 37.5mm": {
-                "count": 2
+                "count": 6
+            },
+            "fixed_ball_screw_support(BK10): BK10 fixed ball screw support": {
+                "count": 1
+            },
+            "screw(M4_cap_screw, 10): Screw M4 cap x 10mm": {
+                "count": 4
             },
             "NEMA(NEMA23_51): Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)": {
                 "count": 1

@@ -1,4 +1,5 @@
 'Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)',  1
+'BK10 fixed ball screw support',  1
 'BF10 floating ball screw support',  1
 'Leadscrew nut for SFU1204',  1
 'Leadscrew 12 x 550mm, 4mm lead, 1 starts',  1
@@ -6,10 +7,11 @@
 'Lead Screw Nut Housing',  1
 'SBR12UU bearing block',  4
 'SBR12 rail, length 550mm',  2
+'Screw M4 cap x 10mm',  4
 'Screw M4 cap x 15mm',  6
 'Screw M5 cap x 18mm', 16
 'Screw M5 cap x 20mm', 16
-'Screw M5 cap x 37.5mm',  2
+'Screw M5 cap x 37.5mm',  6
 'Screw M6 cap x 20mm',  4
 'Screw M6 cap x 55mm', 16
 'Shaft coupling SC_8x8_flex',  1
