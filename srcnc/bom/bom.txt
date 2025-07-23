@@ -1,44 +1,47 @@
 Vitamins:
- F     Y
- r  M  a
- a  a  x
- m  i  i
- e  n  s
-  |  | 1|  1 Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)
-  |  | 1|  1 BK10 fixed ball screw support
-  |  | 1|  1 BF10 floating ball screw support
-  |  | 1|  1 Leadscrew nut for SFU1204
-  |  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
-  |  |16| 16 Nut M5 x 4mm 
-  |  | 1|  1 Lead Screw Nut Housing
-  |  | 4|  4 SBR12UU bearing block
-  |  | 2|  2 SBR12 rail, length 550mm
-  |  | 6|  6 Screw M4 cap x 15mm
-  |  |16| 16 Screw M5 cap x 18mm
-  |  |16| 16 Screw M5 cap x 20mm
-  |  | 6|  6 Screw M5 cap x 37.5mm
-  |  | 4|  4 Screw M6 cap x 20mm
-16|  |  | 16 Screw M6 cap x 55mm
-  |  | 1|  1 Shaft coupling SC_8x8_flex
- 1|  |  |  1 Chipboard 360mm x 200mm x 40mm
- 1|  |  |  1 Chipboard 360mm x 580mm x 40mm
- 2|  |  |  2 Chipboard 400mm x 360mm x 40mm
-  |  | 1|  1 Sheet MDF 356mm x 580mm x 15mm
-16|  | 4| 20 Threaded insert M6 x 15mm
-  |  |16| 16 Washer  M5 x 10mm x 1mm
-16|  | 4| 20 Washer  M6 x 12.5mm x 1.5mm
+ F     X  Y
+ r  M  a  a
+ a  a  x  x
+ m  i  i  i
+ e  n  s  s
+  |  | 1| 1|  2 Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)
+  |  | 1| 1|  2 BK10 fixed ball screw support
+  |  | 1| 1|  2 BF10 floating ball screw support
+  |  | 1| 1|  2 Leadscrew nut for SFU1204
+  |  | 1|  |  1 Leadscrew 12 x 350mm, 4mm lead, 1 starts
+  |  |  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
+  |  |12|16| 28 Nut M5 x 4mm 
+  |  | 1| 1|  2 Lead Screw Nut Housing
+  |  | 4| 4|  8 SBR12UU bearing block
+  |  | 2|  |  2 SBR12 rail, length 350mm
+  |  |  | 2|  2 SBR12 rail, length 550mm
+  |  | 6| 6| 12 Screw M4 cap x 15mm
+  |  |12|16| 28 Screw M5 cap x 18mm
+  |  |16|16| 32 Screw M5 cap x 20mm
+  |  | 6| 6| 12 Screw M5 cap x 37.5mm
+  |  |  | 4|  4 Screw M6 cap x 20mm
+16|  |  |  | 16 Screw M6 cap x 55mm
+  |  | 1| 1|  2 Shaft coupling SC_8x8_flex
+ 1|  |  |  |  1 Chipboard 360mm x 200mm x 40mm
+ 1|  |  |  |  1 Chipboard 360mm x 580mm x 40mm
+ 2|  |  |  |  2 Chipboard 400mm x 360mm x 40mm
+  |  |  | 1|  1 Sheet MDF 356mm x 580mm x 15mm
+16|  |  | 4| 20 Threaded insert M6 x 15mm
+  |  |12|16| 28 Washer  M5 x 10mm x 1mm
+16|  |  | 4| 20 Washer  M6 x 12.5mm x 1.5mm
 
 Printed:
-  |  | 1|  1 nut_housing_adapter.stl
+  |  | 1| 1|  2 nut_housing_adapter.stl
 
 CNC cut:
- 1|  |  |  1 frame_back_side.dxf
- 1|  |  |  1 frame_bottom_side.dxf
- 1|  |  |  1 frame_left_side.dxf
- 1|  |  |  1 frame_right_side.dxf
-  |  | 1|  1 yplate.dxf
+ 1|  |  |  |  1 frame_back_side.dxf
+ 1|  |  |  |  1 frame_bottom_side.dxf
+ 1|  |  |  |  1 frame_left_side.dxf
+ 1|  |  |  |  1 frame_right_side.dxf
+  |  |  | 1|  1 yplate.dxf
 
 Assemblies:
   1 Frame_assembly
   1 main_assembly
+  1 xaxis_assembly
   1 yaxis_assembly

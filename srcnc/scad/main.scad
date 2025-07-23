@@ -27,33 +27,16 @@ MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
 SC_8x8_flex = [ "SC_8x8_flex", 25, 19, 8, 8, true ];
 
 yaxis_length = 550;
+yrail_separation = 180;
+xaxis_length = 350;
+xrail_separation = 160;
 
 function bf_pos(l) = l / 2 - 10;
 function bk_pos(l) = l / 2 - 41;
 
 module yaxis_assembly() assembly("yaxis")
 {
-    translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
-    rotate([ 90, -90, 0 ])
-    {
-        leadscrew(12, yaxis_length, 4, 1);
-        leadnuthousing(LNH);
-        nut = leadnuthousing_nut(LNH);
-        translate_z(leadnuthousing_height(LNH) / 2)
-        {
-            leadnut(nut);
-            leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
-        }
-        translate([ 0, 0, bf_pos(yaxis_length) ]) rotate([ 0, 0, -90 ]) floating_ball_screw_support_assembly(BF10);
-        translate([ 0, 0, -bk_pos(yaxis_length) ]) rotate([ 180, 0, --90 ]) fixed_ball_screw_support_assembly(BK10);
-        translate([ 0, 0, -yaxis_length / 2 - 20 ])
-        {
-            explode(-100) NEMA(NEMA23_51);
-            translate([ 0, 0, 18 ]) explode(-20) shaft_coupling(SC_8x8_flex);
-        };
-    }
-    translate([ 80, 0, 0 ]) yrail();
-    translate([ -80, 0, 0 ]) yrail();
+    axis(yaxis_length, yrail_separation, 18);
     translate([ 0, 0, -26.5 ])
     {
         explode(-50) render_2D_sheet(MDF15) yplate_dxf();
@@ -68,11 +51,40 @@ module yaxis_assembly() assembly("yaxis")
     }
 }
 
-module yrail()
+module xaxis_assembly() assembly("xaxis")
+{
+    axis(xaxis_length, xrail_separation, 45);
+}
+
+module axis(length, rail_separation, motor_separation)
+{
+    translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
+    rotate([ 90, -90, 0 ])
+    {
+        leadscrew(12, length, 4, 1);
+        leadnuthousing(LNH);
+        nut = leadnuthousing_nut(LNH);
+        translate_z(leadnuthousing_height(LNH) / 2)
+        {
+            leadnut(nut);
+            leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
+        }
+        translate([ 0, 0, bf_pos(length) ]) rotate([ 0, 0, -90 ]) floating_ball_screw_support_assembly(BF10);
+        translate([ 0, 0, -bk_pos(length) ]) rotate([ 180, 0, --90 ]) fixed_ball_screw_support_assembly(BK10);
+        translate([ 0, 0, -length / 2 - motor_separation ])
+        {
+            explode(-100) NEMA(NEMA23_51);
+            translate([ 0, 0, 18 ]) explode(-20) shaft_coupling(SC_8x8_flex);
+        };
+    }
+    translate([ rail_separation / 2, 0, 0 ]) rail(length);
+    translate([ -rail_separation / 2, 0, 0 ]) rail(length);
+}
+
+module rail(length)
 {
     rotate([ 90, 180, 0 ])
     {
-        length = yaxis_length;
         sheet = 8;
         rail = SBR12S;
         carriage = sbr_rail_carriage(rail);
@@ -176,7 +188,7 @@ module frame_right_side_dxf() dxf("frame_right_side")
     {
         sheet_2D(Chipboard40, 400, 360);
         frame_side_screw_positions() circle(4);
-        translate([ 100, -110, 0 ]) circle(20);
+        translate([ 100, -120, 0 ]) circle(20);
     }
 }
 
@@ -208,6 +220,7 @@ module main_assembly() assembly("main")
 {
     frame_assembly();
     explode(50) translate([ 0, 0, -126 ]) yaxis_assembly();
+    explode(50) rotate([ 180, 90, 90 ]) translate([ -100, 0, -120 ]) xaxis_assembly();
 }
 
 if ($preview)

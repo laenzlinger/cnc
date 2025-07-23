@@ -1,5 +1,68 @@
 [
     {
+        "name": "xaxis_assembly",
+        "big": null,
+        "ngb": false,
+        "zoomed": 0,
+        "count": 1,
+        "assemblies": {},
+        "vitamins": {
+            "leadscrew(12, 350, 4, 1): Leadscrew 12 x 350mm, 4mm lead, 1 starts": {
+                "count": 1
+            },
+            "nuthousing(LNH): Lead Screw Nut Housing": {
+                "count": 1
+            },
+            "leadnut(SFU1204): Leadscrew nut for SFU1204": {
+                "count": 1
+            },
+            "screw(M4_cap_screw, 15): Screw M4 cap x 15mm": {
+                "count": 6
+            },
+            "floating_ball_screw_support(BF10): BF10 floating ball screw support": {
+                "count": 1
+            },
+            "screw(M5_cap_screw, 37.5): Screw M5 cap x 37.5mm": {
+                "count": 6
+            },
+            "fixed_ball_screw_support(BK10): BK10 fixed ball screw support": {
+                "count": 1
+            },
+            "NEMA(NEMA23_51): Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)": {
+                "count": 1
+            },
+            "shaft_coupling(SC_8x8_flex): Shaft coupling SC_8x8_flex": {
+                "count": 1
+            },
+            "sbr_rail(12, 350): SBR12 rail, length 350mm": {
+                "count": 2
+            },
+            "sbr_bearing_block(SBR12UU): SBR12UU bearing block": {
+                "count": 4
+            },
+            "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
+                "count": 16
+            },
+            "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
+                "count": 12
+            },
+            "screw(M5_cap_screw, 18): Screw M5 cap x 18mm": {
+                "count": 12
+            },
+            "nut(M5_nut): Nut M5 x 4mm ": {
+                "count": 12
+            }
+        },
+        "printed": {
+            "nut_housing_adapter.stl": {
+                "count": 1,
+                "colour": "[0, 0.572549, 0]",
+                "camera": "0,0,0,70,0,315,500"
+            }
+        },
+        "routed": {}
+    },
+    {
         "name": "yaxis_assembly",
         "big": null,
         "ngb": false,
@@ -134,7 +197,8 @@
         "count": 1,
         "assemblies": {
             "Frame_assembly": 1,
-            "yaxis_assembly": 1
+            "yaxis_assembly": 1,
+            "xaxis_assembly": 1
         },
         "vitamins": {},
         "printed": {},
