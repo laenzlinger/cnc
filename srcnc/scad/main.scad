@@ -63,16 +63,17 @@ module axis(length, rail_separation, carriage_separation, motor_separation, boar
         }
         translate([ 0, 0, bf_pos(length) ]) rotate([ 0, 0, -90 ])
         {
-            bfh = bf_center_height(BF10);
-            floating_ball_screw_support_assembly(BF10, M5_cap_screw, board_thickness + bfh + 7);
-            translate([ 0, -board_thickness - bfh, 0 ]) floating_ball_screw_support_hole_positions(BF10)
-                rotate([ 90, 0, 0 ]) explode(100) nut_and_washer(M5_nut);
+            bfh = bf_shoulder_height(BF10);
+            floating_ball_screw_support_assembly(BF10, M5_cap_screw, board_thickness + bfh);
+            translate([ 0, -board_thickness - bf_center_height(BF10), 0 ])
+                floating_ball_screw_support_hole_positions(BF10) rotate([ 90, 0, 0 ]) explode(100)
+                    nut_and_washer(M5_nut);
         }
         translate([ 0, 0, -bk_pos(length) ])
         {
-            rotate([ 180, 0, 90 ]) fixed_ball_screw_support_assembly(BK10, M5_cap_screw, board_thickness + bkh + 7);
-            bkh = bk_center_height(BK10);
-            rotate([ 90, 0, -90 ]) translate([ 0, 0, (board_thickness + bkh) ])
+            bkh = bk_shoulder_height(BK10);
+            rotate([ 180, 0, 90 ]) fixed_ball_screw_support_assembly(BK10, M5_cap_screw, board_thickness + bkh);
+            rotate([ 90, 0, -90 ]) translate([ 0, 0, (board_thickness + bk_center_height(BK10)) ])
                 fixed_ball_screw_support_hole_positions(BK10) explode(100) nut_and_washer(M5_nut);
         }
         translate([ 0, 0, -length / 2 - motor_separation ])
@@ -243,7 +244,7 @@ module main_assembly() assembly("main")
 }
 
 if ($preview)
-    main_assembly();
-// yaxis_assembly();
+    //    main_assembly();
+    yaxis_assembly();
 // xaxis_assembly();
 // yplate_dxf();

@@ -22,7 +22,7 @@
             "floating_ball_screw_support(BF10): BF10 floating ball screw support": {
                 "count": 1
             },
-            "screw(M5_cap_screw, 69): Screw M5 cap x 69mm": {
+            "screw(M5_cap_screw, 72.5): Screw M5 cap x 72.5mm": {
                 "count": 6
             },
             "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
@@ -93,7 +93,7 @@
             "floating_ball_screw_support(BF10): BF10 floating ball screw support": {
                 "count": 1
             },
-            "screw(M5_cap_screw, 44): Screw M5 cap x 44mm": {
+            "screw(M5_cap_screw, 47.5): Screw M5 cap x 47.5mm": {
                 "count": 6
             },
             "washer(M5_washer): Washer  M5 x 10mm x 1mm": {

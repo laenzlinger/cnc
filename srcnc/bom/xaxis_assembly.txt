@@ -12,7 +12,7 @@ Vitamins:
   6 Screw M4 cap x 15mm
  16 Screw M5 cap x 20mm
  12 Screw M5 cap x 50mm
-  6 Screw M5 cap x 69mm
+  6 Screw M5 cap x 72.5mm
   1 Shaft coupling SC_8x8_flex
   1 Chipboard 360mm x 200mm x 40mm
  18 Washer  M5 x 10mm x 1mm

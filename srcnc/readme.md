@@ -39,9 +39,9 @@ Small rigid CNC.
 | &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;12&nbsp; | &nbsp;&nbsp; Screw M4 cap x 15mm |
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;32&nbsp; | &nbsp;&nbsp; Screw M5 cap x 20mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M5 cap x 25mm |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp; Screw M5 cap x 44mm |
+| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp; Screw M5 cap x 47.5mm |
 | &nbsp;&nbsp;12&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;12&nbsp; | &nbsp;&nbsp; Screw M5 cap x 50mm |
-| &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp; Screw M5 cap x 69mm |
+| &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp; Screw M5 cap x 72.5mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;4&nbsp; |  &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp; Screw M6 cap x 20mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M6 cap x 55mm |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; Shaft coupling SC_8x8_flex |
@@ -83,7 +83,7 @@ Small rigid CNC.
 |6| Screw M4 cap x 15mm|
 |16| Screw M5 cap x 20mm|
 |12| Screw M5 cap x 50mm|
-|6| Screw M5 cap x 69mm|
+|6| Screw M5 cap x 72.5mm|
 |1| Shaft coupling SC_8x8_flex|
 |1| Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)|
 |18| Washer  M5 x 10mm x 1mm|
@@ -130,7 +130,7 @@ Small rigid CNC.
 |6| Screw M4 cap x 15mm|
 |16| Screw M5 cap x 20mm|
 |16| Screw M5 cap x 25mm|
-|6| Screw M5 cap x 44mm|
+|6| Screw M5 cap x 47.5mm|
 |1| Shaft coupling SC_8x8_flex|
 |1| Sheet MDF 356mm x 580mm x 15mm|
 |1| Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)|
