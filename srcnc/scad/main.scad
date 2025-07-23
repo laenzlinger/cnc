@@ -40,7 +40,8 @@ module yaxis_assembly() assembly("yaxis")
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
         translate([ 0, 0, length / 2 - 10 ]) rotate([ 0, 0, -90 ]) floating_ball_screw_support_assembly(BF10);
-        translate([ 0, 0, -300 ])
+        translate([ 0, 0, -length / 2 + 41 ]) rotate([ 180, 0, --90 ]) fixed_ball_screw_support_assembly(BK10);
+        translate([ 0, 0, -length / 2 - 20 ])
         {
             explode(-100) NEMA(NEMA23_51);
             translate([ 0, 0, 18 ]) explode(-20) shaft_coupling(SC_8x8_flex);
@@ -91,6 +92,7 @@ module yplate_dxf() dxf("yplate")
         sheet_2D(MDF15, 356, 580);
         yplate_mounting_screw_positions() circle(4);
         translate([ 0, 550 / 2 - 10, 0 ]) floating_ball_screw_support_hole_positions(BF10) circle(3);
+        translate([ 0, -550 / 2 + 41, 0 ]) fixed_ball_screw_support_hole_positions(BK10) circle(3);
         translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
             cylinder(r = 3, h = 10);
         translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
@@ -210,3 +212,4 @@ module main_assembly() assembly("main")
 if ($preview)
     main_assembly();
 // yaxis_assembly();
+// yplate_dxf();
