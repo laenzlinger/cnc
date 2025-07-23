@@ -61,8 +61,7 @@ module yaxis_assembly() assembly("yaxis")
         {
             translate([ 0, 0, 7.5 ])
             {
-                explode(40) screw(M6_cap_screw, 20);
-                explode(10) washer(M6_washer);
+                explode(40) screw_and_washer(M6_cap_screw, 20);
                 translate([ 0, 0, -15 ]) explode(-100) threaded_insert(M6x15);
             }
         }
@@ -83,8 +82,7 @@ module yrail()
         translate([ 0, 0, -60 ]) sbr_bearing_block_assembly(carriage, sheet);
         sbr_screw_positions(rail, length) rotate([ 90, 0, 0 ])
         {
-            explode(20) screw(screw, 18);
-            explode(-200) washer(M5_washer);
+            explode(20) screw_and_washer(screw, 18);
             explode(-220) nut(M5_nut);
         }
     }
@@ -138,8 +136,7 @@ module frame_assembly() assembly("Frame")
         {
             translate([ 0, 0, 20 ])
             {
-                screw(M6_cap_screw, screw_length);
-                washer(M6_washer);
+                screw_and_washer(M6_cap_screw, screw_length);
                 translate([ 0, 0, -40 ]) explode(-100) threaded_insert(M6x15);
             }
         }
@@ -153,8 +150,7 @@ module frame_assembly() assembly("Frame")
             {
                 rotate([ 0, 180, 0 ])
                 {
-                    screw(M6_cap_screw, screw_length);
-                    washer(M6_washer);
+                    screw_and_washer(M6_cap_screw, screw_length);
                     translate([ 0, 0, -40 ]) threaded_insert(M6x15);
                 }
             }
