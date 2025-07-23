@@ -159,7 +159,7 @@ module nut_housing_adapter_stl() stl("nut_housing_adapter")
 module frame_assembly() assembly("Frame")
 {
     screw_length = 55;
-    translate([ 200, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(50)
+    translate([ 200, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(150, true)
     {
         render_2D_sheet((Chipboard40)) frame_right_side_dxf();
         frame_side_screw_positions()
@@ -167,11 +167,11 @@ module frame_assembly() assembly("Frame")
             translate([ 0, 0, 20 ])
             {
                 explode(100) screw_and_washer(M6_cap_screw, screw_length);
-                translate([ 0, 0, -40 ]) explode(-100) threaded_insert(M6x15);
+                translate([ 0, 0, -40 ]) explode(-50) threaded_insert(M6x15);
             }
         }
     }
-    translate([ -200, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(-50)
+    translate([ -200, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(-150, true)
     {
         render_2D_sheet((Chipboard40)) frame_left_side_dxf();
         frame_side_screw_positions()
@@ -181,7 +181,7 @@ module frame_assembly() assembly("Frame")
                 rotate([ 0, 180, 0 ])
                 {
                     explode(100) screw_and_washer(M6_cap_screw, screw_length);
-                    translate([ 0, 0, -40 ]) explode(-100) threaded_insert(M6x15);
+                    translate([ 0, 0, -40 ]) explode(-50) threaded_insert(M6x15);
                 }
             }
         }
@@ -244,7 +244,7 @@ module main_assembly() assembly("main")
 }
 
 if ($preview)
-    //    main_assembly();
-    yaxis_assembly();
+    main_assembly();
+//    yaxis_assembly();
 // xaxis_assembly();
 // yplate_dxf();
