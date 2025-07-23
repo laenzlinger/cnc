@@ -2,6 +2,7 @@
 // BF ball screw supports
 //
 // https://cdn.shopify.com/s/files/1/0719/0800/0031/products/Bearing_Block_Dimensions__55388.1504037304.1280.1280_1.jpg?v=1684754246
+// https://www.damencnc.com/en/bk10-fixed-ballscrew-support-units-c3-quality/a1436
 
 include <NopSCADlib/vitamins/ball_bearings.scad>
 include<NopSCADlib/vitamins/screws.scad>
