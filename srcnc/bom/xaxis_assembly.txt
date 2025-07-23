@@ -21,4 +21,4 @@ Printed:
   1 nut_housing_adapter.stl
 
 CNC cut:
-  1 frame_xaxis.dxf
+  1 xplate.dxf

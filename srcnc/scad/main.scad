@@ -39,16 +39,13 @@ function bk_pos(l) = l / 2 - 41;
 module yaxis_assembly() assembly("yaxis")
 {
     axis(yaxis_length, yrail_separation, ycarriage_separation, 18, 15);
-    translate([ 0, 0, -26.5 ])
-    {
-        explode(-50) render_2D_sheet(MDF15) yplate_dxf();
-    }
+    translate([ 0, 0, -26.5 ]) explode(-50) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module xaxis_assembly() assembly("xaxis")
 {
     rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, 40);
-    translate([ 0, 0, -39 ]) rotate([ 0, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_xaxis_dxf();
+    translate([ 0, 0, -39 ]) explode(-50) render_2D_sheet((Chipboard40)) xplate_dxf();
 }
 
 module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)
@@ -102,7 +99,7 @@ module rail(length, carriage_separation, board_thickness)
         sbr_screw_positions(rail, length) rotate([ 90, 0, 0 ])
         {
             explode(80) screw(screw, board_thickness + 10);
-            translate([ 0, 0, -board_thickness - 4 ]) rotate([ 0, 180, 0 ]) explode(100) nut_and_washer(M5_nut);
+            translate([ 0, 0, -board_thickness - 4 ]) rotate([ 0, 180, 0 ]) explode(150) nut_and_washer(M5_nut);
         }
     }
 }
@@ -114,6 +111,15 @@ module yplate_dxf() dxf("yplate")
         sheet_2D(MDF15, 356, 580);
         yplate_mounting_screw_positions() circle(4);
         axis_holes(yrail_separation, yaxis_length);
+    }
+}
+
+module xplate_dxf() dxf("xplate")
+{
+    difference()
+    {
+        sheet_2D(Chipboard40, 360, 200);
+        rotate([ 0, 0, -90 ]) axis_holes(xrail_separation, xaxis_length);
     }
 }
 
@@ -199,15 +205,6 @@ module frame_right_side_dxf() dxf("frame_right_side")
         sheet_2D(Chipboard40, 400, 360);
         frame_side_screw_positions() circle(4);
         translate([ 100, -120, 0 ]) circle(20);
-    }
-}
-
-module frame_xaxis_dxf() dxf("frame_xaxis")
-{
-    difference()
-    {
-        sheet_2D(Chipboard40, 360, 200);
-        rotate([ 0, 0, -90 ]) axis_holes(xrail_separation, xaxis_length);
     }
 }
 
