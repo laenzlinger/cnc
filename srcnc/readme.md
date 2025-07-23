@@ -25,7 +25,7 @@ Small rigid CNC.
 |  |  |  |  | | **Vitamins** |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; BF10 floating ball screw support |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; BK10 fixed ball screw support |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Chipboard 360mm x 200mm x 40mm |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Chipboard 360mm x 200mm x 40mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Chipboard 360mm x 580mm x 40mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; Chipboard 400mm x 360mm x 40mm |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; Lead Screw Nut Housing |
@@ -40,15 +40,15 @@ Small rigid CNC.
 | &nbsp;&nbsp;12&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;28&nbsp; | &nbsp;&nbsp; Screw M5 cap x 18mm |
 | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;32&nbsp; | &nbsp;&nbsp; Screw M5 cap x 20mm |
 | &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;6&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;12&nbsp; | &nbsp;&nbsp; Screw M5 cap x 37.5mm |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp; Screw M6 cap x 20mm |
+| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;4&nbsp; |  &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp; Screw M6 cap x 20mm |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp; Screw M6 cap x 55mm |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; Shaft coupling SC_8x8_flex |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp; Sheet MDF 356mm x 580mm x 15mm |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp; Stepper motor NEMA22 x 51.2mm (6.35x24 shaft) |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;20&nbsp; | &nbsp;&nbsp; Threaded insert M6 x 15mm |
+| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;4&nbsp; |  &nbsp;&nbsp;20&nbsp; | &nbsp;&nbsp; Threaded insert M6 x 15mm |
 | &nbsp;&nbsp;12&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;28&nbsp; | &nbsp;&nbsp; Washer  M5 x 10mm x 1mm |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;20&nbsp; | &nbsp;&nbsp; Washer  M6 x 12.5mm x 1.5mm |
-| &nbsp;&nbsp;77&nbsp; | &nbsp;&nbsp;102&nbsp; | &nbsp;&nbsp;52&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;231&nbsp; | &nbsp;&nbsp;Total vitamins count |
+| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;16&nbsp; | &nbsp;&nbsp;4&nbsp; |  &nbsp;&nbsp;20&nbsp; | &nbsp;&nbsp; Washer  M6 x 12.5mm x 1.5mm |
+| &nbsp;&nbsp;78&nbsp; | &nbsp;&nbsp;90&nbsp; | &nbsp;&nbsp;51&nbsp; | &nbsp;&nbsp;12&nbsp; | &nbsp;&nbsp;231&nbsp; | &nbsp;&nbsp;Total vitamins count |
 |  |  |  |  | | **3D printed parts** |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp;nut_housing_adapter.stl |
 | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;2&nbsp; | &nbsp;&nbsp;Total 3D printed parts count |
@@ -56,9 +56,9 @@ Small rigid CNC.
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_bottom_side.dxf |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_left_side.dxf |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_right_side.dxf |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_xaxis.dxf |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;frame_xaxis.dxf |
 | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;.&nbsp; |  &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;yplate.dxf |
-| &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;4&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;5&nbsp; | &nbsp;&nbsp;Total CNC routed parts count |
+| &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;1&nbsp; | &nbsp;&nbsp;3&nbsp; | &nbsp;&nbsp;.&nbsp; | &nbsp;&nbsp;5&nbsp; | &nbsp;&nbsp;Total CNC routed parts count |
 
 <span></span>
 [Top](#TOP)
@@ -71,6 +71,7 @@ Small rigid CNC.
 |---:|:----------|
 |1| BF10 floating ball screw support|
 |1| BK10 fixed ball screw support|
+|1| Chipboard 360mm x 200mm x 40mm|
 |1| Lead Screw Nut Housing|
 |1| Leadscrew 12 x 350mm, 4mm lead, 1 starts|
 |1| Leadscrew nut for SFU1204|
@@ -94,10 +95,18 @@ Small rigid CNC.
 
 
 
-### Assembly instructions
-![xaxis_assembly](assemblies/xaxis_assembly_tn.png)
+### CNC Routed parts
 
-![xaxis_assembled](assemblies/xaxis_assembled_tn.png)
+| 1 x [frame_xaxis.dxf](dxfs/frame_xaxis.dxf) |
+|---|
+| ![frame_xaxis.dxf](dxfs/frame_xaxis.png) 
+
+
+
+### Assembly instructions
+![xaxis_assembly](assemblies/xaxis_assembly.png)
+
+![xaxis_assembled](assemblies/xaxis_assembled.png)
 
 <span></span>
 [Top](#TOP)
@@ -120,13 +129,10 @@ Small rigid CNC.
 |16| Screw M5 cap x 18mm|
 |16| Screw M5 cap x 20mm|
 |6| Screw M5 cap x 37.5mm|
-|4| Screw M6 cap x 20mm|
 |1| Shaft coupling SC_8x8_flex|
 |1| Sheet MDF 356mm x 580mm x 15mm|
 |1| Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)|
-|4| Threaded insert M6 x 15mm|
 |16| Washer  M5 x 10mm x 1mm|
-|4| Washer  M6 x 12.5mm x 1.5mm|
 
 
 ### 3D Printed parts
@@ -159,7 +165,6 @@ Small rigid CNC.
 ### Vitamins
 |Qty|Description|
 |---:|:----------|
-|1| Chipboard 360mm x 200mm x 40mm|
 |1| Chipboard 360mm x 580mm x 40mm|
 |2| Chipboard 400mm x 360mm x 40mm|
 |16| Screw M6 cap x 55mm|
@@ -174,11 +179,6 @@ Small rigid CNC.
 | ![frame_bottom_side.dxf](dxfs/frame_bottom_side.png) | ![frame_left_side.dxf](dxfs/frame_left_side.png) | ![frame_right_side.dxf](dxfs/frame_right_side.png) 
 
 
-| 1 x [frame_xaxis.dxf](dxfs/frame_xaxis.dxf) |
-|---|
-| ![frame_xaxis.dxf](dxfs/frame_xaxis.png) 
-
-
 
 ### Assembly instructions
 ![Frame_assembly](assemblies/Frame_assembly.png)
@@ -191,6 +191,14 @@ Small rigid CNC.
 ---
 <a name="main_assembly"></a>
 ## Main Assembly
+### Vitamins
+|Qty|Description|
+|---:|:----------|
+|4| Screw M6 cap x 20mm|
+|4| Threaded insert M6 x 15mm|
+|4| Washer  M6 x 12.5mm x 1.5mm|
+
+
 ### Sub-assemblies
 
 | 1 x Frame_assembly | 1 x xaxis_assembly | 1 x yaxis_assembly |

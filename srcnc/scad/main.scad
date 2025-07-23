@@ -42,20 +42,13 @@ module yaxis_assembly() assembly("yaxis")
     translate([ 0, 0, -26.5 ])
     {
         explode(-50) render_2D_sheet(MDF15) yplate_dxf();
-        yplate_mounting_screw_positions()
-        {
-            translate([ 0, 0, 7.5 ])
-            {
-                explode(40) screw_and_washer(M6_cap_screw, 20);
-                translate([ 0, 0, -15 ]) explode(-100) threaded_insert(M6x15);
-            }
-        }
     }
 }
 
 module xaxis_assembly() assembly("xaxis")
 {
-    axis(xaxis_length, xrail_separation, xcarriage_separation, 45);
+    rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45);
+    translate([ 0, 0, -39 ]) rotate([ 0, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_xaxis_dxf();
 }
 
 module axis(length, rail_separation, carriage_separation, motor_separation)
@@ -175,7 +168,6 @@ module frame_assembly() assembly("Frame")
         }
     }
 
-    translate([ 0, 160, 100 ]) rotate([ 90, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_xaxis_dxf();
     translate([ -0, 0, -180 ]) render_2D_sheet(Chipboard40) frame_bottom_side_dxf();
 }
 
@@ -226,11 +218,23 @@ module frame_side_screw_positions()
 module main_assembly() assembly("main")
 {
     frame_assembly();
-    explode(50) translate([ 0, 0, -126 ]) yaxis_assembly();
-    explode(50) rotate([ 180, 90, 90 ]) translate([ -100, 0, -120 ]) xaxis_assembly();
+    translate([ 0, 0, -126 ]) explode(50, true)
+    {
+        yaxis_assembly();
+        yplate_mounting_screw_positions()
+        {
+            translate([ 0, 0, -18 ])
+            {
+                screw_and_washer(M6_cap_screw, 20);
+                translate([ 0, 0, -15 ]) threaded_insert(M6x15);
+            }
+        }
+    }
+    rotate([ 90, 0, 0 ]) translate([ 0, 100, -120 ]) explode(50) xaxis_assembly();
 }
 
 if ($preview)
     main_assembly();
 // yaxis_assembly();
+// xaxis_assembly();
 // yplate_dxf();

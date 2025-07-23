@@ -13,12 +13,9 @@ Vitamins:
  16 Screw M5 cap x 18mm
  16 Screw M5 cap x 20mm
   6 Screw M5 cap x 37.5mm
-  4 Screw M6 cap x 20mm
   1 Shaft coupling SC_8x8_flex
   1 Sheet MDF 356mm x 580mm x 15mm
-  4 Threaded insert M6 x 15mm
  16 Washer  M5 x 10mm x 1mm
-  4 Washer  M6 x 12.5mm x 1.5mm
 
 Printed:
   1 nut_housing_adapter.stl

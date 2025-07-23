@@ -51,6 +51,9 @@
             },
             "nut(M5_nut): Nut M5 x 4mm ": {
                 "count": 12
+            },
+            "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
+                "count": 1
             }
         },
         "printed": {
@@ -60,7 +63,12 @@
                 "camera": "0,0,0,70,0,315,500"
             }
         },
-        "routed": {}
+        "routed": {
+            "frame_xaxis.dxf": {
+                "count": 1,
+                "colour": "#BEA587"
+            }
+        }
     },
     {
         "name": "yaxis_assembly",
@@ -117,15 +125,6 @@
             },
             "sheet(MDF15, 356, 580): Sheet MDF 356mm x 580mm x 15mm": {
                 "count": 1
-            },
-            "washer(M6_washer): Washer  M6 x 12.5mm x 1.5mm": {
-                "count": 4
-            },
-            "screw(M6_cap_screw, 20): Screw M6 cap x 20mm": {
-                "count": 4
-            },
-            "threaded_insert(M6x15): Threaded insert M6 x 15mm": {
-                "count": 4
             }
         },
         "printed": {
@@ -162,9 +161,6 @@
             "threaded_insert(M6x15): Threaded insert M6 x 15mm": {
                 "count": 16
             },
-            "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
-                "count": 1
-            },
             "sheet(Chipboard40, 360, 580): Chipboard 360mm x 580mm x 40mm": {
                 "count": 1
             }
@@ -176,10 +172,6 @@
                 "colour": "#BEA587"
             },
             "frame_left_side.dxf": {
-                "count": 1,
-                "colour": "#BEA587"
-            },
-            "frame_xaxis.dxf": {
                 "count": 1,
                 "colour": "#BEA587"
             },
@@ -200,7 +192,17 @@
             "yaxis_assembly": 1,
             "xaxis_assembly": 1
         },
-        "vitamins": {},
+        "vitamins": {
+            "washer(M6_washer): Washer  M6 x 12.5mm x 1.5mm": {
+                "count": 4
+            },
+            "screw(M6_cap_screw, 20): Screw M6 cap x 20mm": {
+                "count": 4
+            },
+            "threaded_insert(M6x15): Threaded insert M6 x 15mm": {
+                "count": 4
+            }
+        },
         "printed": {},
         "routed": {}
     }
