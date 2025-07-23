@@ -8,7 +8,7 @@ Vitamins:
  16 Washer  M6 x 12.5mm x 1.5mm
 
 CNC cut:
-  1 frame_back_side.dxf
   1 frame_bottom_side.dxf
   1 frame_left_side.dxf
   1 frame_right_side.dxf
+  1 frame_xaxis.dxf

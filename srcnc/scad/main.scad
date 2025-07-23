@@ -28,15 +28,17 @@ SC_8x8_flex = [ "SC_8x8_flex", 25, 19, 8, 8, true ];
 
 yaxis_length = 550;
 yrail_separation = 180;
+ycarriage_separation = 120;
 xaxis_length = 350;
 xrail_separation = 160;
+xcarriage_separation = 40;
 
 function bf_pos(l) = l / 2 - 10;
 function bk_pos(l) = l / 2 - 41;
 
 module yaxis_assembly() assembly("yaxis")
 {
-    axis(yaxis_length, yrail_separation, 18);
+    axis(yaxis_length, yrail_separation, ycarriage_separation, 18);
     translate([ 0, 0, -26.5 ])
     {
         explode(-50) render_2D_sheet(MDF15) yplate_dxf();
@@ -53,10 +55,10 @@ module yaxis_assembly() assembly("yaxis")
 
 module xaxis_assembly() assembly("xaxis")
 {
-    axis(xaxis_length, xrail_separation, 45);
+    axis(xaxis_length, xrail_separation, xcarriage_separation, 45);
 }
 
-module axis(length, rail_separation, motor_separation)
+module axis(length, rail_separation, carriage_separation, motor_separation)
 {
     translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
     rotate([ 90, -90, 0 ])
@@ -77,11 +79,11 @@ module axis(length, rail_separation, motor_separation)
             translate([ 0, 0, 18 ]) explode(-20) shaft_coupling(SC_8x8_flex);
         };
     }
-    translate([ rail_separation / 2, 0, 0 ]) rail(length);
-    translate([ -rail_separation / 2, 0, 0 ]) rail(length);
+    for (rs = [ rail_separation, -rail_separation ])
+        translate([ rs / 2, 0, 0 ]) rail(length, carriage_separation);
 }
 
-module rail(length)
+module rail(length, carriage_separation)
 {
     rotate([ 90, 180, 0 ])
     {
@@ -90,8 +92,8 @@ module rail(length)
         carriage = sbr_rail_carriage(rail);
         sbr_rail(rail, length);
         screw = sbr_rail_screw(rail);
-        translate([ 0, 0, 60 ]) sbr_bearing_block_assembly(carriage, sheet);
-        translate([ 0, 0, -60 ]) sbr_bearing_block_assembly(carriage, sheet);
+        for (cs = [ carriage_separation, -carriage_separation ])
+            translate([ 0, 0, cs / 2 ]) sbr_bearing_block_assembly(carriage, sheet);
         sbr_screw_positions(rail, length) rotate([ 90, 0, 0 ])
         {
             explode(20) screw_and_washer(screw, 18);
@@ -106,13 +108,17 @@ module yplate_dxf() dxf("yplate")
     {
         sheet_2D(MDF15, 356, 580);
         yplate_mounting_screw_positions() circle(4);
-        translate([ 0, -bf_pos(yaxis_length), 0 ]) floating_ball_screw_support_hole_positions(BF10) circle(3);
-        translate([ 0, bk_pos(yaxis_length), 0 ]) fixed_ball_screw_support_hole_positions(BK10) circle(3);
-        translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
-            cylinder(r = 3, h = 10);
-        translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
-            cylinder(r = 3, h = 10);
+        axis_holes(yrail_separation, yaxis_length);
     }
+}
+
+module axis_holes(rail_separation, axis_length)
+{
+    translate([ 0, -bf_pos(axis_length), 0 ]) floating_ball_screw_support_hole_positions(BF10) circle(3);
+    translate([ 0, bk_pos(axis_length), 0 ]) fixed_ball_screw_support_hole_positions(BK10) circle(3);
+    for (rs = [ -rail_separation, rail_separation ])
+        translate([ rs / 2, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, axis_length)
+            rotate([ 90, 0, 0 ]) cylinder(r = 3, h = 40);
 }
 
 module yplate_mounting_screw_positions()
@@ -169,7 +175,7 @@ module frame_assembly() assembly("Frame")
         }
     }
 
-    translate([ 0, 160, 100 ]) rotate([ 90, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_back_side_dxf();
+    translate([ 0, 160, 100 ]) rotate([ 90, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_xaxis_dxf();
     translate([ -0, 0, -180 ]) render_2D_sheet(Chipboard40) frame_bottom_side_dxf();
 }
 
@@ -192,11 +198,12 @@ module frame_right_side_dxf() dxf("frame_right_side")
     }
 }
 
-module frame_back_side_dxf() dxf("frame_back_side")
+module frame_xaxis_dxf() dxf("frame_xaxis")
 {
     difference()
     {
         sheet_2D(Chipboard40, 360, 200);
+        rotate([ 0, 0, -90 ]) axis_holes(xrail_separation, xaxis_length);
     }
 }
 
