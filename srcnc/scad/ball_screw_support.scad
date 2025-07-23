@@ -97,6 +97,7 @@ function bk_screw_separation_y(type) = type[5];         //! Screw separation in 
 function bk_screw_counter_bore_depth(type) = type[16];  //! Counter bore depth
 function bk_bearing_type(type) = type[17];              //! Bearing type
 function bk_screw_type(type) = type[18];                //! Mounting screw type
+function bk_cover_screw_type(type) = type[19];          //! Mounting screw type
 
 module fixed_ball_screw_support(type)
 { //! Draw the specified BF ball_screw_support
@@ -104,6 +105,7 @@ module fixed_ball_screw_support(type)
 
     d1 = type[1];
     L = type[2];
+    L1 = type[3];
     L3 = bk_bearing_shoulder(type);
     C1 = bk_screw_separation_y(type);
     B = type[6];
@@ -117,37 +119,71 @@ module fixed_ball_screw_support(type)
     X = type[14];
     Y = type[15];
     Z = bk_screw_counter_bore_depth(type);
+    nut = type[20];
 
     bearing = bk_bearing_type(type);
 
     color(ball_screw_support_color)
     {
-        render() difference()
+        render() union()
         {
-            linear_extrude(L, center = true, convexity = 2)
+            difference()
+            {
+                linear_extrude(L, center = true, convexity = 2)
+                {
+                    difference()
+                    {
+                        // center section with bearing hole
+                        translate([ 0, -h ]) for (m = [ 0, 1 ]) mirror([ m, 0, 0 ]) union()
+                        {
+                            square([ B / 2, H1 ]);
+                            square([ B1 / 2, H ]);
+                        }
+                        circle(d = bb_bore(bearing));
+                        // parallel holes
+                        for (x = [ -P / 2, P / 2 ])
+                            for (y = [ 0, -E ])
+                                translate([ x, y ]) circle(d = d2);
+                    }
+                }
+                translate([ 0, 0, L3 - L / 2 ]) cylinder(d = bb_diameter(bearing), h = L);
+                // bolt holes
+                for (x = [ -P / 2, P / 2 ], y = [ -C1 / 2, C1 / 2 ])
+                {
+                    translate([ x, -h, y ]) rotate([ -90, 0, 0 ]) cylinder(d = X, h = H1);
+                    translate([ x, -h + H1 - Z, y ]) rotate([ -90, 0, 0 ]) cylinder(d = Y, h = Z);
+                }
+            }
+            // cover
+            cover_size = B1 * 0.95; // reduced
+            cover_screw = bk_cover_screw_type(type);
+            sp = cover_size / 2 - 5;
+            sh = screw_head_height(cover_screw);
+            translate([ 0, 0, (L + L1) / 2 ]) union()
             {
                 difference()
                 {
-                    // center section with bearing hole
-                    translate([ 0, -h ]) for (m = [ 0, 1 ]) mirror([ m, 0, 0 ]) union()
+                    cube([ cover_size, cover_size, L1 ], center = true);
+                    for (x = [ -sp, sp ], y = [ -sp, sp ])
                     {
-                        square([ B / 2, H1 ]);
-                        square([ B1 / 2, H ]);
-                    }
-                    circle(d = bb_bore(bearing));
-                    // parallel holes
-                    for (x = [ -P / 2, P / 2 ])
-                        for (y = [ 0, -E ])
-                            translate([ x, y ]) circle(d = d2);
+                        translate([ x, y, (L1 / 2) - sh ]) cylinder(r = screw_head_radius(cover_screw) + 0.5, h = sh);
+                    };
+                    cylinder(r = bb_diameter(bearing) / 2 - 5, h = L1 + 5, center = true);
                 }
+                for (x = [ -sp, sp ], y = [ -sp, sp ])
+                {
+                    translate([ x, y, (L1 / 2) - sh ]) screw(cover_screw, L1 + 5);
+                };
             }
-
-            translate([ 0, 0, L3 - L / 2 ]) cylinder(d = bb_diameter(bearing), h = L);
-            // bolt holes
-            for (x = [ -P / 2, P / 2 ], y = [ -C1 / 2, C1 / 2 ])
+            // camping nut
+            clamp_size = (bb_diameter(bearing) * 0.95) / 2; // reduced
+            translate([ 0, 0, (L / 2 + L1) ]) rotate([ 0, 0, 45 ])
             {
-                translate([ x, -h, y ]) rotate([ -90, 0, 0 ]) cylinder(d = X, h = H1);
-                translate([ x, -h + H1 - Z, y ]) rotate([ -90, 0, 0 ]) cylinder(d = Y, h = Z);
+                difference()
+                {
+                    cube([ clamp_size, clamp_size, L1 * 2 ], center = true);
+                    cylinder(r = 5, h = L1 + 5, center = true);
+                }
             }
         }
     }
