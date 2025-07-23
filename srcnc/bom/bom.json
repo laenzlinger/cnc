@@ -10,10 +10,10 @@
             "leadscrew(12, 350, 4, 1): Leadscrew 12 x 350mm, 4mm lead, 1 starts": {
                 "count": 1
             },
-            "nuthousing(LNH): Lead Screw Nut Housing": {
+            "nuthousing(LNH): Leadscrew Nut Housing": {
                 "count": 1
             },
-            "leadnut(SFU1204): Leadscrew nut for SFU1204": {
+            "leadnut(SFU1204): Leadscrew Nut for SFU1204": {
                 "count": 1
             },
             "screw(M4_cap_screw, 15): Screw M4 cap x 15mm": {
@@ -26,10 +26,10 @@
                 "count": 6
             },
             "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
-                "count": 18
+                "count": 6
             },
             "nut(M5_nut, nyloc = undef): Nut M5 x 4mm ": {
-                "count": 18
+                "count": 6
             },
             "fixed_ball_screw_support(BK10): BK10 fixed ball screw support": {
                 "count": 1
@@ -46,11 +46,17 @@
             "sbr_bearing_block(SBR12UU): SBR12UU bearing block": {
                 "count": 4
             },
-            "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
+            "screw(M5_cap_screw, 16): Screw M5 cap x 16mm": {
                 "count": 16
             },
-            "screw(M5_cap_screw, 50): Screw M5 cap x 50mm": {
-                "count": 12
+            "screw(M4_cap_screw, 50): Screw M4 cap x 50mm": {
+                "count": 16
+            },
+            "washer(M4_washer): Washer  M4 x 9mm x 0.8mm": {
+                "count": 16
+            },
+            "nut(M4_nut, nyloc = undef): Nut M4 x 3.2mm ": {
+                "count": 16
             },
             "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
                 "count": 1
@@ -81,10 +87,10 @@
             "leadscrew(12, 550, 4, 1): Leadscrew 12 x 550mm, 4mm lead, 1 starts": {
                 "count": 1
             },
-            "nuthousing(LNH): Lead Screw Nut Housing": {
+            "nuthousing(LNH): Leadscrew Nut Housing": {
                 "count": 1
             },
-            "leadnut(SFU1204): Leadscrew nut for SFU1204": {
+            "leadnut(SFU1204): Leadscrew Nut for SFU1204": {
                 "count": 1
             },
             "screw(M4_cap_screw, 15): Screw M4 cap x 15mm": {
@@ -97,10 +103,10 @@
                 "count": 6
             },
             "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
-                "count": 22
+                "count": 6
             },
             "nut(M5_nut, nyloc = undef): Nut M5 x 4mm ": {
-                "count": 22
+                "count": 6
             },
             "fixed_ball_screw_support(BK10): BK10 fixed ball screw support": {
                 "count": 1
@@ -117,11 +123,17 @@
             "sbr_bearing_block(SBR12UU): SBR12UU bearing block": {
                 "count": 4
             },
-            "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
+            "screw(M5_cap_screw, 16): Screw M5 cap x 16mm": {
                 "count": 16
             },
-            "screw(M5_cap_screw, 25): Screw M5 cap x 25mm": {
-                "count": 16
+            "screw(M4_cap_screw, 25): Screw M4 cap x 25mm": {
+                "count": 24
+            },
+            "washer(M4_washer): Washer  M4 x 9mm x 0.8mm": {
+                "count": 24
+            },
+            "nut(M4_nut, nyloc = undef): Nut M4 x 3.2mm ": {
+                "count": 24
             },
             "sheet(MDF15, 356, 580): Sheet MDF 356mm x 580mm x 15mm": {
                 "count": 1

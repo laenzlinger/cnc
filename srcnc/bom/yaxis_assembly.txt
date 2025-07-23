@@ -3,19 +3,21 @@ Vitamins:
   1 Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)
   1 BK10 fixed ball screw support
   1 BF10 floating ball screw support
-  1 Leadscrew nut for SFU1204
+  1 Leadscrew Nut for SFU1204
   1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
- 22 Nut M5 x 4mm 
-  1 Lead Screw Nut Housing
+ 24 Nut M4 x 3.2mm 
+  6 Nut M5 x 4mm 
+  1 Leadscrew Nut Housing
   4 SBR12UU bearing block
   2 SBR12 rail, length 550mm
   6 Screw M4 cap x 15mm
- 16 Screw M5 cap x 20mm
- 16 Screw M5 cap x 25mm
+ 24 Screw M4 cap x 25mm
+ 16 Screw M5 cap x 16mm
   6 Screw M5 cap x 47.5mm
   1 Shaft coupling SC_8x8_flex
   1 Sheet MDF 356mm x 580mm x 15mm
- 22 Washer  M5 x 10mm x 1mm
+ 24 Washer  M4 x 9mm x 0.8mm
+  6 Washer  M5 x 10mm x 1mm
 
 Printed:
   1 nut_housing_adapter.stl

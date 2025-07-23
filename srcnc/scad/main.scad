@@ -9,18 +9,19 @@ use <NopSCADlib/vitamins/sbr_rail.scad>
 use <ball_screw_support.scad>
 
 SFU1204 = [
-    "SFU1204", "Leadscrew nut for SFU1204", 12, 22, 35, 42, 8, 0, 6, 4.5, 32 / 2, M4_cap_screw, 4, 10, 30, "#DFDAC5"
+    "SFU1204", "Leadscrew Nut for SFU1204", 12, 22, 35, 42, 8, 0, 6, 4.5, 32 / 2, M4_cap_screw, 4, 10, 30, "#DFDAC5"
 ];
 
-LNH = [ "LNH", "Lead Screw Nut Housing", 30, 50, 36, -1, 24, 35, M5_cs_cap_screw, 15, SFU1204, 15 ];
+LNH = [ "LNH", "Leadscrew Nut Housing", 30, 50, 36, -1, 24, 35, M5_cs_cap_screw, 15, SFU1204, 15 ];
 LM12UUOP = [ "LM12UUOP", 30, 21, 12, 1.3, 20.0, 23.0, 8 ];
 
-//                T  h   H   W   M   G     J   K   A  S1            I   LB                         S2 S2L
+//  see https://cnc4you.co.uk/resources/SBRxxUU.pdf
+//                T  h     H   W   M   G     J   K   A  S1            I   LB                         S2 S2L
 SBR12UU =
-    [ "SBR12UU", 12, 25, 40, 41, 40, 27.6, 28, 26, 9, M5_cap_screw, 12, LM12UUOP, circlip_21i, 0, M5_grub_screw, 5 ];
+    [ "SBR12UU", 12, 22.5, 40, 40, 39, 27.6, 28, 26, 8, M5_cap_screw, 10, LM12UUOP, circlip_21i, 0, M5_grub_screw, 5 ];
 
-//                    d  h   B   T  carriage P    S2            C   S3            S3L
-SBR12S = [ "SBR12S", 12, 19, 32, 4, SBR12UU, 150, M5_cap_screw, 22, M4_cap_screw, 13 ];
+//                    d  h     B   T  carriage P    S2            C   S3            S3L
+SBR12S = [ "SBR12S", 12, 22.5, 30, 4.5, SBR12UU, 100, M4_cap_screw, 22, M4_cap_screw, 16 ];
 
 Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
 MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
@@ -29,33 +30,36 @@ SC_8x8_flex = [ "SC_8x8_flex", 25, 19, 8, 8, true ];
 yaxis_length = 550;
 yrail_separation = 180;
 ycarriage_separation = 120;
+yplate_thickness = 15;
 xaxis_length = 350;
 xrail_separation = 160;
 xcarriage_separation = 40;
+xplate_thickness = 40;
 
 function bf_pos(l) = l / 2 - 10;
 function bk_pos(l) = l / 2 - 41;
 
 module yaxis_assembly() assembly("yaxis")
 {
-    axis(yaxis_length, yrail_separation, ycarriage_separation, 18, 15);
-    translate([ 0, 0, -26.5 ]) explode(-50) render_2D_sheet(MDF15) yplate_dxf();
+    axis(yaxis_length, yrail_separation, ycarriage_separation, 18, yplate_thickness);
+    translate([ 0, 0, -yplate_thickness / 2 ]) explode(-50) render_2D_sheet(MDF15) yplate_dxf();
 }
 
 module xaxis_assembly() assembly("xaxis")
 {
-    rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, 40);
-    translate([ 0, 0, -39 ]) explode(-50) render_2D_sheet((Chipboard40)) xplate_dxf();
+    rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, xplate_thickness);
+    translate([ 0, 0, -xplate_thickness / 2 ]) explode(-50) render_2D_sheet((Chipboard40)) xplate_dxf();
 }
 
 module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)
 {
-    translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
-    rotate([ 90, -90, 0 ])
+    translate([ 0, 0, bf_center_height(BF10) ]) rotate([ 90, -90, 0 ])
     {
         leadscrew(12, length, 4, 1);
         leadnuthousing(LNH);
         nut = leadnuthousing_nut(LNH);
+        rotate([ 0, 90, 0 ]) translate([ 0, 0, leadnuthousing_height(LNH) / 2 - 1.6 ]) explode(10)
+            nut_housing_adapter_stl();
         translate_z(leadnuthousing_height(LNH) / 2)
         {
             leadnut(nut);
@@ -83,7 +87,7 @@ module axis(length, rail_separation, carriage_separation, motor_separation, boar
         };
     }
     for (rs = [ rail_separation, -rail_separation ])
-        translate([ rs / 2, 0, 0 ]) rail(length, carriage_separation, board_thickness);
+        translate([ rs / 2, 0, sbr_rail_center_height(SBR12S) ]) rail(length, carriage_separation, board_thickness);
 }
 
 module rail(length, carriage_separation, board_thickness)
@@ -95,12 +99,14 @@ module rail(length, carriage_separation, board_thickness)
         carriage = sbr_rail_carriage(rail);
         sbr_rail(rail, length);
         screw = sbr_rail_screw(rail);
+        // carriages
         for (cs = [ carriage_separation, -carriage_separation ])
             translate([ 0, 0, cs / 2 ]) sbr_bearing_block_assembly(carriage, sheet);
+        // screw down the rail
         sbr_screw_positions(rail, length) rotate([ 90, 0, 0 ])
         {
             explode(80) screw(screw, board_thickness + 10);
-            translate([ 0, 0, -board_thickness - 4 ]) rotate([ 0, 180, 0 ]) explode(150) nut_and_washer(M5_nut);
+            translate([ 0, 0, -(board_thickness + 4) ]) rotate([ 0, 180, 0 ]) explode(150) nut_and_washer(M4_nut);
         }
     }
 }
@@ -147,7 +153,6 @@ module nut_housing_adapter_stl() stl("nut_housing_adapter")
 {
     correction = -0.2;
     height = 40 - (22 + 15) + correction;
-    //  see https://cnc4you.co.uk/resources/SBRxxUU.pdf
 
     difference()
     {
@@ -205,7 +210,7 @@ module frame_right_side_dxf() dxf("frame_right_side")
     {
         sheet_2D(Chipboard40, 400, 360);
         frame_side_screw_positions() circle(4);
-        translate([ 100, -120, 0 ]) circle(20);
+        translate([ 100, -118.5, 0 ]) circle(20);
     }
 }
 
@@ -228,7 +233,7 @@ module frame_side_screw_positions()
 module main_assembly() assembly("main")
 {
     frame_assembly();
-    translate([ 0, 0, -126 ]) explode(50, true)
+    translate([ 0, 0, -145 ]) explode(50, true)
     {
         yaxis_assembly();
         yplate_mounting_screw_positions()
@@ -240,7 +245,7 @@ module main_assembly() assembly("main")
             }
         }
     }
-    rotate([ 90, 0, 0 ]) translate([ 0, 100, -120 ]) explode(-150) xaxis_assembly();
+    rotate([ 90, 0, 0 ]) translate([ 0, 100, -140 ]) explode(-150) xaxis_assembly();
 }
 
 if ($preview)
