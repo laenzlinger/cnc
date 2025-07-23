@@ -172,10 +172,10 @@ module fixed_ball_screw_support(type)
                 }
                 for (x = [ -sp, sp ], y = [ -sp, sp ])
                 {
-                    translate([ x, y, (L1 / 2) - sh ]) screw(cover_screw, L1 + 5);
+                    not_on_bom() no_explode() translate([ x, y, (L1 / 2) - sh ]) screw(cover_screw, L1 + 5);
                 };
             }
-            // camping nut
+            // clamping nut
             clamp_size = (bb_diameter(bearing) * 0.95) / 2; // reduced
             translate([ 0, 0, (L / 2 + L1) ]) rotate([ 0, 0, 45 ])
             {

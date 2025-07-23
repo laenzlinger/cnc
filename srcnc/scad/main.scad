@@ -25,13 +25,18 @@ SBR12S = [ "SBR12S", 12, 19, 32, 4, SBR12UU, 150, M5_cap_screw, 22, M4_cap_screw
 Chipboard40 = [ "Chipboard40", "Chipboard", 40, mdf_colour, false ];
 MDF15 = [ "MDF15", "Sheet MDF", 15, mdf_colour, false ];
 SC_8x8_flex = [ "SC_8x8_flex", 25, 19, 8, 8, true ];
+
+yaxis_length = 550;
+
+function bf_pos(l) = l / 2 - 10;
+function bk_pos(l) = l / 2 - 41;
+
 module yaxis_assembly() assembly("yaxis")
 {
-    length = 550;
     translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
     rotate([ 90, -90, 0 ])
     {
-        leadscrew(12, length, 4, 1);
+        leadscrew(12, yaxis_length, 4, 1);
         leadnuthousing(LNH);
         nut = leadnuthousing_nut(LNH);
         translate_z(leadnuthousing_height(LNH) / 2)
@@ -39,9 +44,9 @@ module yaxis_assembly() assembly("yaxis")
             leadnut(nut);
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
-        translate([ 0, 0, length / 2 - 10 ]) rotate([ 0, 0, -90 ]) floating_ball_screw_support_assembly(BF10);
-        translate([ 0, 0, -length / 2 + 41 ]) rotate([ 180, 0, --90 ]) fixed_ball_screw_support_assembly(BK10);
-        translate([ 0, 0, -length / 2 - 20 ])
+        translate([ 0, 0, bf_pos(yaxis_length) ]) rotate([ 0, 0, -90 ]) floating_ball_screw_support_assembly(BF10);
+        translate([ 0, 0, -bk_pos(yaxis_length) ]) rotate([ 180, 0, --90 ]) fixed_ball_screw_support_assembly(BK10);
+        translate([ 0, 0, -yaxis_length / 2 - 20 ])
         {
             explode(-100) NEMA(NEMA23_51);
             translate([ 0, 0, 18 ]) explode(-20) shaft_coupling(SC_8x8_flex);
@@ -68,7 +73,7 @@ module yrail()
 {
     rotate([ 90, 180, 0 ])
     {
-        length = 550;
+        length = yaxis_length;
         sheet = 8;
         rail = SBR12S;
         carriage = sbr_rail_carriage(rail);
@@ -91,8 +96,8 @@ module yplate_dxf() dxf("yplate")
     {
         sheet_2D(MDF15, 356, 580);
         yplate_mounting_screw_positions() circle(4);
-        translate([ 0, 550 / 2 - 10, 0 ]) floating_ball_screw_support_hole_positions(BF10) circle(3);
-        translate([ 0, -550 / 2 + 41, 0 ]) fixed_ball_screw_support_hole_positions(BK10) circle(3);
+        translate([ 0, -bf_pos(yaxis_length), 0 ]) floating_ball_screw_support_hole_positions(BF10) circle(3);
+        translate([ 0, bk_pos(yaxis_length), 0 ]) fixed_ball_screw_support_hole_positions(BK10) circle(3);
         translate([ -80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
             cylinder(r = 3, h = 10);
         translate([ 80, 0, 0 ]) projection() rotate([ 90, 0, 0 ]) sbr_screw_positions(SBR12S, 550) rotate([ 90, 0, 0 ])
