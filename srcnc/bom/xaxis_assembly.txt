@@ -5,17 +5,17 @@ Vitamins:
   1 BF10 floating ball screw support
   1 Leadscrew nut for SFU1204
   1 Leadscrew 12 x 350mm, 4mm lead, 1 starts
- 12 Nut M5 x 4mm 
+ 18 Nut M5 x 4mm 
   1 Lead Screw Nut Housing
   4 SBR12UU bearing block
   2 SBR12 rail, length 350mm
   6 Screw M4 cap x 15mm
- 12 Screw M5 cap x 18mm
  16 Screw M5 cap x 20mm
-  6 Screw M5 cap x 37.5mm
+ 12 Screw M5 cap x 50mm
+  6 Screw M5 cap x 69mm
   1 Shaft coupling SC_8x8_flex
   1 Chipboard 360mm x 200mm x 40mm
- 12 Washer  M5 x 10mm x 1mm
+ 18 Washer  M5 x 10mm x 1mm
 
 Printed:
   1 nut_housing_adapter.stl

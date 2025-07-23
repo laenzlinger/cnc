@@ -38,7 +38,7 @@ function bk_pos(l) = l / 2 - 41;
 
 module yaxis_assembly() assembly("yaxis")
 {
-    axis(yaxis_length, yrail_separation, ycarriage_separation, 18);
+    axis(yaxis_length, yrail_separation, ycarriage_separation, 18, 15);
     translate([ 0, 0, -26.5 ])
     {
         explode(-50) render_2D_sheet(MDF15) yplate_dxf();
@@ -47,11 +47,11 @@ module yaxis_assembly() assembly("yaxis")
 
 module xaxis_assembly() assembly("xaxis")
 {
-    rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45);
+    rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, 40);
     translate([ 0, 0, -39 ]) rotate([ 0, 0, 0 ]) render_2D_sheet((Chipboard40)) frame_xaxis_dxf();
 }
 
-module axis(length, rail_separation, carriage_separation, motor_separation)
+module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)
 {
     translate([ 0, 0, 16.5 ]) rotate([ 0, 0, 90 ]) explode(10) nut_housing_adapter_stl();
     rotate([ 90, -90, 0 ])
@@ -64,8 +64,20 @@ module axis(length, rail_separation, carriage_separation, motor_separation)
             leadnut(nut);
             leadnuthousing_nut_screw_positions(LNH) screw(leadnut_screw(nut), leadnuthousing_nut_screw_length(LNH));
         }
-        translate([ 0, 0, bf_pos(length) ]) rotate([ 0, 0, -90 ]) floating_ball_screw_support_assembly(BF10);
-        translate([ 0, 0, -bk_pos(length) ]) rotate([ 180, 0, --90 ]) fixed_ball_screw_support_assembly(BK10);
+        translate([ 0, 0, bf_pos(length) ]) rotate([ 0, 0, -90 ])
+        {
+            bfh = bf_center_height(BF10);
+            floating_ball_screw_support_assembly(BF10, M5_cap_screw, board_thickness + bfh + 7);
+            translate([ 0, -board_thickness - bfh, 0 ]) floating_ball_screw_support_hole_positions(BF10)
+                rotate([ 90, 0, 0 ]) explode(100) nut_and_washer(M5_nut);
+        }
+        translate([ 0, 0, -bk_pos(length) ])
+        {
+            rotate([ 180, 0, 90 ]) fixed_ball_screw_support_assembly(BK10, M5_cap_screw, board_thickness + bkh + 7);
+            bkh = bk_center_height(BK10);
+            rotate([ 90, 0, -90 ]) translate([ 0, 0, (board_thickness + bkh) ])
+                fixed_ball_screw_support_hole_positions(BK10) explode(100) nut_and_washer(M5_nut);
+        }
         translate([ 0, 0, -length / 2 - motor_separation ])
         {
             explode(-100) NEMA(NEMA23_51);
@@ -73,10 +85,10 @@ module axis(length, rail_separation, carriage_separation, motor_separation)
         };
     }
     for (rs = [ rail_separation, -rail_separation ])
-        translate([ rs / 2, 0, 0 ]) rail(length, carriage_separation);
+        translate([ rs / 2, 0, 0 ]) rail(length, carriage_separation, board_thickness);
 }
 
-module rail(length, carriage_separation)
+module rail(length, carriage_separation, board_thickness)
 {
     rotate([ 90, 180, 0 ])
     {
@@ -89,8 +101,8 @@ module rail(length, carriage_separation)
             translate([ 0, 0, cs / 2 ]) sbr_bearing_block_assembly(carriage, sheet);
         sbr_screw_positions(rail, length) rotate([ 90, 0, 0 ])
         {
-            explode(20) screw_and_washer(screw, 18);
-            explode(-220) nut(M5_nut);
+            explode(80) screw(screw, board_thickness + 10);
+            translate([ 0, 0, -board_thickness - 4 ]) rotate([ 0, 180, 0 ]) explode(100) nut_and_washer(M5_nut);
         }
     }
 }
@@ -147,7 +159,7 @@ module frame_assembly() assembly("Frame")
         {
             translate([ 0, 0, 20 ])
             {
-                screw_and_washer(M6_cap_screw, screw_length);
+                explode(100) screw_and_washer(M6_cap_screw, screw_length);
                 translate([ 0, 0, -40 ]) explode(-100) threaded_insert(M6x15);
             }
         }
@@ -161,8 +173,8 @@ module frame_assembly() assembly("Frame")
             {
                 rotate([ 0, 180, 0 ])
                 {
-                    screw_and_washer(M6_cap_screw, screw_length);
-                    translate([ 0, 0, -40 ]) threaded_insert(M6x15);
+                    explode(100) screw_and_washer(M6_cap_screw, screw_length);
+                    translate([ 0, 0, -40 ]) explode(-100) threaded_insert(M6x15);
                 }
             }
         }
@@ -225,12 +237,12 @@ module main_assembly() assembly("main")
         {
             translate([ 0, 0, -18 ])
             {
-                screw_and_washer(M6_cap_screw, 20);
-                translate([ 0, 0, -15 ]) threaded_insert(M6x15);
+                explode(50) screw_and_washer(M6_cap_screw, 20);
+                translate([ 0, 0, -15 ]) explode(-20) threaded_insert(M6x15);
             }
         }
     }
-    rotate([ 90, 0, 0 ]) translate([ 0, 100, -120 ]) explode(50) xaxis_assembly();
+    rotate([ 90, 0, 0 ]) translate([ 0, 100, -120 ]) explode(-150) xaxis_assembly();
 }
 
 if ($preview)

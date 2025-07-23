@@ -22,8 +22,14 @@
             "floating_ball_screw_support(BF10): BF10 floating ball screw support": {
                 "count": 1
             },
-            "screw(M5_cap_screw, 37.5): Screw M5 cap x 37.5mm": {
+            "screw(M5_cap_screw, 69): Screw M5 cap x 69mm": {
                 "count": 6
+            },
+            "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
+                "count": 18
+            },
+            "nut(M5_nut, nyloc = undef): Nut M5 x 4mm ": {
+                "count": 18
             },
             "fixed_ball_screw_support(BK10): BK10 fixed ball screw support": {
                 "count": 1
@@ -43,13 +49,7 @@
             "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
                 "count": 16
             },
-            "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
-                "count": 12
-            },
-            "screw(M5_cap_screw, 18): Screw M5 cap x 18mm": {
-                "count": 12
-            },
-            "nut(M5_nut): Nut M5 x 4mm ": {
+            "screw(M5_cap_screw, 50): Screw M5 cap x 50mm": {
                 "count": 12
             },
             "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
@@ -93,8 +93,14 @@
             "floating_ball_screw_support(BF10): BF10 floating ball screw support": {
                 "count": 1
             },
-            "screw(M5_cap_screw, 37.5): Screw M5 cap x 37.5mm": {
+            "screw(M5_cap_screw, 44): Screw M5 cap x 44mm": {
                 "count": 6
+            },
+            "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
+                "count": 22
+            },
+            "nut(M5_nut, nyloc = undef): Nut M5 x 4mm ": {
+                "count": 22
             },
             "fixed_ball_screw_support(BK10): BK10 fixed ball screw support": {
                 "count": 1
@@ -114,13 +120,7 @@
             "screw(M5_cap_screw, 20): Screw M5 cap x 20mm": {
                 "count": 16
             },
-            "washer(M5_washer): Washer  M5 x 10mm x 1mm": {
-                "count": 16
-            },
-            "screw(M5_cap_screw, 18): Screw M5 cap x 18mm": {
-                "count": 16
-            },
-            "nut(M5_nut): Nut M5 x 4mm ": {
+            "screw(M5_cap_screw, 25): Screw M5 cap x 25mm": {
                 "count": 16
             },
             "sheet(MDF15, 356, 580): Sheet MDF 356mm x 580mm x 15mm": {

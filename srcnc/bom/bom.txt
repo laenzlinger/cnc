@@ -10,15 +10,17 @@ Vitamins:
   |  | 1| 1|  2 Leadscrew nut for SFU1204
   |  | 1|  |  1 Leadscrew 12 x 350mm, 4mm lead, 1 starts
   |  |  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
-  |  |12|16| 28 Nut M5 x 4mm 
+  |  |18|22| 40 Nut M5 x 4mm 
   |  | 1| 1|  2 Lead Screw Nut Housing
   |  | 4| 4|  8 SBR12UU bearing block
   |  | 2|  |  2 SBR12 rail, length 350mm
   |  |  | 2|  2 SBR12 rail, length 550mm
   |  | 6| 6| 12 Screw M4 cap x 15mm
-  |  |12|16| 28 Screw M5 cap x 18mm
   |  |16|16| 32 Screw M5 cap x 20mm
-  |  | 6| 6| 12 Screw M5 cap x 37.5mm
+  |  |  |16| 16 Screw M5 cap x 25mm
+  |  |  | 6|  6 Screw M5 cap x 44mm
+  |  |12|  | 12 Screw M5 cap x 50mm
+  |  | 6|  |  6 Screw M5 cap x 69mm
   | 4|  |  |  4 Screw M6 cap x 20mm
 16|  |  |  | 16 Screw M6 cap x 55mm
   |  | 1| 1|  2 Shaft coupling SC_8x8_flex
@@ -27,7 +29,7 @@ Vitamins:
  2|  |  |  |  2 Chipboard 400mm x 360mm x 40mm
   |  |  | 1|  1 Sheet MDF 356mm x 580mm x 15mm
 16| 4|  |  | 20 Threaded insert M6 x 15mm
-  |  |12|16| 28 Washer  M5 x 10mm x 1mm
+  |  |18|22| 40 Washer  M5 x 10mm x 1mm
 16| 4|  |  | 20 Washer  M6 x 12.5mm x 1.5mm
 
 Printed:

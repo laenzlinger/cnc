@@ -70,7 +70,7 @@ module floating_ball_screw_support_hole_positions(type)
         translate([ x / 2, 0, 0 ]) children();
 }
 
-module floating_ball_screw_support_assembly(type, screw_type)
+module floating_ball_screw_support_assembly(type, screw_type, screw_length)
 { //! Assembly with screws in place
 
     Z = bf_screw_counter_bore_depth(type);
@@ -79,13 +79,13 @@ module floating_ball_screw_support_assembly(type, screw_type)
     bearing = bf_bearing_type(type);
     floating_ball_screw_support(type);
     not_on_bom() no_explode() ball_bearing(bearing);
-    screw_length = H1 - Z + 10;
+    sl = is_undef(screw_length) ? H1 - Z + 10 : screw_length;
     screw_type = is_undef(screw_type) ? bf_screw_type(type) : screw_type;
     translate([
         0,
         H1 - h - Z,
         0,
-    ]) floating_ball_screw_support_hole_positions(type) rotate([ -90, 0, 0 ]) screw(screw_type, screw_length);
+    ]) floating_ball_screw_support_hole_positions(type) rotate([ -90, 0, 0 ]) explode(100) screw(screw_type, sl);
 }
 
 function bk_size(type) = [ type[6], type[7], type[2] ]; //! Size of BF suport
@@ -197,7 +197,7 @@ module fixed_ball_screw_support_hole_positions(type)
         translate([ x / 2, y / 2, 0 ]) children();
 }
 
-module fixed_ball_screw_support_assembly(type, screw_type)
+module fixed_ball_screw_support_assembly(type, screw_type, screw_length)
 { //! Assembly with screws in place
 
     Z = bk_screw_counter_bore_depth(type);
@@ -216,11 +216,11 @@ module fixed_ball_screw_support_assembly(type, screw_type)
         ball_bearing(bearing);
         translate([ 0, 0, bearing_width ]) ball_bearing(bearing);
     }
-    screw_length = H1 - Z + 10;
+    sl = is_undef(screw_length) ? H1 - Z + 10 : screw_length;
     screw_type = is_undef(screw_type) ? bk_screw_type(type) : screw_type;
     translate([
         0,
         H1 - h - Z,
         0,
-    ]) rotate([ -90, 0, 0 ]) fixed_ball_screw_support_hole_positions(type) screw(screw_type, screw_length);
+    ]) rotate([ -90, 0, 0 ]) fixed_ball_screw_support_hole_positions(type) explode(100) screw(screw_type, sl);
 }
