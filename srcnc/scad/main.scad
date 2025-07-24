@@ -128,6 +128,7 @@ module xplate_dxf() dxf("xplate")
     {
         sheet_2D(Chipboard40, 360, 200);
         rotate([ 0, 0, -90 ]) axis_holes(xrail_separation, xaxis_length);
+        zplate_mounting_screw_positions() circle(6);
     }
 }
 
