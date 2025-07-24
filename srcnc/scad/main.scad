@@ -5,8 +5,10 @@ $pp1_colour = "grey"; // Override any global defaults here if required, see NopS
 include <NopSCADlib/lib.scad> // Includes all the vitamins and utilities in NopSCADlib but not the printed parts.
 include <NopSCADlib/vitamins/sbr_rails.scad>
 include <ball_screw_supports.scad>
+include <linear_guide_tables.scad>
 use <NopSCADlib/vitamins/sbr_rail.scad>
 use <ball_screw_support.scad>
+use <linear_guide_table.scad>
 
 SFU1204 = [
     "SFU1204", "Leadscrew Nut for SFU1204", 12, 22, 35, 42, 8, 0, 6, 4.5, 32 / 2, M4_cap_screw, 4, 10, 30, "#DFDAC5"
@@ -50,6 +52,7 @@ module xaxis_assembly() assembly("xaxis")
     rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, xplate_thickness);
     translate([ 0, 0, -xplate_thickness / 2 ]) explode(-50) render_2D_sheet((Chipboard40)) xplate_dxf();
     translate([ 0, 0, 40 + 7.5 ]) render_sheet(MDF15) zplate_stl();
+    rotate([ 0, 0, 90 ]) translate([ 0, 0, 40 + 15 ]) linear_guide_table_assembly(SGX_5080);
 }
 
 module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)
@@ -285,6 +288,6 @@ module main_assembly() assembly("main")
 
 if ($preview)
     main_assembly();
-//  yaxis_assembly();
+// yaxis_assembly();
 // xaxis_assembly();
-//    zplate_stl();
+// zplate_stl();
