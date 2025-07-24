@@ -263,11 +263,8 @@ module main_assembly() assembly("main")
         yaxis_assembly();
         yplate_mounting_screw_positions()
         {
-            translate([ 0, 0, -18 ])
-            {
-                explode(50) screw_and_washer(M6_cap_screw, 20);
-                translate([ 0, 0, -15 ]) explode(-20) threaded_insert(M6x15);
-            }
+            explode(50) screw_and_washer(M6_cap_screw, 20);
+            translate([ 0, 0, -15 ]) explode(-20) threaded_insert(M6x15);
         }
     }
     rotate([ 90, 0, 0 ]) translate([ 0, 100, -140 ]) explode(-150) xaxis_assembly();
@@ -275,6 +272,6 @@ module main_assembly() assembly("main")
 
 if ($preview)
     main_assembly();
-//    yaxis_assembly();
+//  yaxis_assembly();
 // xaxis_assembly();
 // zplate_dxf();
