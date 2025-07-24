@@ -12,7 +12,7 @@ SFU1204 = [
     "SFU1204", "Leadscrew Nut for SFU1204", 12, 22, 35, 42, 8, 0, 6, 4.5, 32 / 2, M4_cap_screw, 4, 10, 30, "#DFDAC5"
 ];
 
-LNH = [ "LNH", "Leadscrew Nut Housing", 30, 50, 36, -1, 24, 35, M5_cs_cap_screw, 15, SFU1204, 15 ];
+LNH = [ "LNH", "Leadscrew Nut Housing", 30, 50, 36, -1, 24, 35, M5_cap_screw, 15, SFU1204, 15 ];
 LM12UUOP = [ "LM12UUOP", 30, 21, 12, 1.3, 20.0, 23.0, 8 ];
 
 //  see https://cnc4you.co.uk/resources/SBRxxUU.pdf
@@ -142,12 +142,17 @@ module axis_holes(rail_separation, axis_length)
 
 module yplate_mounting_screw_positions()
 {
-    x = 140;
-    y = 250;
-    translate([ x, y, 0 ]) children();
-    translate([ -x, y, 0 ]) children();
-    translate([ x, -y, 0 ]) children();
-    translate([ -x, -y, 0 ]) children();
+    rectangular_mounting_screw_positions(280, 480) children();
+}
+
+module rectangular_mounting_screw_positions(x, y)
+{
+    xh = x / 2;
+    yh = y / 2;
+    translate([ xh, yh, 0 ]) children();
+    translate([ -xh, yh, 0 ]) children();
+    translate([ xh, -yh, 0 ]) children();
+    translate([ -xh, -yh, 0 ]) children();
 }
 
 module nut_housing_adapter_stl() stl("nut_housing_adapter")
@@ -161,29 +166,36 @@ module nut_housing_adapter_stl() stl("nut_housing_adapter")
         leadnuthousing_screw_positions(LNH) cylinder(r = 2.7, h = 10, center = true);
     }
 }
+
 module zplate_stl() stl("zplate")
 {
     difference()
     {
         thickness = 15;
         sheet(MDF15, 80, 200);
+        // leadnut housing holes
         lnh_screw = leadnuthousing_mount_screw(LNH);
-        leadnuthousing_screw_positions(LNH)
-        {
-            cylinder(h = thickness + 1, r = screw_clearance_radius(lnh_screw), center = true);
-            translate([ 0, 0, thickness * 0.3 ])
-                cylinder(h = thickness, r = screw_head_radius(lnh_screw) + 0.3, center = true);
-        }
+        leadnuthousing_screw_positions(LNH) sunk_screw_hole(thickness, lnh_screw);
+        // carriage holes
         carriage = sbr_rail_carriage(SBR12S);
         for (x = [ 1, -1 ], y = [ 1, -1 ])
             rotate([ 90, 0, 0 ]) translate([ x * xcarriage_separation / 2, 18, y * xrail_separation / 2 ])
-                sbr_bearing_block_hole_positions(carriage)
-            {
-                cylinder(h = thickness + 2, r = screw_clearance_radius(lnh_screw), center = true);
-                translate([ 0, 0, thickness * 0.3 ])
-                    cylinder(h = thickness, r = screw_head_radius(lnh_screw) + 0.3, center = true);
-            }
+                sbr_bearing_block_hole_positions(carriage) sunk_screw_hole(thickness, sbr_screw(carriage));
+        zplate_mounting_screw_positions()
+            cylinder(h = thickness + 1, r = screw_clearance_radius(M6_cap_screw), center = true);
     }
+}
+
+// screw hole down to 1/3 of the thickness
+module sunk_screw_hole(thickness, screw)
+{
+    cylinder(h = thickness + 5, r = screw_clearance_radius(screw), center = true);
+    translate([ 0, 0, thickness * 0.3 ]) cylinder(h = thickness, r = screw_head_radius(screw) + 0.3, center = true);
+}
+
+module zplate_mounting_screw_positions()
+{
+    rectangular_mounting_screw_positions(60, 100) children();
 }
 
 module frame_assembly() assembly("Frame")
@@ -274,4 +286,4 @@ if ($preview)
     main_assembly();
 //  yaxis_assembly();
 // xaxis_assembly();
-// zplate_dxf();
+//    zplate_stl();
