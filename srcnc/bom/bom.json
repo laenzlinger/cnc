@@ -60,10 +60,18 @@
             },
             "sheet(Chipboard40, 360, 200): Chipboard 360mm x 200mm x 40mm": {
                 "count": 1
+            },
+            "sheet(MDF15, 80, 200): Sheet MDF 80mm x 200mm x 15mm": {
+                "count": 1
             }
         },
         "printed": {
             "nut_housing_adapter.stl": {
+                "count": 1,
+                "colour": "[0, 0.572549, 0]",
+                "camera": "0,0,0,70,0,315,500"
+            },
+            "zplate.stl": {
                 "count": 1,
                 "colour": "[0, 0.572549, 0]",
                 "camera": "0,0,0,70,0,315,500"

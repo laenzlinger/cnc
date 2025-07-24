@@ -49,6 +49,7 @@ module xaxis_assembly() assembly("xaxis")
 {
     rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, xplate_thickness);
     translate([ 0, 0, -xplate_thickness / 2 ]) explode(-50) render_2D_sheet((Chipboard40)) xplate_dxf();
+    translate([ 0, 0, 40 + 7.5 ]) render_sheet(MDF15) zplate_stl();
 }
 
 module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)
@@ -160,6 +161,30 @@ module nut_housing_adapter_stl() stl("nut_housing_adapter")
         leadnuthousing_screw_positions(LNH) cylinder(r = 2.7, h = 10, center = true);
     }
 }
+module zplate_stl() stl("zplate")
+{
+    difference()
+    {
+        thickness = 15;
+        sheet(MDF15, 80, 200);
+        lnh_screw = leadnuthousing_mount_screw(LNH);
+        leadnuthousing_screw_positions(LNH)
+        {
+            cylinder(h = thickness + 1, r = screw_clearance_radius(lnh_screw), center = true);
+            translate([ 0, 0, thickness * 0.3 ])
+                cylinder(h = thickness, r = screw_head_radius(lnh_screw) + 0.3, center = true);
+        }
+        carriage = sbr_rail_carriage(SBR12S);
+        for (x = [ 1, -1 ], y = [ 1, -1 ])
+            rotate([ 90, 0, 0 ]) translate([ x * xcarriage_separation / 2, 18, y * xrail_separation / 2 ])
+                sbr_bearing_block_hole_positions(carriage)
+            {
+                cylinder(h = thickness + 2, r = screw_clearance_radius(lnh_screw), center = true);
+                translate([ 0, 0, thickness * 0.3 ])
+                    cylinder(h = thickness, r = screw_head_radius(lnh_screw) + 0.3, center = true);
+            }
+    }
+}
 
 module frame_assembly() assembly("Frame")
 {
@@ -252,4 +277,4 @@ if ($preview)
     main_assembly();
 //    yaxis_assembly();
 // xaxis_assembly();
-// yplate_dxf();
+// zplate_dxf();

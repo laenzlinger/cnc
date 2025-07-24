@@ -16,11 +16,13 @@ Vitamins:
   6 Screw M5 cap x 72.5mm
   1 Shaft coupling SC_8x8_flex
   1 Chipboard 360mm x 200mm x 40mm
+  1 Sheet MDF 80mm x 200mm x 15mm
  16 Washer  M4 x 9mm x 0.8mm
   6 Washer  M5 x 10mm x 1mm
 
 Printed:
   1 nut_housing_adapter.stl
+  1 zplate.stl
 
 CNC cut:
   1 xplate.dxf
