@@ -11,4 +11,4 @@ SGX_5080 = [ "SGX_5080", 100, 50, 59, 45, E2080, MGN12H_carriage ];
 
 use <linear_guide_table.scad>
 
-// linear_guide_table_assembly(SGX_5080);
+linear_guide_table_assembly(SGX_5080);

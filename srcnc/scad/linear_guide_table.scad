@@ -39,10 +39,11 @@ module linear_guide_table_assembly(type)
         }
         linear_guide_table(type);
         linear_guide_table_floating_block(type);
+        linear_guide_table_fixed_block(type);
         linear_guide_table_motor_block(type);
         translate([ -15, 0, lgt_ballscrew_height(type) ])
         {
-            rotate([ 0, 90, 0 ]) leadscrew(12, rail_length + 30, 4, 1);
+            rotate([ 0, 90, 0 ]) leadscrew(12, rail_length + 50, 4, 1);
         }
     }
 }
@@ -82,6 +83,37 @@ module linear_guide_table_floating_block(type)
             }
         }
         translate([ 0, 0, bsh ]) rotate([ 0, 90, 0 ]) ball_bearing(BB608);
+    }
+}
+
+module linear_guide_table_fixed_block(type)
+{
+    et = lgt_extrusion(type);
+    block_length = extrusion_height(et);
+    block_height = lgt_table_top(type) - 1 - extrusion_width(et);
+    block_width = 2 * lgt_plate_thickness(type);
+    bsh = lgt_ballscrew_height(type);
+
+    translate([ lgt_extrusion_length(type) / 2 - 49 + lgt_plate_thickness(type), 0, 0 ])
+    {
+        color(linear_guide_table_color)
+        {
+            difference()
+            {
+                translate([ 0, 0, extrusion_width(et) + block_height / 2 ])
+                    cube([ block_width, block_length, block_height ], center = true);
+                translate([ 0, 0, bsh ]) rotate([ 0, 90, 0 ])
+                    cylinder(h = block_width + 1, d = bb_diameter(BB608), center = true);
+                translate([ 0, 0, extrusion_width(et) + block_height ]) for (x = [ 1, -1 ])
+                {
+                    translate([ 0, x * 0.75 * block_length, 0 ])
+                        cube([ block_width + 1, block_length, block_height ], center = true);
+                    translate([ block_width / 2, 0, 0 ])
+                        cube([ block_width + 1, block_length, block_height ], center = true);
+                }
+            }
+        }
+        translate([ -lgt_plate_thickness(type) / 2, 0, bsh ]) rotate([ 0, 90, 0 ]) ball_bearing(BB608);
     }
 }
 
