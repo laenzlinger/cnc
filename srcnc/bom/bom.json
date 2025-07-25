@@ -63,6 +63,9 @@
             },
             "sheet(MDF15, 80, 200): Sheet MDF 80mm x 200mm x 15mm": {
                 "count": 1
+            },
+            "linear_guide_table(SGX_5080): SGX_5080 linear guide table": {
+                "count": 1
             }
         },
         "printed": {

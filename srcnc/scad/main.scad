@@ -52,7 +52,7 @@ module xaxis_assembly() assembly("xaxis")
     rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, xplate_thickness);
     translate([ 0, 0, -xplate_thickness / 2 ]) explode(-50) render_2D_sheet((Chipboard40)) xplate_dxf();
     translate([ 0, 0, 40 + 7.5 ]) render_sheet(MDF15) zplate_stl();
-    rotate([ 0, 0, 90 ]) translate([ 0, 0, 40 + 15 ]) linear_guide_table_assembly(SGX_5080);
+    rotate([ 0, 0, 90 ]) translate([ 0, 0, 40 + 15 ]) explode(200) linear_guide_table_assembly(SGX_5080);
 }
 
 module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)

@@ -10,6 +10,7 @@ Vitamins:
   |  | 1| 1|  2 Leadscrew Nut for SFU1204
   |  | 1|  |  1 Leadscrew 12 x 350mm, 4mm lead, 1 starts
   |  |  | 1|  1 Leadscrew 12 x 550mm, 4mm lead, 1 starts
+  |  | 1|  |  1 SGX_5080 linear guide table
   |  |16|24| 40 Nut M4 x 3.2mm 
   |  | 6| 6| 12 Nut M5 x 4mm 
   |  | 1| 1|  2 Leadscrew Nut Housing
