@@ -10,7 +10,7 @@ function bf_screw_counter_bore_depth(type) = type[13];  //! Counter bore depth
 function bf_bearing_type(type) = type[14];              //! Bearing type
 function bf_screw_type(type) = type[15];                //! Mounting screw type
 
-ball_screw_support_color = "black";
+ball_screw_support_color = "#494848";
 
 module floating_ball_screw_support(type)
 { //! Draw the specified BF ball_screw_support

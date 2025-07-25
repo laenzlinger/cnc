@@ -1,4 +1,5 @@
 include <NopSCADlib/utils/core/core.scad>
+include <NopSCADlib/vitamins/ball_bearings.scad>
 include <NopSCADlib/vitamins/stepper_motors.scad>
 use <NopSCADlib/vitamins/ball_bearing.scad>
 use <NopSCADlib/vitamins/extrusion.scad>
@@ -15,7 +16,7 @@ function lgt_carriage(type) = type[6];         //! Linear guide carriage type
 function lgt_plate_thickness(type) = 10;
 function lgt_extrusion_length(type) = type[1] + 90;
 
-linear_guide_table_color = "black";
+linear_guide_table_color = "#494848";
 
 module linear_guide_table_assembly(type)
 { //! Draw the specified linear_guide_table
@@ -67,11 +68,20 @@ module linear_guide_table_floating_block(type)
     et = lgt_extrusion(type);
     block_length = extrusion_height(et);
     block_height = lgt_table_top(type) - 1;
+    bsh = lgt_ballscrew_height(type);
 
-    color(linear_guide_table_color)
+    translate([ -lgt_extrusion_length(type) / 2, 0, 0 ])
     {
-        translate([ -lgt_extrusion_length(type) / 2, 0, block_height / 2 ])
-            cube([ lgt_plate_thickness(type), block_length, block_height ], center = true);
+        color(linear_guide_table_color)
+        {
+            difference()
+            {
+                translate([ 0, 0, block_height / 2 ])
+                    cube([ lgt_plate_thickness(type), block_length, block_height ], center = true);
+                translate([ 0, 0, bsh ]) rotate([ 0, 90, 0 ]) cylinder(h = 20, d = bb_diameter(BB608), center = true);
+            }
+        }
+        translate([ 0, 0, bsh ]) rotate([ 0, 90, 0 ]) ball_bearing(BB608);
     }
 }
 
