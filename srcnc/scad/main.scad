@@ -52,7 +52,21 @@ module xaxis_assembly() assembly("xaxis")
     rotate([ 0, 0, -90 ]) axis(xaxis_length, xrail_separation, xcarriage_separation, 45, xplate_thickness);
     translate([ 0, 0, -xplate_thickness / 2 ]) explode(-50) render_2D_sheet((Chipboard40)) xplate_dxf();
     translate([ 0, 0, 40 + 7.5 ]) render_sheet(MDF15) zplate_stl();
-    rotate([ 0, 0, 90 ]) translate([ 0, 0, 40 + 15 ]) explode(200) linear_guide_table_assembly(SGX_5080);
+    rotate([ 0, 0, 90 ]) translate([ 0, 0, 40 + 15 ]) explode(200) zaxis_assembly();
+}
+
+module zaxis_assembly() assembly("zaxis")
+{
+    {
+        bsh = lgt_ballscrew_height(SGX_5080);
+        linear_guide_table_assembly(SGX_5080);
+        motor = lgt_motor_pos(SGX_5080);
+        translate([ motor - 5, 0, bsh ]) rotate([ 0, -90, 0 ])
+        {
+            explode(-80) NEMA(NEMA23_51);
+            translate([ 0, 0, 26 ]) explode(-50) shaft_coupling(SC_8x8_flex);
+        }
+    }
 }
 
 module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)
@@ -287,7 +301,8 @@ module main_assembly() assembly("main")
 }
 
 if ($preview)
-    main_assembly();
-// yaxis_assembly();
-// xaxis_assembly();
+    //    main_assembly();
+    // yaxis_assembly();
+    // xaxis_assembly();
+    zaxis_assembly();
 // zplate_stl();

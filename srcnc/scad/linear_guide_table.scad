@@ -12,6 +12,8 @@ function lgt_table_top(type) = type[3];        //! Hieght of the table top
 function lgt_ballscrew_height(type) = type[4]; //! Height of the ballscrew center
 function lgt_extrusion(type) = type[5];        //! Base plate extrusion type
 function lgt_carriage(type) = type[6];         //! Linear guide carriage type
+function lgt_motor_pos(type) = lgt_extrusion_length(type) / 2 +
+                               lgt_plate_thickness(type); //! Position of the motor block
 
 function lgt_plate_thickness(type) = 10;
 function lgt_extrusion_length(type) = type[1] + 90;

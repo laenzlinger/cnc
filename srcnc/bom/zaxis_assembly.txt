@@ -1,0 +1,5 @@
+zaxis_assembly:
+Vitamins:
+  1 Stepper motor NEMA22 x 51.2mm (6.35x24 shaft)
+  1 SGX_5080 linear guide table
+  1 Shaft coupling SC_8x8_flex
