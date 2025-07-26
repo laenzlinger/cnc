@@ -45,6 +45,7 @@ module yaxis_assembly() assembly("yaxis")
 {
     axis(yaxis_length, yrail_separation, ycarriage_separation, 18, yplate_thickness);
     translate([ 0, 0, -yplate_thickness / 2 ]) explode(-50) render_2D_sheet(MDF15) yplate_dxf();
+    translate([ 0, 0, 40 + 9 ]) rotate([ 0, 0, 90 ]) render_sheet(MDF18) waste_board_stl();
 }
 
 module xaxis_assembly() assembly("xaxis")
@@ -199,16 +200,41 @@ module zplate_stl() stl("zplate")
         for (x = [ 1, -1 ], y = [ 1, -1 ])
             rotate([ 90, 0, 0 ]) translate([ x * xcarriage_separation / 2, 18, y * xrail_separation / 2 ])
                 sbr_bearing_block_hole_positions(carriage) sunk_screw_hole(thickness, sbr_screw(carriage));
+        // mounting holes
         zplate_mounting_screw_positions()
             cylinder(h = thickness + 1, r = screw_clearance_radius(M6_cap_screw), center = true);
+    }
+}
+
+module waste_board_stl() stl("waste_board")
+{
+    difference()
+    {
+        sh = MDF18;
+        thickness = sheet_thickness(sh);
+        sheet(sh, 400, 240);
+        // leadnut housing holes
+        lnh_screw = leadnuthousing_mount_screw(LNH);
+        leadnuthousing_screw_positions(LNH) sunk_screw_hole(thickness, lnh_screw);
+        // carriage holes
+        carriage = sbr_rail_carriage(SBR12S);
+        for (x = [ 1, -1 ], y = [ 1, -1 ])
+            rotate([ 90, 0, 0 ]) translate([ x * ycarriage_separation / 2, 18, y * yrail_separation / 2 ])
+                sbr_bearing_block_hole_positions(carriage) sunk_screw_hole(thickness, sbr_screw(carriage));
+        // motor resess
+        resess_width = NEMA_width(NEMA23_51) + 10;
+        resess_depth = 10; // FIXME calculate this from the motor height
+        translate([ yaxis_length / 2 - 80, 0, -thickness + resess_depth ])
+            cube([ 200, resess_width, thickness ], center = true);
     }
 }
 
 // screw hole down to 1/3 of the thickness
 module sunk_screw_hole(thickness, screw)
 {
-    cylinder(h = thickness + 5, r = screw_clearance_radius(screw), center = true);
-    translate([ 0, 0, thickness * 0.3 ]) cylinder(h = thickness, r = screw_head_radius(screw) + 0.3, center = true);
+    remainder = 5;
+    cylinder(h = thickness + remainder, r = screw_clearance_radius(screw), center = true);
+    translate([ 0, 0, 5 ]) cylinder(h = thickness, r = screw_head_radius(screw) + 0.3, center = true);
 }
 
 module zplate_mounting_screw_positions()
@@ -301,8 +327,9 @@ module main_assembly() assembly("main")
 }
 
 if ($preview)
-    //    main_assembly();
-    // yaxis_assembly();
-    // xaxis_assembly();
-    zaxis_assembly();
+    main_assembly();
+// yaxis_assembly();
+// xaxis_assembly();
+// zaxis_assembly();
 // zplate_stl();
+//  waste_board_stl();

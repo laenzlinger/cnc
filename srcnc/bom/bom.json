@@ -168,10 +168,18 @@
             },
             "sheet(MDF15, 356, 580): Sheet MDF 356mm x 580mm x 15mm": {
                 "count": 1
+            },
+            "sheet(MDF18, 400, 240): Sheet MDF 400mm x 240mm x 18mm": {
+                "count": 1
             }
         },
         "printed": {
             "nut_housing_adapter.stl": {
+                "count": 1,
+                "colour": "[0, 0.572549, 0]",
+                "camera": "0,0,0,70,0,315,500"
+            },
+            "waste_board.stl": {
                 "count": 1,
                 "colour": "[0, 0.572549, 0]",
                 "camera": "0,0,0,70,0,315,500"

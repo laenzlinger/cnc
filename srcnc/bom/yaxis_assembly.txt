@@ -16,11 +16,13 @@ Vitamins:
   6 Screw M5 cap x 47.5mm
   1 Shaft coupling SC_8x8_flex
   1 Sheet MDF 356mm x 580mm x 15mm
+  1 Sheet MDF 400mm x 240mm x 18mm
  24 Washer  M4 x 9mm x 0.8mm
   6 Washer  M5 x 10mm x 1mm
 
 Printed:
   1 nut_housing_adapter.stl
+  1 waste_board.stl
 
 CNC cut:
   1 yplate.dxf
