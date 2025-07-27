@@ -43,9 +43,6 @@ xplate_length = xaxis_length + 10;
 
 side_plate_thickness = 40;
 
-function bf_pos(l) = l / 2 - 10;
-function bk_pos(l) = l / 2 - 41;
-
 module yaxis_assembly() assembly("yaxis")
 {
     axis(yaxis_length, yrail_separation, ycarriage_separation, 18, yplate_thickness);
@@ -74,6 +71,9 @@ module zaxis_assembly() assembly("zaxis")
         }
     }
 }
+
+function bf_pos(l) = l / 2 - 10;
+function bk_pos(l) = l / 2 - 41;
 
 module axis(length, rail_separation, carriage_separation, motor_separation, board_thickness)
 {
@@ -166,7 +166,7 @@ module axis_holes(rail_separation, axis_length)
 
 module yplate_mounting_screw_positions()
 {
-    rectangular_mounting_screw_positions(280, 480) children();
+    rectangular_mounting_screw_positions(xplate_length - 60, yplate_length - 60) children();
 }
 
 module rectangular_mounting_screw_positions(x, y)
