@@ -34,14 +34,18 @@ yrail_separation = 180;
 ycarriage_separation = 120;
 yplate_thickness = 15;
 yplate_length = yaxis_length + 30;
+yeffective_stroke = effective_stroke(yaxis_length, ycarriage_separation);
 
 xaxis_length = 350;
 xrail_separation = 160;
 xcarriage_separation = 40;
 xplate_thickness = 40;
 xplate_length = xaxis_length + 10;
+xeffective_stroke = effective_stroke(xaxis_length, xcarriage_separation);
 
 side_plate_thickness = 40;
+
+function effective_stroke(axis_length, carriage_separation) = axis_length - (carriage_separation / 2 + 110);
 
 module yaxis_assembly() assembly("yaxis")
 {
@@ -217,7 +221,7 @@ module waste_board_stl() stl("waste_board")
     {
         sh = MDF18;
         thickness = sheet_thickness(sh);
-        sheet(sh, 400, 240);
+        sheet(sh, yeffective_stroke + 20, xeffective_stroke + 20);
         // leadnut housing holes
         lnh_screw = leadnuthousing_mount_screw(LNH);
         leadnuthousing_screw_positions(LNH) sunk_screw_hole(thickness, lnh_screw);
