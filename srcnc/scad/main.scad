@@ -33,10 +33,15 @@ yaxis_length = 550;
 yrail_separation = 180;
 ycarriage_separation = 120;
 yplate_thickness = 15;
+yplate_length = yaxis_length + 30;
+
 xaxis_length = 350;
 xrail_separation = 160;
 xcarriage_separation = 40;
 xplate_thickness = 40;
+xplate_length = xaxis_length + 10;
+
+side_plate_thickness = 40;
 
 function bf_pos(l) = l / 2 - 10;
 function bk_pos(l) = l / 2 - 41;
@@ -134,7 +139,7 @@ module yplate_dxf() dxf("yplate")
 {
     difference()
     {
-        sheet_2D(MDF15, 356, 580);
+        sheet_2D(MDF15, xplate_length - 4, yplate_length);
         yplate_mounting_screw_positions() circle(4);
         axis_holes(yrail_separation, yaxis_length);
     }
@@ -144,7 +149,7 @@ module xplate_dxf() dxf("xplate")
 {
     difference()
     {
-        sheet_2D(Chipboard40, 360, 200);
+        sheet_2D(Chipboard40, xplate_length, 200);
         rotate([ 0, 0, -90 ]) axis_holes(xrail_separation, xaxis_length);
         zplate_mounting_screw_positions() circle(6);
     }
@@ -244,8 +249,9 @@ module zplate_mounting_screw_positions()
 
 module frame_assembly() assembly("Frame")
 {
-    screw_length = 55;
-    translate([ 200, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(150, true)
+    screw_length = side_plate_thickness + 15;
+    side_distance = (xplate_length + side_plate_thickness) / 2;
+    translate([ side_distance, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(150, true)
     {
         render_2D_sheet((Chipboard40)) frame_right_side_dxf();
         frame_side_screw_positions()
@@ -257,7 +263,7 @@ module frame_assembly() assembly("Frame")
             }
         }
     }
-    translate([ -200, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(-150, true)
+    translate([ -side_distance, 0, 0 ]) rotate([ 0, -90, 180 ]) explode(-150, true)
     {
         render_2D_sheet((Chipboard40)) frame_left_side_dxf();
         frame_side_screw_positions()
@@ -299,7 +305,7 @@ module frame_bottom_side_dxf() dxf("frame_bottom_side")
 {
     difference()
     {
-        sheet_2D(Chipboard40, 360, 580);
+        sheet_2D(Chipboard40, xaxis_length + 10, yplate_length);
     }
 }
 
