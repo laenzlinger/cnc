@@ -1,10 +1,16 @@
 # SRCNC
 
 This repository contains the code for my SRCNC project.
+![Main Assembly](https://raw.githubusercontent.com/laenzlinger/cnc/main/srcnc/assemblies/main_assembled.png)
 
-It contains configurations for my machines and several parts that I have designed for my CNC machine.
+It contains configurations for my machine and several parts that I have designed for my CNC machine.
+
+## Assembly
+
+See [instructions](srcnc/readme.md) 
 
 ## BOM
+The below table just lists the main components. For a complete BOM see the assembly instructions above. 
 
 | Amount | Description | Source |
 |--:|:-----------|:-------|
