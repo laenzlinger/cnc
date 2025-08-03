@@ -50,9 +50,9 @@ stepping:
 
 axes:
   x:
-    steps_per_mm: 800.000
+    steps_per_mm: 400.000
     max_rate_mm_per_min: 800.000
-    acceleration_mm_per_sec2: 80.000
+    acceleration_mm_per_sec2: 20.000
     max_travel_mm: 220.000
     soft_limits: true
     homing:
@@ -76,7 +76,7 @@ axes:
         r_sense_ohms: 0.110
         run_amps: 1.300
         hold_amps: 0.500
-        microsteps: 16
+        microsteps: 8
         stallguard: 0
         stallguard_debug: false
         toff_disable: 0
@@ -100,9 +100,9 @@ axes:
   #        disable_pin: I2SO.9
 
   y:
-    steps_per_mm: 800.000
+    steps_per_mm: 400.000
     max_rate_mm_per_min: 800.000
-    acceleration_mm_per_sec2: 80.000
+    acceleration_mm_per_sec2: 20.000
     max_travel_mm: 380.000
     soft_limits: true
     homing:
@@ -126,7 +126,7 @@ axes:
         r_sense_ohms: 0.110
         run_amps: 1.300
         hold_amps: 0.500
-        microsteps: 16
+        microsteps: 8
         stallguard: 0
         stallguard_debug: false
         toff_disable: 0
@@ -151,9 +151,9 @@ axes:
   #        disable_pin: I2SO.12
 
   z:
-    steps_per_mm: 800.000
-    max_rate_mm_per_min: 100.000
-    acceleration_mm_per_sec2: 60.000
+    steps_per_mm: 400.000
+    max_rate_mm_per_min: 400.000
+    acceleration_mm_per_sec2: 20.000
     max_travel_mm: 95.000
     soft_limits: true
     homing:
@@ -177,7 +177,7 @@ axes:
         r_sense_ohms: 0.110
         run_amps: 1.300
         hold_amps: 0.500
-        microsteps: 16
+        microsteps: 8
         stallguard: 0
         stallguard_debug: false
         toff_disable: 0
