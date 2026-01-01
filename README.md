@@ -7,10 +7,11 @@ It contains configurations for my machine and several parts that I have designed
 
 ## Assembly
 
-See [instructions](srcnc/readme.md) 
+See [instructions](srcnc/readme.md)
 
 ## BOM
-The below table just lists the main components. For a complete BOM see the assembly instructions above. 
+
+The below table just lists the main components. For a complete BOM see the assembly instructions above.
 
 | Amount | Description | Source |
 |--:|:-----------|:-------|
@@ -28,3 +29,7 @@ The below table just lists the main components. For a complete BOM see the assem
 ## Libs
 
 <https://github.com/nophead/NopSCADlib>
+
+## Electronics
+
+<https://autode.sk/3YAgNO5>

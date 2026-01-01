@@ -8,7 +8,7 @@ difference()
 {
     union()
     {
-        cuboid([ 118.5, 118.5, 3 ], anchor = [ 0, 0 ], rounding = 3, edges = "Z");
+        cuboid([ 118.5, 118.5, 3 ], anchor = [ 0, 0 ], rounding = 4, edges = "Z");
         for (a = axis)
         {
             translate([ 20 * a[0], 0, 1.5 ]) linear_extrude(1) text(a[1], halign = "center", valign = "center");
