@@ -28,12 +28,16 @@ The below table just lists the main components. For a complete BOM see the assem
 
 ## Electronics
 
+Built following [PrintNC electronics guidelines](https://wiki.printnc.info/en/electronics) for future migration to a PrintNC build.
+
 | Amount | Description | Source |
 |--:|:-----------|:-------|
 |  1 | MKS DLC32 MAX V1.1 (ESP32-S3) | [AliExpress](https://www.aliexpress.com/item/1005005320373835.html) |
 |  3 | DM542T Stepper Driver | |
 |  1 | HLTNC 3D Touch Probe | |
 |  1 | Auto-zero Z Touch Plate | |
+
+Spindle: Manual router (no VFD)
 
 Firmware: [FluidNC v4.0.3](https://github.com/bdring/FluidNC)
 
