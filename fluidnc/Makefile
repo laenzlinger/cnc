@@ -1,7 +1,8 @@
 
-FLUIDNC_VERSION ?= v3.9.7
+FLUIDNC_VERSION ?= v4.0.3
 RELEASE = https://github.com/bdring/FluidNC/releases/download/$(FLUIDNC_VERSION)/fluidnc-$(FLUIDNC_VERSION)-posix.zip
-CONFIG = SRcnc/config.yaml
+# CONFIG: SRcnc/config.yaml (TinyBee) or SRcnc-dlc32max/config.yaml (DLC32 MAX)
+CONFIG ?= SRcnc-dlc32max/config.yaml
 FLUIDNC_FQDN = fluidnc.home
 
 .PHONY: help clean
