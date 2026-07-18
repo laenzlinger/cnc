@@ -130,10 +130,21 @@ Each axis has an **ESDG** header in front of the driver sockets for external dri
 
 ### DM542T DIP Switch Settings
 
-For SFU1204 ballscrew (4mm pitch, 1 start) with NEMA 23 (1.8°/step):
+Motor: NEMA 23, 57x56mm, 3A, 1.8°, 1.2 N.m
+Supply: 45V DC
 
-- Microsteps: 8 (gives 400 steps/mm with 4mm pitch)
-- Current: set to match your NEMA 23 motor rating (typically 2-3A)
+| SW  | Position | Function          |
+|-----|----------|-------------------|
+| SW1 | OFF      | Peak current 3.0A |
+| SW2 | OFF      |                   |
+| SW3 | ON       |                   |
+| SW4 | OFF      | Microstep: 8 (1600 pulses/rev) |
+| SW5 | ON       |                   |
+| SW6 | OFF      |                   |
+| SW7 | OFF      | Self-test OFF     |
+| SW8 | OFF      | No half-current at idle |
+
+Result: 8 microsteps → 1600 pulses/rev → 400 steps/mm (with SFU1204, 4mm pitch)
 
 ### Motor Aviation Connector (GX16-5)
 
