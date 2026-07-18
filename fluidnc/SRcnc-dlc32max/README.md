@@ -124,15 +124,15 @@ For SFU1204 ballscrew (4mm pitch, 1 start) with NEMA 23 (1.8°/step):
 
 5-pin aviation connector between DM542T and NEMA 23 motor:
 
-| Pin | Signal | DM542T Terminal | Motor Wire |
+| Pin | Signal | DM542T Terminal | Wire Color |
 |-----|--------|-----------------|------------|
-| 1   | A+     | A+              | Coil A +   |
-| 2   | A-     | A-              | Coil A -   |
-| 3   | GND/Shield | —           | Cable shield |
-| 4   | B+     | B+              | Coil B +   |
-| 5   | B-     | B-              | Coil B -   |
+| 1   | A+     | A+              | Red        |
+| 2   | A-     | A-              | Yellow     |
+| 3   | GND/Shield | —           | Black      |
+| 4   | B+     | B+              | Blue       |
+| 5   | B-     | B-              | Green      |
 
-Same pinout for all 3 axes.
+Same pinout and color coding for all 3 axes.
 
 ## Probes
 
