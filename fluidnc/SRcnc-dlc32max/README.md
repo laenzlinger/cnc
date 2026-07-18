@@ -106,12 +106,12 @@ Endstop wiring: connect "S" and "G" pins (Signal + GND). Board has internal pull
 
 Each axis has an **ESDG** header in front of the driver sockets for external drivers:
 
-| ESDG Pin | Signal    | DM542T Terminal |
-|----------|-----------|-----------------|
-| E        | Enable    | ENA+            |
-| S        | Step      | PUL+            |
-| D        | Direction | DIR+            |
-| G        | Ground    | ENA-, PUL-, DIR- (common GND) |
+| ESDG Pin | Signal    | DM542T Terminal | Wire Color |
+|----------|-----------|-----------------|------------|
+| E        | Enable    | ENA+            | Red        |
+| S        | Step      | PUL+            | Yellow     |
+| D        | Direction | DIR+            | Green      |
+| G        | Ground    | ENA-, PUL-, DIR- (common GND) | Black |
 
 ### DM542T DIP Switch Settings
 
