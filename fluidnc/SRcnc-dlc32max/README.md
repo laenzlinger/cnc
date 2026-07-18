@@ -163,6 +163,18 @@ Same pinout and color coding for all 3 axes.
 Note: The cable colors are our convention for the interconnect wiring. Motor wire colors vary by
 manufacturer — check your motor's datasheet to identify coil pairs and map them to the connector pins.
 
+### Motor Wire to Aviation Connector Mapping
+
+Motor: 57BYG250B-8 (Black=A+, Green=A-, Red=B+, Blue=B-)
+
+| Aviation Pin | Signal | Connector Wire | Motor Wire |
+|--------------|--------|----------------|------------|
+| 1            | A+     | Red            | Black      |
+| 2            | A-     | Yellow         | Green      |
+| 3            | GND    | Black          | (shield)   |
+| 4            | B+     | Blue           | Red        |
+| 5            | B-     | Green          | Blue       |
+
 ## Probes
 
 ### HLTNC 3D Touch Probe → Probe connector (IO37)
