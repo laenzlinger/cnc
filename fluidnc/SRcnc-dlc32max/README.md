@@ -68,6 +68,19 @@ All motors share enable on **IO8**.
 
 Endstop wiring: connect "S" and "G" pins (Signal + GND). Board has internal pull-ups.
 
+### Endstop Aviation Connector (GX12-4)
+
+4-pin aviation connector between board and CR10 endstop:
+
+| Pin | Signal | Board Pin | Wire Color |
+|-----|--------|-----------|------------|
+| 1   | GND    | G         | Black      |
+| 2   | 3.3V   | V         | Red        |
+| 3   | Signal | S         | Yellow     |
+| 4   | (spare)| —         | —          |
+
+Same pinout for all 3 axes. Pin 4 is unused — available for future use (e.g. second switch for max limit).
+
 ### Left Edge — Power & Outputs
 
 | Connector  | Pin    | Function        | Wire To              |
