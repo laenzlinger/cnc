@@ -120,6 +120,20 @@ For SFU1204 ballscrew (4mm pitch, 1 start) with NEMA 23 (1.8°/step):
 - Microsteps: 8 (gives 400 steps/mm with 4mm pitch)
 - Current: set to match your NEMA 23 motor rating (typically 2-3A)
 
+### Motor Aviation Connector (GX16-5)
+
+5-pin aviation connector between DM542T and NEMA 23 motor:
+
+| Pin | Signal | DM542T Terminal | Motor Wire |
+|-----|--------|-----------------|------------|
+| 1   | A+     | A+              | Coil A +   |
+| 2   | A-     | A-              | Coil A -   |
+| 3   | GND/Shield | —           | Cable shield |
+| 4   | B+     | B+              | Coil B +   |
+| 5   | B-     | B-              | Coil B -   |
+
+Same pinout for all 3 axes.
+
 ## Probes
 
 ### HLTNC 3D Touch Probe → Probe connector (IO37)
