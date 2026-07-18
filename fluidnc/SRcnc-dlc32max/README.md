@@ -119,14 +119,36 @@ Pin 4 is unused — available for future use (e.g. second switch for max limit).
 
 ## DM542T Wiring (per driver)
 
+### Level Shifter Required
+
+The ESP32-S3 outputs 3.3V on GPIO pins. The DM542T optocoupler inputs need 4-5V to trigger
+reliably. A **4-channel level shifter** (3.3V → 5V) is required between the board and each driver.
+
+Recommended: BSS138-based 4-channel bidirectional level shifter (3x, one per axis)
+
+Level shifter connections:
+- LV (low voltage): 3.3V from board
+- HV (high voltage): 5V from board (endstop connector pin 1)
+- GND: shared
+- LV channels: ESDG signal pins (Step, Dir, Enable)
+- HV channels: DM542T inputs (PUL+, DIR+, ENA+)
+
+### Signal Path
+
+```
+Board ESDG → Level Shifter (3.3V→5V) → DM542T
+```
+
 Each axis has an **ESDG** header in front of the driver sockets for external drivers:
 
-| ESDG Pin | Signal    | DM542T Terminal | Wire Color |
-|----------|-----------|-----------------|------------|
-| E        | Enable    | ENA+            | Red        |
-| S        | Step      | PUL+            | Yellow     |
-| D        | Direction | DIR+            | Green      |
-| G        | Ground    | ENA-, PUL-, DIR- (common GND) | Black |
+| ESDG Pin | Signal    | Level Shifter In | Level Shifter Out | DM542T Terminal | Wire Color |
+|----------|-----------|------------------|-------------------|-----------------|------------|
+| E        | Enable    | LV ch1           | HV ch1            | ENA+            | Red        |
+| S        | Step      | LV ch2           | HV ch2            | PUL+            | Yellow     |
+| D        | Direction | LV ch3           | HV ch3            | DIR+            | Green      |
+| G        | Ground    | GND              | GND               | ENA-, PUL-, DIR- (common GND) | Black |
+
+4th channel on each level shifter is spare (future: alarm signal from driver).
 
 ### DM542T DIP Switch Settings
 
