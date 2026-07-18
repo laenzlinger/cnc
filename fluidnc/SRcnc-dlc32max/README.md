@@ -72,12 +72,14 @@ Endstop wiring: connect "S" and "G" pins (Signal + GND). Board has internal pull
 
 4-pin aviation connector between board and CR10 endstop:
 
-| Pin | Signal | Board Pin |  X Color  |  Y Color  |  Z Color  |
-|-----|--------|-----------|-----------|-----------|-----------|
-| 1   | GND    | G         | Blue      | Black     | White     |
-| 2   | 3.3V   | V         | Red       | Yellow    | Brown     |
-| 3   | Signal | S         | Gray      | Green     | Green     |
-| 4   | (spare)| —         | —         | —         | —         |
+Board endstop socket pin order: **5V, GND, IO** (Signal)
+
+| Pin | Signal | Board Socket Pin | X Color | Y Color | Z Color |
+|-----|--------|------------------|---------|---------|---------|
+| 1   | GND    | 2 (GND)          | Blue    | Black   | White   |
+| 2   | 5V     | 1 (5V)           | Red     | Yellow  | Brown   |
+| 3   | Signal | 3 (IO)           | Gray    | Green   | Green   |
+| 4   | (spare)| —                | —       | —       | —       |
 
 Pin 4 is unused — available for future use (e.g. second switch for max limit).
 
