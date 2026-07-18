@@ -142,3 +142,18 @@ Laptop → USB-C to USB-A cable → USB-A panel mount (enclosure) → USB-A to U
 - Alarm feedback from DM542T is supported on pin 7/8 of the IDC connector (future wiring).
 - The board communicates via USB-C serial to bCNC or UGS.
 - FluidDial pendant is NOT compatible — use Jog2K or keyboard jogging via bCNC.
+
+## Parts to Order
+
+| Part | Quantity | Notes |
+|------|----------|-------|
+| 28AWG 8-conductor IDC flat ribbon cable | 1m | For Flexi-HAL to DM542T connections |
+| 8-pin IDC female connectors | 3x | One per axis |
+| USB-A to USB-C cable (~30cm) | 1x | Inside enclosure: panel mount to Flexi-HAL |
+
+## Parts to Print
+
+| File | Material | Notes |
+|------|----------|-------|
+| `parts/flexi-hal/DIN_Clip.stl` | PETG | DIN rail clip |
+| `parts/flexi-hal/Flexi-HAL_Mount_Plate.stl` | PETG | Board mounting plate |
