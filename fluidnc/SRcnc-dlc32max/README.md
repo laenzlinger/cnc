@@ -134,6 +134,9 @@ For SFU1204 ballscrew (4mm pitch, 1 start) with NEMA 23 (1.8°/step):
 
 Same pinout and color coding for all 3 axes.
 
+Note: The cable colors are our convention for the interconnect wiring. Motor wire colors vary by
+manufacturer — check your motor's datasheet to identify coil pairs and map them to the connector pins.
+
 ## Probes
 
 ### HLTNC 3D Touch Probe → Probe connector (IO37)
