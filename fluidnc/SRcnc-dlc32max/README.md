@@ -72,14 +72,14 @@ Endstop wiring: connect "S" and "G" pins (Signal + GND). Board has internal pull
 
 4-pin aviation connector between board and CR10 endstop:
 
-| Pin | Signal | Board Pin | Wire Color |
-|-----|--------|-----------|------------|
-| 1   | GND    | G         | Black      |
-| 2   | 3.3V   | V         | Red        |
-| 3   | Signal | S         | Yellow     |
-| 4   | (spare)| —         | —          |
+| Pin | Signal | Board Pin |  X Color  |  Y Color  |  Z Color  |
+|-----|--------|-----------|-----------|-----------|-----------|
+| 1   | GND    | G         | Blue      | Black     | White     |
+| 2   | 3.3V   | V         | Red       | Yellow    | Brown     |
+| 3   | Signal | S         | Gray      | Green     | Green     |
+| 4   | (spare)| —         | —         | —         | —         |
 
-Same pinout for all 3 axes. Pin 4 is unused — available for future use (e.g. second switch for max limit).
+Pin 4 is unused — available for future use (e.g. second switch for max limit).
 
 ### Left Edge — Power & Outputs
 
