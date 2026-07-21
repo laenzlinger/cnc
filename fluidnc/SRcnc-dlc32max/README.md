@@ -212,19 +212,29 @@ Motor: 57BYG250B-8 (Black=A+, Green=A-, Red=B+, Blue=B-)
 
 ## Probes
 
-### HLTNC 3D Touch Probe → Probe connector (IO37)
+### HLTNC 3D Touch Probe (2025 version, USB-C, NPN-NO)
 
-- Wiring: Signal "S" + GND "G"
-- Signals LOW when triggered
-- Used for edge finding, center finding, and surface probing
+3-wire active probe, requires 5-24V power supply.
 
-### Z Auto-zero Touch Plate → Flame connector (IO36)
+| Wire   | Signal      | DLC32 MAX Connection  |
+|--------|-------------|----------------------|
+| Red    | VCC (5-24V) | 5V (endstop "V" pin) |
+| Black  | GND         | GND                  |
+| Yellow | Signal (NPN-NO) | Probe connector (gpio.37) |
 
-- Wiring: Signal "S" + GND "G"
-- Clip lead connects to the tool (spindle collet or bit)
-- Place plate on workpiece surface
-- Run G38.2 Z probing cycle to find Z zero
-- IO36 is a dedicated input with proper signal conditioning — ideal for probe use
+Triggers LOW when stylus touches workpiece.
+
+### Z Auto-zero Touch Plate
+
+Passive contact plate, no power needed.
+
+| Wire   | Signal  | DLC32 MAX Connection |
+|--------|---------|---------------------|
+| Signal | Contact | Flame connector (gpio.36) |
+| GND    | GND     | GND                 |
+
+Clip lead connects to tool (spindle collet or bit).
+Place plate on workpiece surface, run G38.2 Z probing cycle.
 
 ## Pendant (FluidDial) → U1 RJ11 telephone jack
 
