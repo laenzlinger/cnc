@@ -154,19 +154,32 @@ Each axis has an **ESDG** header in front of the driver sockets for external dri
 
 Motor: NEMA 23, 57x56mm, 3A, 1.8°, 1.2 N.m
 Supply: 45V DC
+**Signal voltage switch: set to 5V** (not 24V!)
 
-| SW  | Position | Function          |
-|-----|----------|-------------------|
-| SW1 | OFF      | Peak current 3.0A |
-| SW2 | OFF      |                   |
-| SW3 | ON       |                   |
-| SW4 | OFF      | Microstep: 8 (1600 pulses/rev) |
-| SW5 | ON       |                   |
-| SW6 | OFF      |                   |
-| SW7 | OFF      | Self-test OFF     |
-| SW8 | OFF      | No half-current at idle |
+| SW  | Position | Function              |
+|-----|----------|-----------------------|
+| SW1 | ON       | Peak current 2.84A    |
+| SW2 | ON       |                       |
+| SW3 | OFF      |                       |
+| SW4 | OFF      | Full current at idle  |
+| SW5 | OFF      | Microstep: 8 (1600 pulse/rev) |
+| SW6 | OFF      |                       |
+| SW7 | ON       |                       |
+| SW8 | ON       |                       |
 
 Result: 8 microsteps → 1600 pulses/rev → 400 steps/mm (with SFU1204, 4mm pitch)
+
+Pulse/Rev table (confirmed for this DM542T version):
+
+| SW5 | SW6 | SW7 | SW8 | Pulse/Rev | Microsteps |
+|-----|-----|-----|-----|-----------|------------|
+| on  | on  | on  | on  | 200       | 1          |
+| off | on  | on  | on  | 400       | 2          |
+| on  | off | on  | on  | 800       | 4          |
+| off | off | on  | on  | 1600      | 8          |
+| on  | on  | off | on  | 3200      | 16         |
+| on  | off | off | off | 20000     | 100        |
+| off | off | off | off | 25000     | 125        |
 
 ### Motor Aviation Connector (GX16-5)
 
