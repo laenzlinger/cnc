@@ -83,6 +83,14 @@ Board endstop socket pin order: **5V, GND, IO** (Signal)
 
 Same pinout and colors for all 3 axes.
 
+Internal wiring colors (board to aviation connector, per axis):
+
+| Pin | Signal | X Color | Y Color | Z Color |
+|-----|--------|---------|---------|---------|
+| 1   | GND    | Blue    | Black   | White   |
+| 2   | 5V     | Red     | Yellow  | Brown   |
+| 3   | Signal | Gray    | Green   | Green   |
+
 ### Left Edge — Power & Outputs
 
 | Connector  | Pin    | Function        | Wire To              |
