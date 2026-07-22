@@ -74,14 +74,14 @@ Endstop wiring: connect "S" and "G" pins (Signal + GND). Board has internal pull
 
 Board endstop socket pin order: **5V, GND, IO** (Signal)
 
-| Pin | Signal | Board Socket Pin | X Color | Y Color | Z Color |
-|-----|--------|------------------|---------|---------|---------|
-| 1   | GND    | 2 (GND)          | Blue    | Black   | White   |
-| 2   | 5V     | 1 (5V)           | Red     | Yellow  | Brown   |
-| 3   | Signal | 3 (IO)           | Gray    | Green   | Green   |
-| 4   | (spare)| —                | —       | —       | —       |
+| Pin | Signal | Board Socket Pin | Wire Color |
+|-----|--------|------------------|------------|
+| 1   | GND    | 2 (GND)          | Brown      |
+| 2   | 5V     | 1 (5V)           | Black      |
+| 3   | Signal | 3 (IO)           | Blue       |
+| 4   | spare  | —                | (future 12V for inductive sensors) |
 
-Pin 4 is unused — available for future use (e.g. second switch for max limit).
+Same pinout and colors for all 3 axes.
 
 ### Left Edge — Power & Outputs
 
