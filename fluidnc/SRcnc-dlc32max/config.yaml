@@ -45,30 +45,6 @@ axes:
     soft_limits: true
     homing:
       cycle: 2
-      positive_direction: true
-      mpos_mm: 220.000
-      feed_mm_per_min: 300.000
-      seek_mm_per_min: 500.000
-      settle_ms: 500
-      seek_scaler: 1.100
-      feed_scaler: 1.100
-
-    motor0:
-      limit_pos_pin: gpio.39:low:pu
-      hard_limits: true
-      pulloff_mm: 2.000
-      stepstick:
-        step_pin: gpio.16
-        direction_pin: gpio.15
-
-  y:
-    steps_per_mm: 400.000
-    max_rate_mm_per_min: 800.000
-    acceleration_mm_per_sec2: 20.000
-    max_travel_mm: 380.000
-    soft_limits: true
-    homing:
-      cycle: 3
       positive_direction: false
       mpos_mm: 0.000
       feed_mm_per_min: 300.000
@@ -78,12 +54,36 @@ axes:
       feed_scaler: 1.100
 
     motor0:
-      limit_neg_pin: gpio.40:low:pu
+      limit_neg_pin: gpio.39:low:pu
+      hard_limits: true
+      pulloff_mm: 2.000
+      stepstick:
+        step_pin: gpio.16
+        direction_pin: gpio.15:low
+
+  y:
+    steps_per_mm: 400.000
+    max_rate_mm_per_min: 800.000
+    acceleration_mm_per_sec2: 20.000
+    max_travel_mm: 380.000
+    soft_limits: true
+    homing:
+      cycle: 3
+      positive_direction: true
+      mpos_mm: 380.000
+      feed_mm_per_min: 300.000
+      seek_mm_per_min: 500.000
+      settle_ms: 500
+      seek_scaler: 1.100
+      feed_scaler: 1.100
+
+    motor0:
+      limit_pos_pin: gpio.40:low:pu
       hard_limits: true
       pulloff_mm: 2.000
       stepstick:
         step_pin: gpio.7
-        direction_pin: gpio.6
+        direction_pin: gpio.6:low
 
   z:
     steps_per_mm: 400.000
@@ -107,7 +107,7 @@ axes:
       pulloff_mm: 3.000
       stepstick:
         step_pin: gpio.5
-        direction_pin: gpio.4
+        direction_pin: gpio.4:low
 
 control:
   safety_door_pin: NO_PIN
