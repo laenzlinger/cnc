@@ -122,9 +122,11 @@ control:
 probe:
   # HLTNC 3D Touch Probe (dedicated probe connector)
   pin: gpio.37:low:pu
-  # Auto-zero Z touch plate (on Flame sensor connector)
+  # Z Tool Setter / AllyCircle spring-loaded (on Flame sensor connector)
   # NC switch: closed at rest, opens on trigger (high)
   toolsetter_pin: gpio.36:high:pu
+  # Touch plate / auto-zero Z (on Door connector) - NO switch: open at rest, closes on contact (low)
+  touchplate_pin: gpio.38:low:pu
   check_mode_start: true
 
 coolant:

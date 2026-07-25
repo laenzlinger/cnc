@@ -61,7 +61,7 @@ All motors share enable on **IO8**.
 | Z- LMT    | IO41   | Z limit     | CR10 endstop (Z top)   |
 | Y- LMT    | IO40   | Y limit     | CR10 endstop (Y min)   |
 | X- LMT    | IO39   | X limit     | CR10 endstop (X home)  |
-| Door       | IO38   | Safety door | (unused)               |
+| Door       | IO38   | Safety door | Z touch plate          |
 | Flame      | IO36   | Flame sensor| Z auto-zero touch plate|
 | Probe      | IO37   | Probe input | HLTNC 3D Touch Probe   |
 | A- LMT    | IO48   | A limit     | (unused)               |
@@ -120,7 +120,8 @@ Internal wiring colors (board to aviation connector, per axis):
 | CR10 endstop Y        | Y- LMT          | IO40          |
 | CR10 endstop Z        | Z- LMT          | IO41          |
 | HLTNC 3D Touch Probe  | Probe           | IO37          |
-| Z auto-zero plate     | Flame           | IO36          |
+| Z Tool Setter (spring)| Flame           | IO36          |
+| Z Touch Plate         | Door            | IO38          |
 | FluidDial pendant     | U1 (RJ11)       | TX:IO17, RX:IO18 |
 | PSU 24V               | POWER           | DC 12-24V     |
 | DM542T power          | (external)      | Separate 24-48V PSU |
@@ -248,6 +249,20 @@ Config: `toolsetter_pin: gpio.36:high:pu` (triggers when NC switch opens on cont
 
 Position: X20 Y17.5 (back-left corner of wasteboard)
 Probe value: Z=-13.065 (machine coords, double probe at 20mm/min)
+
+### Z Touch Plate (auto-zero, NO switch)
+
+Touch plate for setting Z=0 on the workpiece surface. Place on material, probe down, remove before cutting.
+Requires alligator clip connected from plate to tool/collet to complete the circuit.
+
+| Wire   | Signal      | DLC32 MAX Connection     |
+|--------|-------------|--------------------------|
+| +      | Signal (NO) | Door connector IO38 (S)  |
+| −      | GND         | Door connector GND (G)   |
+
+Config: `touchplate_pin: gpio.38:low:pu` (triggers when NO switch closes on contact)
+
+Thickness: 19.22mm (measured)
 
 ## Pendant (FluidDial) → U1 RJ11 telephone jack
 
