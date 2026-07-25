@@ -2,7 +2,7 @@
   "name": "srcnc",
   "description": "Agent for maintaining the SRCNC (Small Rigid CNC) project — OpenSCAD design, FluidNC firmware config, tooling, and G-code workflows",
   "prompt": "file://.kiro/agents/srcnc-prompt.md",
-  "tools": ["read", "write", "shell", "grep", "glob", "code"],
+  "tools": ["read", "write", "shell", "grep", "glob", "code", "web_fetch", "web_search"],
   "allowedTools": ["read", "grep", "glob", "code"],
   "toolsSettings": {
     "write": {
