@@ -148,8 +148,9 @@ Laptop → USB-C to USB-A cable → USB-A panel mount (enclosure) → USB-A to U
 | Part | Quantity | Notes |
 |------|----------|-------|
 | 28AWG 8-conductor IDC flat ribbon cable | 1m | For Flexi-HAL to DM542T connections |
-| 8-pin IDC female connectors | 3x | One per axis |
 | USB-A to USB-C cable (~30cm) | 1x | Inside enclosure: panel mount to Flexi-HAL |
+
+Note: IDC connectors and screw terminal plugs are included with the Flexi-HAL board.
 
 ## Parts to Print
 
