@@ -232,17 +232,22 @@ Motor: 57BYG250B-8 (Black=A+, Green=A-, Red=B+, Blue=B-)
 
 Triggers LOW when stylus touches workpiece.
 
-### Z Auto-zero Touch Plate
+### Z Tool Setter (AllyCircle, NC switch, spring-loaded)
 
-Passive contact plate, no power needed.
+Fixed tool setter for repeatable Z referencing after tool changes.
+Two internal NC (normally closed) switches: main probe + overtravel alarm.
 
-| Wire   | Signal  | DLC32 MAX Connection |
-|--------|---------|---------------------|
-| Signal | Contact | Flame connector (gpio.36) |
-| GND    | GND     | GND                 |
+| Wire   | Signal          | DLC32 MAX Connection       |
+|--------|-----------------|----------------------------|
+| Red    | Probe (NC)      | Flame connector IO36 (S)   |
+| Black  | Probe GND       | Flame connector GND (G)    |
+| Yellow | Overtravel (NC) | (not connected)            |
+| Green  | Overtravel GND  | (not connected)            |
 
-Clip lead connects to tool (spindle collet or bit).
-Place plate on workpiece surface, run G38.2 Z probing cycle.
+Config: `toolsetter_pin: gpio.36:high:pu` (triggers when NC switch opens on contact)
+
+Position: X20 Y17.5 (back-left corner of wasteboard)
+Probe value: Z=-13.065 (machine coords, double probe at 20mm/min)
 
 ## Pendant (FluidDial) → U1 RJ11 telephone jack
 
