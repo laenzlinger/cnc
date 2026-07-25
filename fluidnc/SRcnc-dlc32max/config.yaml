@@ -69,8 +69,8 @@ axes:
     soft_limits: true
     homing:
       cycle: 3
-      positive_direction: true
-      mpos_mm: 380.000
+      positive_direction: false
+      mpos_mm: 0.000
       feed_mm_per_min: 300.000
       seek_mm_per_min: 500.000
       settle_ms: 500
@@ -78,12 +78,12 @@ axes:
       feed_scaler: 1.100
 
     motor0:
-      limit_pos_pin: gpio.40:low:pu
+      limit_neg_pin: gpio.40:low:pu
       hard_limits: true
       pulloff_mm: 2.000
       stepstick:
         step_pin: gpio.7
-        direction_pin: gpio.6:low
+        direction_pin: gpio.6
 
   z:
     steps_per_mm: 400.000
@@ -123,7 +123,8 @@ probe:
   # HLTNC 3D Touch Probe (dedicated probe connector)
   pin: gpio.37:low:pu
   # Auto-zero Z touch plate (on Flame sensor connector)
-  toolsetter_pin: gpio.36:low:pu
+  # NC switch: closed at rest, opens on trigger (high)
+  toolsetter_pin: gpio.36:high:pu
   check_mode_start: true
 
 coolant:

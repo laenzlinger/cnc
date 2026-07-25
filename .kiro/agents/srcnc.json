@@ -1,0 +1,53 @@
+{
+  "name": "srcnc",
+  "description": "Agent for maintaining the SRCNC (Small Rigid CNC) project — OpenSCAD design, FluidNC firmware config, tooling, and G-code workflows",
+  "prompt": "file://.kiro/agents/srcnc-prompt.md",
+  "tools": ["read", "write", "shell", "grep", "glob", "code"],
+  "allowedTools": ["read", "grep", "glob", "code"],
+  "toolsSettings": {
+    "write": {
+      "allowedPaths": [
+        "srcnc/**",
+        "fluidnc/**",
+        "fluiddial/**",
+        "parts/**",
+        "tools/**",
+        "test/**",
+        "bcnc/**",
+        "ugs/**",
+        "README.md",
+        ".kiro/**"
+      ]
+    },
+    "shell": {
+      "allowedCommands": [
+        "make.*",
+        "openscad.*",
+        "cat.*",
+        "git status",
+        "git diff.*",
+        "git log.*",
+        "git branch.*",
+        "ls.*",
+        "find.*",
+        "python.*"
+      ],
+      "autoAllowReadonly": true
+    }
+  },
+  "resources": [
+    "file://README.md",
+    "file://srcnc/scad/main.scad",
+    "file://fluidnc/SRcnc/config.yaml",
+    "file://srcnc/Makefile",
+    "file://fluidnc/Makefile"
+  ],
+  "hooks": {
+    "agentSpawn": [
+      {
+        "command": "echo 'SRCNC Project — OpenSCAD + NopSCADlib + FluidNC on MKS TinyBee'"
+      }
+    ]
+  },
+  "welcomeMessage": "Ready to work on the SRCNC. What do you need — design changes, firmware config, tooling, or something else?"
+}
