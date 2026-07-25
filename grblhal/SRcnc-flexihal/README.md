@@ -89,12 +89,29 @@ Per-axis cable colors:
 | 3   | Signal | Gray    | Green   | Green   |
 | 4   | spare  | —       | —       | —       |
 
-## Probes (future)
+## Probes
 
 | Probe              | Connection        |
 |--------------------|-------------------|
-| HLTNC 3D Touch     | Limit RJ45 breakout (probe input) |
-| Z Auto-zero plate  | Limit RJ45 breakout (toolsetter input) |
+| HLTNC 3D Touch     | Probe input (NPN-NO, 5V powered) |
+| Z Tool Setter      | Toolsetter input (NC) |
+| Z Tool Setter Overtravel | Alarm/E-stop input (NC) |
+
+### HLTNC 3D Touch Probe (NPN-NO, USB-C, 5V)
+
+Same as DLC32 MAX setup. See main wiring docs.
+
+### Z Tool Setter (AllyCircle, NC switch, spring-loaded)
+
+| Wire   | Signal          | Flexi-HAL Connection       |
+|--------|-----------------|----------------------------|
+| Red    | Probe (NC)      | Toolsetter input           |
+| Black  | Probe GND       | GND                        |
+| Yellow | Overtravel (NC) | Alarm/E-stop input         |
+| Green  | Overtravel GND  | GND                        |
+
+Configure as NC (normally closed) in grblHAL: `$6=1` (invert probe pin)
+Overtravel connects to alarm input for crash protection.
 
 ## USB Connection
 
