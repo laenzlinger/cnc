@@ -110,7 +110,7 @@
     "4": {
       "uuid": "c3d4e5f6-a7b8-9012-cdef-234567890123",
       "name": "Tool Setter Probe",
-      "gcode": "$H; G90 G53 G0 Z0; G53 G0 X20 Y17.5; G53 G38.2 Z-80 F100; G53 G0 Z0;",
+      "gcode": "$H; G90 G53 G0 Z0; G53 G0 X20 Y17.5; G53 G38.2 Z-80 F100; G91 G0 Z2; G38.2 Z-5 F20; G90 G53 G0 Z0;",
       "version": "V1"
     }
   },
