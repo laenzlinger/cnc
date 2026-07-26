@@ -3,7 +3,8 @@
 (Area: 210x370mm centered at machine X110.0 Y190.0)
 (Depth: 0.5mm, Feed: 2000mm/min)
 (Passes: 25, actual stepover: 7.91mm)
-(Uses G53 machine coordinates — home machine before running)
+(Precondition: probe Z with touch plate on wasteboard before running)
+(  G54 Z0 = wasteboard surface, XY in machine coords via G53)
 
 G21 (mm)
 G90 (absolute)
@@ -13,7 +14,7 @@ G4 P2 (spindle spin-up)
 
 G53 G0 Z0
 G53 G0 X15.100 Y15.100
-G53 G1 Z-5.500 F200 (lower to cut depth)
+G1 Z-0.500 F200 (cut depth relative to probed wasteboard surface)
 
 G53 G1 Y364.900 F2000
 G53 G1 X23.008 F2000  (pass 2/25)
@@ -65,6 +66,7 @@ G53 G1 Y15.100 F2000
 G53 G1 X204.900 F2000  (pass 25/25)
 G53 G1 Y364.900 F2000
 
+G0 Z5.0 (retract to safe height)
 G53 G0 Z0
 M5
 G53 G0 X0 Y0

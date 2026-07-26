@@ -73,7 +73,8 @@ def generate(args):
     emit(f"(Area: {args.width}x{args.length}mm centered at machine X{cx} Y{cy})")
     emit(f"(Depth: {args.depth}mm, Feed: {args.feed}mm/min)")
     emit(f"(Passes: {n_passes}, actual stepover: {actual_stepover:.2f}mm)")
-    emit(f"(Uses G53 machine coordinates — home machine before running)")
+    emit(f"(Precondition: probe Z with touch plate on wasteboard before running)")
+    emit(f"(  G54 Z0 = wasteboard surface, XY in machine coords via G53)")
     emit()
     emit("G21 (mm)")
     emit("G90 (absolute)")
@@ -82,10 +83,10 @@ def generate(args):
     emit("G4 P2 (spindle spin-up)")
     emit()
 
-    # Move to start position at safe Z
+    # Move to start position
     emit(f"G53 G0 Z0")
     emit(f"G53 G0 X{x_start:.3f} Y{y_start:.3f}")
-    emit(f"G53 G1 Z-{args.safe_z + args.depth:.3f} F{args.feed_z} (lower to cut depth)")
+    emit(f"G1 Z-{args.depth:.3f} F{args.feed_z} (cut depth relative to probed wasteboard surface)")
     emit()
 
     # Boustrophedon (zigzag) passes along Y, stepping in X
@@ -103,6 +104,7 @@ def generate(args):
             emit(f"G53 G1 Y{y_to:.3f} F{args.feed}")
 
     emit()
+    emit(f"G0 Z{args.safe_z} (retract to safe height)")
     emit(f"G53 G0 Z0")
     emit("M5")
     emit("G53 G0 X0 Y0")
