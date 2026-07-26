@@ -7,6 +7,7 @@
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/Coffee-Time.gcode"
   ],
   "dirHistory": [
+    "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated",
     "/tmp",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts"
   ],
@@ -73,23 +74,23 @@
   "fileStats": {
     "minCoordinate": {
       "units": "MM",
-      "x": 0.0,
-      "y": 0.0,
-      "z": -109.0,
+      "x": -92.5,
+      "y": -90.69760914510468,
+      "z": -15.5,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
     "maxCoordinate": {
       "units": "MM",
-      "x": 176.9,
-      "y": 190.012,
-      "z": 0.0,
+      "x": 92.5,
+      "y": 90.69760914510468,
+      "z": 5.0,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
-    "numCommands": 162
+    "numCommands": 1643
   },
   "macros": {
     "1": {
