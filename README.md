@@ -46,3 +46,28 @@ See [wiring documentation](fluidnc/SRcnc-dlc32max/README.md)
 ## Libs
 
 <https://github.com/nophead/NopSCADlib>
+
+## Repository Structure
+
+```
+cnc/
+  fluidnc/          — FluidNC firmware configs (MKS DLC32 MAX, TinyBee)
+  grblhal/          — grblHAL configs (Flexi-HAL, future)
+  ugs/              — Universal G-code Sender config and macros
+  probe/            — Automated probe setup script (center finding, angle, Z)
+  surfacing/        — Wasteboard surfacing G-code
+  srcnc/            — Machine design (OpenSCAD + NopSCADlib)
+  tools/            — FreeCAD tool library (bits + libraries)
+  parts/
+    BOSL2/          — OpenSCAD library (git submodule)
+    calibrate/      — Calibration square
+    coffee-time/    — First test job
+    dc-plate/       — Electronics panel
+    end-stop/       — End-stop mount
+    flexi-hal/      — FlexiHAL mounting parts
+```
+
+## Workflow
+
+See [SENDERS.md](SENDERS.md) for the complete operating workflow including
+probe setup, macros, and the top panel milling procedure.
