@@ -1,12 +1,16 @@
 {
   "firmwareVersion": "FluidNC",
-  "fileName": "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated/fixture-plate.nc",
+  "fileName": "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing/surfacing.nc",
   "fileHistory": [
+    "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing/surfacing.nc",
+    "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate/fixture-plate.nc",
     "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated/fixture-plate.nc",
     "/tmp/setup-path.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/Coffee-Time.gcode"
   ],
   "dirHistory": [
+    "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing",
+    "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate",
     "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated",
     "/tmp",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts"
@@ -14,7 +18,7 @@
   "port": "cnc",
   "portRate": "115200",
   "manualModeEnabled": false,
-  "manualModeStepSize": 0.5,
+  "manualModeStepSize": 5.0,
   "useZStepSize": true,
   "showABCStepSize": false,
   "zJogStepSize": 0.5,
@@ -74,23 +78,23 @@
   "fileStats": {
     "minCoordinate": {
       "units": "MM",
-      "x": -92.5,
-      "y": -90.69760914510468,
-      "z": -15.5,
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
     "maxCoordinate": {
       "units": "MM",
-      "x": 92.5,
-      "y": 90.69760914510468,
+      "x": 204.9,
+      "y": 364.9,
       "z": 5.0,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
-    "numCommands": 1643
+    "numCommands": 194
   },
   "macros": {
     "1": {
