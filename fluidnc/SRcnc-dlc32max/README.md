@@ -61,9 +61,9 @@ All motors share enable on **IO8**.
 | Z- LMT    | IO41   | Z limit     | CR10 endstop (Z top)   |
 | Y- LMT    | IO40   | Y limit     | CR10 endstop (Y min)   |
 | X- LMT    | IO39   | X limit     | CR10 endstop (X home)  |
-| Door       | IO38   | Safety door | Z touch plate          |
-| Flame      | IO36   | Flame sensor| Z auto-zero touch plate|
-| Probe      | IO37   | Probe input | HLTNC 3D Touch Probe   |
+| Door       | IO38   | Safety door | (unused)               |
+| Flame      | IO36   | Flame sensor| Z Tool Setter (AllyCircle, NC) |
+| Probe      | IO37   | Probe input | HLTNC 3D Touch Probe or Z touch plate (swap as needed) |
 | A- LMT    | IO48   | A limit     | (unused)               |
 
 Endstop wiring: connect "S" and "G" pins (Signal + GND). Board has internal pull-ups.
@@ -121,7 +121,7 @@ Internal wiring colors (board to aviation connector, per axis):
 | CR10 endstop Z        | Z- LMT          | IO41          |
 | HLTNC 3D Touch Probe  | Probe           | IO37          |
 | Z Tool Setter (spring)| Flame           | IO36          |
-| Z Touch Plate         | Door            | IO38          |
+| Z Touch Plate         | Probe           | IO37 (swap with 3D probe as needed) |
 | FluidDial pendant     | U1 (RJ11)       | TX:IO17, RX:IO18 |
 | PSU 24V               | POWER           | DC 12-24V     |
 | DM542T power          | (external)      | Separate 24-48V PSU |
@@ -255,12 +255,14 @@ Probe value: Z=-13.065 (machine coords, double probe at 20mm/min)
 Touch plate for setting Z=0 on the workpiece surface. Place on material, probe down, remove before cutting.
 Requires alligator clip connected from plate to tool/collet to complete the circuit.
 
+Shares Probe connector (IO37) with the HLTNC 3D probe — swap as needed.
+
 | Wire   | Signal      | DLC32 MAX Connection     |
 |--------|-------------|--------------------------|
-| +      | Signal (NO) | Door connector IO38 (S)  |
-| −      | GND         | Door connector GND (G)   |
+| +      | Signal (NO) | Probe connector IO37 (S) |
+| −      | GND         | Probe connector IO37 (G) |
 
-Config: `touchplate_pin: gpio.38:low:pu` (triggers when NO switch closes on contact)
+Config: `probe: pin: gpio.37:low:pu` (same as 3D probe)
 
 Thickness: 19.22mm (measured)
 
