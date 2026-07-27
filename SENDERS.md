@@ -32,7 +32,7 @@ make ugs     # launch UGS
 | # | Name | G-code |
 |---|------|--------|
 | 1 | Go to XY zero | `G90 G0 X0 Y0` |
-| 2 | Probe Z (touch plate) | `G91 G38.2 Z-30 F100; G0 Z2; G38.2 Z-5 F20; G0 Z25; G90 G10 L20 P1 Z19.25` |
+| 2 | Probe Z (touch plate) | `G91 G38.2 Z-30 F100; G0 Z2; G38.2 Z-5 F20; G90 G10 L20 P1 Z19.25; G0 Z25` |
 | 3 | Load Workpiece | `G90 G53 G0 Z0; G53 G0 X0 Y380` |
 | 4 | Park | `G90 G53 G0 Z0; G53 G0 X0 Y0` |
 

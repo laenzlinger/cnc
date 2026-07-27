@@ -1,7 +1,8 @@
 {
   "firmwareVersion": "FluidNC",
-  "fileName": "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing/surfacing.nc",
+  "fileName": "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing/surfacing.nc",
   "fileHistory": [
+    "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing/surfacing.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing/surfacing.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate/fixture-plate.nc",
     "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated/fixture-plate.nc",
@@ -9,6 +10,7 @@
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/Coffee-Time.gcode"
   ],
   "dirHistory": [
+    "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing",
     "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate",
     "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated",
@@ -18,12 +20,12 @@
   "port": "cnc",
   "portRate": "115200",
   "manualModeEnabled": false,
-  "manualModeStepSize": 5.0,
+  "manualModeStepSize": 10.0,
   "useZStepSize": true,
   "showABCStepSize": false,
-  "zJogStepSize": 0.5,
-  "abcJogStepSize": 1.0,
-  "jogFeedRate": 1000.0,
+  "zJogStepSize": 10.0,
+  "abcJogStepSize": 10.0,
+  "jogFeedRate": 991.0,
   "scrollWindowEnabled": true,
   "verboseOutputEnabled": false,
   "commandTableEnabled": false,
@@ -87,14 +89,14 @@
     },
     "maxCoordinate": {
       "units": "MM",
-      "x": 204.9,
-      "y": 364.9,
+      "x": 219.8,
+      "y": 379.8,
       "z": 5.0,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
-    "numCommands": 194
+    "numCommands": 218
   },
   "macros": {
     "1": {
@@ -106,7 +108,7 @@
     "2": {
       "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
       "name": "Probe Z (touch plate 19.25mm)",
-      "gcode": "G91 G38.2 Z-30 F100; G0 Z2; G38.2 Z-5 F20; G0 Z25; G90 G10 L20 P1 Z19.25;",
+      "gcode": "G91 G38.2 Z-30 F100; G0 Z2; G38.2 Z-5 F20; G90 G10 L20 P1 Z19.25; G0 Z25;",
       "version": "V1"
     },
     "3": {
