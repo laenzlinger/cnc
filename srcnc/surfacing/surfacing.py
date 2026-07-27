@@ -48,19 +48,19 @@ def generate(args):
     cx = 110.0
     cy = 190.0
 
-    # Surfacing area — use full machine travel
-    # Tool center must stay within travel limits
-    # Cutting edge extends tool_r beyond center, reaching the physical edges
-    x_min = 0.0
-    x_max = cx * 2       # = 220mm (full X travel)
-    y_min = 0.0
-    y_max = cy * 2       # = 380mm (full Y travel)
+    # Surfacing area — tool center range
+    # Start at 0.2mm from machine zero so tool center is just inside limits
+    # Cutting edge extends tool_r past the edge, covering the full wasteboard
+    x_min = 0.2
+    x_max = cx * 2 - 0.2   # = 219.8mm
+    y_min = 0.2
+    y_max = cy * 2 - 0.2   # = 379.8mm
 
-    # Toolpath starts at y_min, tool center offset by tool_r
-    y_start = y_min + tool_r
-    y_end   = y_max - tool_r
-    x_start = x_min + tool_r
-    x_end   = x_max - tool_r
+    # Toolpath — x_min/y_min are tool center positions directly
+    y_start = y_min
+    y_end   = y_max
+    x_start = x_min
+    x_end   = x_max
 
     # Number of passes along X
     n_passes = math.ceil((x_end - x_start) / stepover_mm) + 1
