@@ -122,6 +122,12 @@
       "name": "Park",
       "gcode": "G90 G53 G0 Z0; G53 G0 X0 Y0;",
       "version": "V1"
+    },
+    "5": {
+      "uuid": "e5f6a7b8-c9d0-1234-efab-567890123456",
+      "name": "Tool Change",
+      "gcode": "G90 G53 G0 Z0; G53 G0 X110 Y0;",
+      "version": "V1"
     }
   },
   "language": "en_US",
