@@ -55,8 +55,8 @@ cnc/
   grblhal/          — grblHAL configs (Flexi-HAL, future)
   ugs/              — Universal G-code Sender config and macros
   probe/            — Automated probe setup script (center finding, angle, Z)
-  surfacing/        — Wasteboard surfacing G-code
   srcnc/            — Machine design (OpenSCAD + NopSCADlib)
+    surfacing/      — Wasteboard surfacing G-code
   tools/            — FreeCAD tool library (bits + libraries)
   parts/
     BOSL2/          — OpenSCAD library (git submodule)
