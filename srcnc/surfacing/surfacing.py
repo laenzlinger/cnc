@@ -48,11 +48,13 @@ def generate(args):
     cx = 110.0
     cy = 190.0
 
-    # Surfacing area in machine coords
-    x_min = cx - args.width / 2.0
-    x_max = cx + args.width / 2.0
-    y_min = cy - args.length / 2.0
-    y_max = cy + args.length / 2.0
+    # Surfacing area — use full machine travel
+    # Tool center must stay within travel limits
+    # Cutting edge extends tool_r beyond center, reaching the physical edges
+    x_min = 0.0
+    x_max = cx * 2       # = 220mm (full X travel)
+    y_min = 0.0
+    y_max = cy * 2       # = 380mm (full Y travel)
 
     # Toolpath starts at y_min, tool center offset by tool_r
     y_start = y_min + tool_r
@@ -70,7 +72,7 @@ def generate(args):
 
     emit(f"(Wasteboard surfacing — SRcnc)")
     emit(f"(Tool: {args.tool_dia}mm endmill, {args.stepover*100:.0f}% stepover = {stepover_mm:.1f}mm)")
-    emit(f"(Area: {args.width}x{args.length}mm centered at machine X{cx} Y{cy})")
+    emit(f"(Area: full machine travel {cx*2:.0f}x{cy*2:.0f}mm in G53 coords)")
     emit(f"(Depth: {args.depth}mm, Feed: {args.feed}mm/min)")
     emit(f"(Passes: {n_passes}, actual stepover: {actual_stepover:.2f}mm)")
     emit(f"(Precondition: probe Z with touch plate on wasteboard before running)")
