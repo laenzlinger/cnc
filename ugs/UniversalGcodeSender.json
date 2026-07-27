@@ -106,7 +106,7 @@
     "2": {
       "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
       "name": "Probe Z (touch plate 19.25mm)",
-      "gcode": "G91 G38.2 Z-30 F100; G0 Z2; G38.2 Z-5 F20; G90 G10 L20 P1 Z19.25; G0 Z10;",
+      "gcode": "G91 G38.2 Z-30 F100; G0 Z2; G38.2 Z-5 F20; G0 Z25; G90 G10 L20 P1 Z19.25;",
       "version": "V1"
     },
     "3": {
