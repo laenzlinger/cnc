@@ -17,6 +17,9 @@ setup: ## Symlink UGS config to ~/.config/ugs
 		echo "✓ Created symlink: $(UGS_CONFIG_DIR) → $(UGS_SOURCE_DIR)"; \
 	fi
 
+test: ## Test UGS macros against mock machine
+	python3 ugs/test-macros.py
+
 ugs: ## Launch UGS
 	@./ugs/ugs.sh
 
