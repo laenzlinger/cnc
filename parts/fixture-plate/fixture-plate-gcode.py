@@ -2,7 +2,7 @@
 """
 Generate G-code for milling the CNC fixture plate for the Hammond 1590DD.
 
-The fixture plate is cut from 15mm MDF and screws to the SRcnc wasteboard
+The fixture plate is cut from 12.7mm HPL/Trespa board and screws to the SRcnc wasteboard
 via M5 carriage holes. The case then screws to the plate via #6-32 corner holes.
 
 Origin: center of plate = machine X110 Y190 (wasteboard carriage hole center).
@@ -22,13 +22,13 @@ import sys
 
 # === FIXTURE GEOMETRY ===
 
-# Case screw holes — counterbored for ø10mm washer + shank through hole
+# Case screw holes — counterbored for M4 washer + #6-32 shank
+# #6-32 × 12mm countersunk + M4 washer (ø9mm OD), board 12.7mm HPL
 CASE_HOLE_X = 89.0
 CASE_HOLE_Y = 57.0
-CASE_CLEARANCE_D = 4.0   # mm — shank clearance (peck drill with 4mm tool)
-CASE_CBORE_D = 11.0       # mm — counterbore for ø10mm washer (+ 0.5mm clearance)
-CASE_CBORE_DEPTH = 11.0   # mm — leaves 4mm MDF below washer
-                          # min screw length ~10mm (4mm plate + ~4-6mm into case boss)
+CASE_CLEARANCE_D = 4.5   # mm — #6-32 shank clearance (helical with 4mm tool)
+CASE_CBORE_D = 10.0       # mm — counterbore for M4 washer (ø9mm + 0.5mm clearance)
+CASE_CBORE_DEPTH = 7.7    # mm — leaves 5mm below; 12mm screw → 7mm into case boss
 
 # Carriage holes — M5 through hole, screw head sits on top
 CARRIAGE_HOLE_X = 60.0
@@ -46,7 +46,7 @@ def parse_args():
                    help="Plunge feed rate Z in mm/min (default: 150)")
     p.add_argument("--spindle-rpm", type=int, default=10000,
                    help="Spindle speed in RPM (default: 10000)")
-    p.add_argument("--stock-thickness", type=float, default=15.0,
+    p.add_argument("--stock-thickness", type=float, default=12.7,
                    help="MDF thickness in mm (default: 15.0)")
     p.add_argument("--depth-per-pass", type=float, default=0.5,
                    help="Depth of cut per pass in mm (default: 0.5)")
@@ -70,7 +70,7 @@ class GCode:
         a = self.args
         self.emit("(Fixture plate for Hammond 1590DD top panel milling)")
         self.emit("(Origin: plate center = wasteboard carriage hole center)")
-        self.emit("(Material: 15mm MDF — cut on the SRcnc)")
+        self.emit("(Material: 12.7mm HPL/Trespa — cut on the SRcnc)")
         self.emit(f"(Tool: {a.tool_dia}mm single flute endmill)")
         self.emit(f"(Feed XY: {a.feed_xy} mm/min, Z: {a.feed_z} mm/min)")
         self.emit(f"(Spindle: {a.spindle_rpm} RPM)")
@@ -138,7 +138,7 @@ class GCode:
         self.header()
 
         # Case screw holes — 4 corners + 2 center long sides
-        self.emit("(=== CASE SCREW HOLES (ø11mm counterbore 11mm deep + ø4mm through) ===)")
+        self.emit("(=== CASE SCREW HOLES (ø10mm counterbore 7.7mm deep + ø4.5mm through) ===)")
         case_positions = [
             (-CASE_HOLE_X, -CASE_HOLE_Y),
             ( CASE_HOLE_X, -CASE_HOLE_Y),

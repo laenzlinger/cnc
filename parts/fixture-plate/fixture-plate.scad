@@ -24,21 +24,21 @@
 
 // === PARAMETERS ===
 
-plate_thickness = 15;       // mm — MDF thickness
+plate_thickness = 12.7;     // mm — HPL/Trespa board thickness
 
 // Wasteboard carriage holes — M5 through hole, screw head sits on top
 carriage_hole_x = 60;       // ±mm from center
 carriage_hole_y = 90;       // ±mm from center
 carriage_screw_d = 5.4;     // M5 clearance
 
-// Case screw holes — counterbored for washer+head, through hole for shank
-// Original case screws (#6-32 or M3) + ø10mm washer
+// Case screw holes — counterbored for M4 washer + #6-32 shank
+// #6-32 × 12mm countersunk screws + M4 washer (ø9mm OD)
 case_hole_x = 89;           // ±mm from center
 case_hole_y = 57;           // ±mm from center
-case_screw_d   = 4.0;       // shank clearance (peck drilled with 4mm tool)
-case_cbore_d   = 11.0;      // counterbore for ø10mm washer + 0.5mm clearance
-case_cbore_depth = 11.0;    // counterbore depth — leaves 4mm MDF below washer
-                            // min screw length ~10mm (4mm plate + ~4-6mm into case boss)
+case_screw_d   = 4.5;       // #6-32 shank clearance (helical with 4mm tool)
+case_cbore_d   = 10.0;      // counterbore for M4 washer (ø9mm + 0.5mm clearance)
+case_cbore_depth = 7.7;     // counterbore depth — leaves 5mm below for thread engagement
+                            // screw length 12mm → 12 - 5 = 7mm into case boss
 
 // Plate size — large enough to cover all holes with margin
 plate_w = 210;              // mm
