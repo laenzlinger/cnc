@@ -64,6 +64,7 @@ cnc/
     coffee-time/    — First test job
     dc-plate/       — Electronics panel
     end-stop/       — End-stop mount
+    fixture-plate/  — MDF fixture plate for Hammond 1590DD top panel milling
     flexi-hal/      — FlexiHAL mounting parts
 ```
 
