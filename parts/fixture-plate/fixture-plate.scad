@@ -26,9 +26,11 @@
 
 plate_thickness = 12.7;     // mm — HPL/Trespa board thickness
 
-// Wasteboard carriage holes — M5 through hole, screw head sits on top
-carriage_hole_x = 60;       // ±mm from center
-carriage_hole_y = 90;       // ±mm from center
+// Wasteboard carriage holes — outer holes of SBR12UU carriages
+// ±103mm (X) × ±74mm (Y) from wasteboard center
+// Uses outer 4 of 16 carriage holes to avoid interference with case screws
+carriage_hole_x = 103;      // ±mm from center
+carriage_hole_y = 74;       // ±mm from center
 carriage_screw_d = 5.4;     // M5 clearance
 
 // Case screw holes — counterbored for M4 washer + #6-32 shank
@@ -40,8 +42,8 @@ case_cbore_d   = 10.0;      // counterbore for M4 washer (ø9mm + 0.5mm clearanc
 case_cbore_depth = 7.7;     // counterbore depth — leaves 5mm below for thread engagement
                             // screw length 12mm → 12 - 5 = 7mm into case boss
 
-// Plate size — large enough to cover all holes with margin
-plate_w = 210;              // mm
+// Plate size — covers both case holes (±89mm X) and carriage holes (±103mm X)
+plate_w = 220;              // mm — matches machine X travel
 plate_h = 200;              // mm
 
 // === MODULES ===
