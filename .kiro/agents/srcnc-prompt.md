@@ -62,3 +62,13 @@ This is a 3-axis Cartesian CNC machine with:
 - Always consider physical constraints and machine geometry
 - Prefer metric units throughout
 - Keep configurations conservative — this is real hardware that can be damaged
+
+## G-code Safety Rules (ALWAYS follow these when generating toolpaths)
+
+1. **Safe Z height = 15mm minimum** — all retract moves between cuts must be at least 15mm above workpiece surface to clear clamps and fixtures
+2. **Initial approach from center** — every G-code program must start by moving to machine Z0 (top) then to machine center (G53 G0 X110 Y190) before any lateral moves at cutting height. This ensures the tool clears any edge clamps.
+3. **Z first, then XY** — always retract Z before lateral moves. Never move XY while at cutting depth.
+4. **G53 G0 Z0 before lateral rapids** — when moving between distant positions (e.g. tool change to first cut), use full machine Z retract, not just safe_z.
+5. **Double-contact probing** — all probe sequences must use fast then slow approach for accuracy.
+6. **Set WCS at contact point, then retract** — never move to a WCS-relative position while the touch plate is still on the workpiece (crash risk: Z=10 in G54 may be inside a 19.25mm plate).
+7. **Verify probe before use** — check `Pn:P` in status before running probe macros.
