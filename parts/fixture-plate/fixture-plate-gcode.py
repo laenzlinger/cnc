@@ -54,8 +54,8 @@ def parse_args():
                    help="Depth of cut per pass in mm (default: 0.5)")
     p.add_argument("--extra-depth", type=float, default=0.5,
                    help="Extra depth below stock for clean through-cut (default: 0.5)")
-    p.add_argument("--safe-z", type=float, default=5.0,
-                   help="Safe Z height for rapids (default: 5.0)")
+    p.add_argument("--safe-z", type=float, default=15.0,
+                   help="Safe Z height for rapids in mm (default: 15.0, must clear clamps)")
     return p.parse_args()
 
 
@@ -93,6 +93,7 @@ class GCode:
         self.emit("M2")
 
     def rapid_to(self, x, y):
+        """Rapid to XY position safely — retract to safe Z (clears clamps)."""
         self.emit(f"G0 Z{self.args.safe_z}")
         self.emit(f"G0 X{x:.3f} Y{y:.3f}")
 
@@ -138,6 +139,13 @@ class GCode:
 
     def generate(self):
         self.header()
+
+        # Safety: move to workpiece center at machine Z0 before any lateral moves
+        # This ensures the tool clears any clamps on the edges during approach
+        self.emit("(Safety: approach from center at Z0 to avoid clamps)")
+        self.emit("G53 G0 Z0")
+        self.emit("G53 G0 X110 Y190  (machine center)")
+        self.emit()
 
         # Case screw holes — 4 corners + 2 center long sides
         self.emit("(=== CASE SCREW HOLES (ø10mm counterbore 7.7mm deep + ø4.5mm through) ===)")
