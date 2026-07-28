@@ -1,18 +1,18 @@
 {
   "firmwareVersion": "FluidNC",
-  "fileName": "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing/surfacing.nc",
+  "fileName": "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate/fixture-plate.nc",
   "fileHistory": [
+    "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate/fixture-plate.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing/surfacing.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing/surfacing.nc",
-    "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate/fixture-plate.nc",
     "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated/fixture-plate.nc",
     "/tmp/setup-path.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/Coffee-Time.gcode"
   ],
   "dirHistory": [
+    "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate",
     "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing",
     "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing",
-    "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate",
     "/home/laenzi/projects/gh/pedalboard/pedalboard-case/generated",
     "/tmp",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts"
@@ -80,23 +80,23 @@
   "fileStats": {
     "minCoordinate": {
       "units": "MM",
-      "x": 0.0,
-      "y": 0.0,
-      "z": -0.5,
+      "x": -88.75,
+      "y": -88.0,
+      "z": -13.2,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
     "maxCoordinate": {
       "units": "MM",
-      "x": 219.8,
-      "y": 379.8,
+      "x": 92.0,
+      "y": 88.0,
       "z": 5.0,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
-    "numCommands": 218
+    "numCommands": 1711
   },
   "macros": {
     "1": {
@@ -127,6 +127,12 @@
       "uuid": "e5f6a7b8-c9d0-1234-efab-567890123456",
       "name": "Tool Change",
       "gcode": "G90 G53 G0 Z0; G53 G0 X110 Y0;",
+      "version": "V1"
+    },
+    "6": {
+      "uuid": "f6a7b8c9-d0e1-2345-fabc-678901234567",
+      "name": "Center",
+      "gcode": "G90 G53 G0 Z0; G53 G0 X110 Y190;",
       "version": "V1"
     }
   },

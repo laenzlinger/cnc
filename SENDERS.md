@@ -36,6 +36,7 @@ make ugs     # launch UGS
 | 3 | Load Workpiece | `G90 G53 G0 Z0; G53 G0 X0 Y380` |
 | 4 | Park | `G90 G53 G0 Z0; G53 G0 X0 Y0` |
 | 5 | Tool Change | `G90 G53 G0 Z0; G53 G0 X110 Y0` |
+| 6 | Center | `G90 G53 G0 Z0; G53 G0 X110 Y190` |
 
 ### Probe Z workflow
 1. Jog spindle to within 30mm above the touch plate
