@@ -33,7 +33,7 @@ plate_thickness = 12.7;     // mm — HPL/Trespa board thickness
 // Clear of case screw pattern (±89mm X × ±57mm Y)
 carriage_hole_x = 48;       // ±mm from center (inner X)
 carriage_hole_y = 88;       // ±mm from center (outer Y)
-carriage_screw_d = 5.4;     // M5 clearance
+carriage_screw_d = 6.0;     // M5 clearance, oversized for position tolerance
 
 // Case screw holes — counterbored for M4 washer + #6-32 shank
 // Measured on case: screw pattern 180×111mm

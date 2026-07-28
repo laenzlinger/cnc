@@ -35,7 +35,7 @@ CASE_CBORE_DEPTH = 7.7    # mm — leaves 5mm below; 12mm screw → 7mm into cas
 # Inner X = ±48mm, outer Y = ±88mm from wasteboard center
 CARRIAGE_HOLE_X = 48.0
 CARRIAGE_HOLE_Y = 88.0
-CARRIAGE_CLEARANCE_D = 5.4  # mm — M5 clearance
+CARRIAGE_CLEARANCE_D = 6.0  # mm — M5 clearance, oversized for position tolerance
 
 
 def parse_args():
