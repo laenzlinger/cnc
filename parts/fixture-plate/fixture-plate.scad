@@ -3,22 +3,24 @@
  *
  * Screws down to SRcnc wasteboard via M5 carriage holes.
  * Case mounted open-side-down: screws go through plate up into case corner bosses.
- * Washer between screw head and MDF prevents pull-through.
+ * M4 washer between screw head and board prevents pull-through.
  *
  * Coordinate system: center of plate = center of case = machine X110 Y190
  *
- * Wasteboard carriage hole pattern (from srcnc/scad/main.scad):
- *   X: ±ycarriage_separation/2 = ±60mm
- *   Y: ±yrail_separation/2     = ±90mm
+ * Wasteboard carriage hole pattern (measured on machine):
+ *   SBR12UU carriages, J=28mm K=26mm hole spacing
+ *   Outer rectangle: 146×176mm (±73mm X, ±88mm Y)
+ *   Inner rectangle: 96×120mm (±48mm X, ±60mm Y)
+ *   Carriage centers: ~±60mm X, ~±74mm Y
+ *   Using outer 4 holes to avoid case screw interference
  *   Screw: M5, head sits on top of plate
  *
- * 1590DD case screw hole pattern (from datasheet):
- *   X: ±89mm from case center
- *   Y: ±57mm from case center
- *   Screw: original case screws (#6-32 or M3), min ~10mm length
- *   Washer: ø10mm, sits in counterbore
+ * 1590DD case screw hole pattern (from datasheet, 178×114mm):
+ *   4 corners: ±89mm X, ±57mm Y
+ *   2 center (long sides): 0mm X, ±57mm Y
+ *   Screw: #6-32 × 12mm countersunk + M4 washer (ø9mm OD)
  *
- * Material: 15mm MDF
+ * Material: 12.7mm HPL/Trespa board
  * Mill this plate on the SRcnc before using it as a fixture.
  */
 
