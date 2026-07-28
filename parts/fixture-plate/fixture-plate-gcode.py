@@ -23,9 +23,10 @@ import sys
 # === FIXTURE GEOMETRY ===
 
 # Case screw holes — counterbored for M4 washer + #6-32 shank
+# Measured on case: screw pattern 180×111mm
 # #6-32 × 12mm countersunk + M4 washer (ø9mm OD), board 12.7mm HPL
-CASE_HOLE_X = 89.0
-CASE_HOLE_Y = 57.0
+CASE_HOLE_X = 90.0
+CASE_HOLE_Y = 55.5
 CASE_CLEARANCE_D = 4.5   # mm — #6-32 shank clearance (helical with 4mm tool)
 CASE_CBORE_D = 10.0       # mm — counterbore for M4 washer (ø9mm + 0.5mm clearance)
 CASE_CBORE_DEPTH = 7.7    # mm — leaves 5mm below; 12mm screw → 7mm into case boss

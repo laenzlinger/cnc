@@ -36,9 +36,10 @@ carriage_hole_y = 88;       // ±mm from center (outer Y)
 carriage_screw_d = 5.4;     // M5 clearance
 
 // Case screw holes — counterbored for M4 washer + #6-32 shank
+// Measured on case: screw pattern 180×111mm
 // #6-32 × 12mm countersunk screws + M4 washer (ø9mm OD)
-case_hole_x = 89;           // ±mm from center
-case_hole_y = 57;           // ±mm from center
+case_hole_x = 90;           // ±mm from center (180/2)
+case_hole_y = 55.5;         // ±mm from center (111/2)
 case_screw_d   = 4.5;       // #6-32 shank clearance (helical with 4mm tool)
 case_cbore_d   = 10.0;      // counterbore for M4 washer (ø9mm + 0.5mm clearance)
 case_cbore_depth = 7.7;     // counterbore depth — leaves 5mm below for thread engagement
