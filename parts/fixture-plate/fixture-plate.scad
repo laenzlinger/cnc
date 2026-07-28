@@ -28,12 +28,11 @@
 
 plate_thickness = 12.7;     // mm — HPL/Trespa board thickness
 
-// Wasteboard carriage holes — outer holes of SBR12UU carriages
-// Measured on machine: outer rectangle 146×176mm
-// ±73mm (X) × ±88mm (Y) from wasteboard center
+// Wasteboard carriage holes — inner X, outer Y of SBR12UU carriages
+// Measured on machine: inner X = ±48mm, outer Y = ±88mm
 // Clear of case screw pattern (±89mm X × ±57mm Y)
-carriage_hole_x = 73;       // ±mm from center
-carriage_hole_y = 88;       // ±mm from center
+carriage_hole_x = 48;       // ±mm from center (inner X)
+carriage_hole_y = 88;       // ±mm from center (outer Y)
 carriage_screw_d = 5.4;     // M5 clearance
 
 // Case screw holes — counterbored for M4 washer + #6-32 shank

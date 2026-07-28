@@ -30,10 +30,9 @@ CASE_CLEARANCE_D = 4.5   # mm — #6-32 shank clearance (helical with 4mm tool)
 CASE_CBORE_D = 10.0       # mm — counterbore for M4 washer (ø9mm + 0.5mm clearance)
 CASE_CBORE_DEPTH = 7.7    # mm — leaves 5mm below; 12mm screw → 7mm into case boss
 
-# Carriage holes — outer holes of SBR12UU carriages, M5
-# Measured on machine: outer rectangle 146×176mm
-# ±73mm (X) × ±88mm (Y) from wasteboard center
-CARRIAGE_HOLE_X = 73.0
+# Carriage holes — inner X, outer Y of SBR12UU carriages, M5
+# Inner X = ±48mm, outer Y = ±88mm from wasteboard center
+CARRIAGE_HOLE_X = 48.0
 CARRIAGE_HOLE_Y = 88.0
 CARRIAGE_CLEARANCE_D = 5.4  # mm — M5 clearance
 
