@@ -43,8 +43,8 @@ Flexi-HAL stepper port pinout (active-low differential signals):
 | 4       | DIR-   | DIR-            |
 | 5       | ENA+   | ENA+            |
 | 6       | ENA-   | ENA-            |
-| 7       | ALM    | ALM+ (future)   |
-| 8       | GND    | ALM- (future)   |
+| 7       | ALM    | ALM+            |
+| 8       | GND    | ALM-            |
 
 Note: Verify exact pinout against Flexi-HAL documentation when board arrives.
 The differential signals provide full 5V swing with proper isolation.
