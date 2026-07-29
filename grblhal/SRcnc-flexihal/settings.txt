@@ -35,21 +35,21 @@ $21=1
 $22=1
 
 ; Homing direction invert mask
-; X homes to min (-X), Y homes to min (-Y), Z homes to max (+Z)
-; Z positive = bit 2 = 4
-$23=4
+; X and Y need inversion (due to $3 interactions), Z homes to max naturally
+; TODO: verify correct value after 3-axis firmware flash
+$23=3
 
 ; Homing feed rate mm/min
 $24=25.000
 
-; Homing seek rate mm/min
-$25=500.000
+; Homing seek rate mm/min (reduced for safety)
+$25=100.000
 
 ; Homing debounce ms
 $26=250
 
-; Homing pull-off mm
-$27=2.000
+; Homing pull-off mm (5mm to clear CR10 endstops)
+$27=5.000
 
 ; Spindle max RPM
 $30=12000
