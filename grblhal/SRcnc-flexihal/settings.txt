@@ -42,8 +42,8 @@ $23=3
 ; Homing feed rate mm/min
 $24=25.000
 
-; Homing seek rate mm/min (reduced for safety)
-$25=100.000
+; Homing seek rate mm/min
+$25=500.000
 
 ; Homing debounce ms
 $26=250
