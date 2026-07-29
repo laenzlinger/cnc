@@ -4,7 +4,18 @@
 
 Flexi-HAL CNC Controller (Expatria Technologies, STM32F446)
 
-Firmware: GRBLHAL
+Firmware: grblHAL
+
+### Firmware Build
+
+- File: `FLEXI_HAL_3AXIS_PRB_20250311_120325.uf2`
+- Source: https://github.com/Expatria-Technologies/STM32F4xx/releases
+- Release: Stable 1.0.1.6
+- Config: 3 axis, probe support, no Ethernet/SD
+- Driver: STM32F446, version 250311
+- Board ID: FlexiHAL_20250311_120325
+
+To upgrade: double-tap RST, copy new .uf2 to FLEXI446 drive, re-apply settings.txt
 
 ## Stepper Drivers
 
