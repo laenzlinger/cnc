@@ -62,3 +62,6 @@ $1=255
 
 ; Invert step enable (active-high for DM542T)
 $4=1
+
+; Direction invert mask (X=1, Z=4 → 5)
+$3=5
