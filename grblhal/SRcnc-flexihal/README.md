@@ -33,18 +33,18 @@ Result: 8 microsteps → 1600 pulses/rev → 400 steps/mm (with SFU1204, 4mm pit
 
 8-pin IDC ribbon cable from Flexi-HAL stepper port to DM542T screw terminals.
 
-Flexi-HAL stepper port pinout (active-low differential signals):
+Flexi-HAL stepper port pinout (from documentation):
 
 | IDC Pin | Signal | DM542T Terminal |
 |---------|--------|-----------------|
-| 1       | STEP+  | PUL+            |
-| 2       | STEP-  | PUL-            |
-| 3       | DIR+   | DIR+            |
-| 4       | DIR-   | DIR-            |
-| 5       | ENA+   | ENA+            |
-| 6       | ENA-   | ENA-            |
-| 7       | ALM    | ALM+            |
-| 8       | GND    | ALM-            |
+| 1       | S+     | PUL+            |
+| 2       | S-     | PUL-            |
+| 3       | D+     | DIR+            |
+| 4       | D-     | DIR-            |
+| 5       | 5V     | ENA+            |
+| 6       | E-     | ENA-            |
+| 7       | G      | GND             |
+| 8       | AL-    | ALM+            |
 
 Note: Verify exact pinout against Flexi-HAL documentation when board arrives.
 The differential signals provide full 5V swing with proper isolation.
