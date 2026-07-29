@@ -1,0 +1,61 @@
+; SRcnc grblHAL settings for Flexi-HAL
+; Apply after firmware flash: cat settings.txt | grep -v '^;' | grep -v '^$' > /dev/cnc
+; Or send line by line in gSender console
+
+; Steps/mm
+$100=400.000
+$101=400.000
+$102=400.000
+
+; Max rate mm/min
+$110=3000.000
+$111=3000.000
+$112=1000.000
+
+; Acceleration mm/s²
+$120=100.000
+$121=100.000
+$122=50.000
+
+; Max travel mm
+$130=220.000
+$131=380.000
+$132=95.000
+
+; Limit switches (NO, inverted)
+$5=7
+
+; Soft limits
+$20=1
+
+; Hard limits
+$21=1
+
+; Homing enabled
+$22=1
+
+; Homing direction invert mask
+; X homes to min (-X), Y homes to min (-Y), Z homes to max (+Z)
+; Z positive = bit 2 = 4
+$23=4
+
+; Homing feed rate mm/min
+$24=25.000
+
+; Homing seek rate mm/min
+$25=500.000
+
+; Homing debounce ms
+$26=250
+
+; Homing pull-off mm
+$27=2.000
+
+; Spindle max RPM
+$30=12000
+
+; Spindle min RPM
+$31=0
+
+; Step idle delay ms (255 = never disable)
+$1=255
