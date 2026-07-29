@@ -48,8 +48,8 @@ $25=500.000
 ; Homing debounce ms
 $26=250
 
-; Homing pull-off mm (3mm to clear CR10 endstops)
-$27=3.000
+; Homing pull-off mm
+$27=2.000
 
 ; Spindle max RPM
 $30=12000
