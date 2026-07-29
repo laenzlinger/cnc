@@ -148,7 +148,7 @@ Laptop → USB-C to USB-A cable → USB-A panel mount (enclosure) → USB-A to U
 | $130    | 220   | X max travel mm |
 | $131    | 380   | Y max travel mm |
 | $132    | 95    | Z max travel mm |
-| $5      | 0     | Limit pins invert (NO switches) |
+| $5      | 7     | Limit pins invert (NO switches, bitmask X+Y+Z=7) |
 | $20     | 1     | Soft limits enabled |
 | $21     | 1     | Hard limits enabled |
 | $22     | 1     | Homing enabled |
