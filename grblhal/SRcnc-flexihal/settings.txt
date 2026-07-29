@@ -59,3 +59,6 @@ $31=0
 
 ; Step idle delay ms (255 = never disable)
 $1=255
+
+; Invert step enable (active-high for DM542T)
+$4=1
