@@ -1,33 +1,32 @@
-# UGS (Universal Gcode Sender)
+# G-code Senders
 
-G-code sender configuration for the SRcnc machine.
+Configuration for the SRcnc machine.
 
-## Connection
+## Active: gSender (Flexi-HAL / grblHAL)
+
+### Connection
 
 | Method | Address | Notes |
 |--------|---------|-------|
-| USB serial | `/dev/cnc` @ 115200 baud | Default. Udev symlink to CH340 adapter |
-| WiFi | `fluidnc.home:80` (WebSocket) | TCPDriver, port `fluidnc.home`, baud `23` |
+| USB serial | `/dev/cnc` @ 115200 baud | Udev symlink to STM32 CDC (ttyACM0) |
 
-USB is preferred — lower latency and more reliable for real-time control.
-
-## Setup
+### Setup
 
 ```bash
-make setup   # symlink ugs/ → ~/.config/ugs
-make ugs     # launch UGS
+# Config symlinked from ~/.config/gSender → gsender/
+gsender  # launch
 ```
 
-## Settings
+### Settings
 
-- Firmware: **FluidNC** (switch to **GRBL** for Flexi-HAL/grblHAL)
-- Connection driver: **JSERIALCOMM**
-- Port: **cnc** (udev symlink, no `/dev/` prefix)
+- Firmware: **grblHAL**
+- Port: `/dev/cnc`
 - Baud: **115200**
 - Units: **mm**
-- Safety height: **5mm**
+- Safe retract height: **15mm**
+- Machine profile: SRcnc (220×380×95mm)
 
-## Macros
+### Macros
 
 | # | Name | G-code |
 |---|------|--------|
@@ -46,6 +45,53 @@ make ugs     # launch UGS
 5. Wait for Z to lift clear, then remove touch plate
 6. G54 Z0 is now at workpiece surface (plate thickness: 19.25mm)
 
+### Machine Coordinates
+
+After homing (`$H`): X=0, Y=0, Z=0 at home switches.
+Travel is in the **negative** direction:
+- X: 0 to -220 (right)
+- Y: 0 to -380 (back)
+- Z: 0 to -95 (down)
+
+## Legacy: UGS (FluidNC / MKS DLC32 MAX)
+
+### Connection
+
+| Method | Address | Notes |
+|--------|---------|-------|
+| USB serial | `/dev/cnc` @ 115200 baud | Udev symlink to CH340 (ttyUSB0) |
+| WiFi | `fluidnc.home:80` (WebSocket) | TCPDriver, port `fluidnc.home`, baud `23` |
+
+### Setup
+
+```bash
+make setup   # symlink ugs/ → ~/.config/ugs
+make ugs     # launch UGS
+```
+
+### Settings
+
+- Firmware: **FluidNC**
+- Connection driver: **JSERIALCOMM**
+- Port: **cnc**
+- Baud: **115200**
+
+### Macros
+
+Same as gSender (macros 1-6 above).
+
+## Machine Parameters
+
+| Parameter | X | Y | Z |
+|-----------|---|---|---|
+| Steps/mm | 400 | 400 | 400 |
+| Max rate (mm/min) | 3000 | 3000 | 1000 |
+| Acceleration (mm/s²) | 100 | 100 | 50 |
+| Max travel (mm) | 220 | 380 | 95 |
+| Homing direction | -X | -Y | +Z |
+
+Spindle: 0–12000 RPM (manual router, no VFD)
+
 ## Top Panel Setup (pedalboard case)
 
 For full automated setup (center finding, angle correction, Z probe, G-code generation):
@@ -56,7 +102,7 @@ make install   # first time only
 python3 probe-setup.py
 ```
 
-UGS must be disconnected before running. The script runs 9 steps:
+The sender must be disconnected before running. The script runs 9 steps:
 
 1. Check machine state (no alarm)
 2. Safe home Z→X→Y, move to tool change position
@@ -70,7 +116,7 @@ UGS must be disconnected before running. The script runs 9 steps:
 10. Probe Z (double contact), cross-check against 3D probe reference
 11. Retract, **PAUSE** — remove touch plate
 12. Generate `top-panel.nc` with angle correction
-13. Launch UGS automatically
+13. Launch sender automatically
 
 Options:
 ```bash
@@ -80,33 +126,10 @@ python3 probe-setup.py --port /dev/ttyUSB0  # override serial port
 
 ### Testing with simulator
 
-Test the full probe sequence without a machine:
-
 ```bash
-# Terminal 1 — start simulator (0.3° rotation, 1.5mm X offset)
+# Terminal 1 — start simulator
 python3 mock-machine.py --angle 0.3 --offset-x 1.5
 
 # Terminal 2 — run setup against simulator
 python3 probe-setup.py --port /tmp/cnc-sim
 ```
-
-Simulator options: `--angle`, `--offset-x`, `--offset-y`, `--case-height`, `--touch-plate`
-
-## WiFi Connection (alternative)
-
-1. Tools → Options → UGS → Sender Options
-2. Connection Driver: **TCPDriver**
-3. Port: `fluidnc.home`
-4. Baud: `23` (Telnet port for FluidNC)
-
-## Machine Parameters
-
-| Parameter | X | Y | Z |
-|-----------|---|---|---|
-| Steps/mm | 400 | 400 | 400 |
-| Max rate (mm/min) | 3000 | 3000 | 1000 |
-| Acceleration (mm/s²) | 100 | 100 | 50 |
-| Max travel (mm) | 220 | 380 | 95 |
-| Homing direction | -X | +Y | +Z |
-
-Spindle: 0–12000 RPM (manual router, PWM signal only)
