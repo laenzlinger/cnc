@@ -3,7 +3,7 @@
   "state": {
     "session": {
       "name": "",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU0MTM0ODIsImV4cCI6MTc4ODAwNTQ4Mn0.A9dVESniEExufqm2s4SzhgC_yWlMaQ6Faq6OoHZ5uPo",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU0MTM4MjcsImV4cCI6MTc4ODAwNTgyN30.YOaGRlx-sADj71LR38YJl-SWSlbY2TbN7y7R9Gzb_0c",
       "enabled": false
     },
     "workspace": {
@@ -745,22 +745,22 @@
         {
           "id": 3,
           "name": "Load Workpiece",
-          "content": "G90 G53 G0 Z0\nG53 G0 X0 Y380"
+          "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y0"
         },
         {
           "id": 4,
           "name": "Park",
-          "content": "G90 G53 G0 Z0\nG53 G0 X0 Y0"
+          "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y-378"
         },
         {
           "id": 5,
           "name": "Tool Change",
-          "content": "G90 G53 G0 Z0\nG53 G0 X110 Y0"
+          "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-378"
         },
         {
           "id": 6,
           "name": "Center",
-          "content": "G90 G53 G0 Z0\nG53 G0 X110 Y190"
+          "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-190"
         }
       ]
     },
