@@ -3,7 +3,7 @@
   "state": {
     "session": {
       "name": "",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU0MTkxMjYsImV4cCI6MTc4ODAxMTEyNn0.1XW0MUR4hF7dARMcTZFaORyguHQjXCujzqhcvHSjrb4",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU0MjUzNTIsImV4cCI6MTc4ODAxNzM1Mn0.eN5hlOzj7Sb2d1-Xleay8EWz9Ggbmu6HnarxpTt8cfI",
       "enabled": false
     },
     "workspace": {
@@ -62,14 +62,14 @@
         "type": "Custom",
         "version": "1.0",
         "mm": {
+          "width": 220,
           "depth": 380,
-          "height": 95,
-          "width": 220
+          "height": 95
         },
         "in": {
+          "width": 8.66,
           "depth": 14.96,
-          "height": 3.74,
-          "width": 8.66
+          "height": 3.74
         },
         "endstops": true,
         "spindle": true,
@@ -298,11 +298,6 @@
           "$130": "810.000",
           "$131": "855.000",
           "$132": "120.000"
-        },
-        "limits": {
-          "xmax": 220,
-          "ymax": 380,
-          "zmax": 95
         }
       },
       "probeProfile": {
@@ -786,7 +781,7 @@
         "controller": {
           "type": "grblHAL"
         },
-        "port": "/dev/ttyACM0",
+        "port": "/dev/cnc",
         "baudrate": 115200,
         "connection": {
           "type": "serial",
@@ -1487,11 +1482,6 @@
         "isActive": false,
         "category": "Macros",
         "callback": {}
-      },
-      "HOMING_PARK": {
-        "cmd": "HOMING_PARK",
-        "keys": "",
-        "isActive": true
       }
     }
   }
