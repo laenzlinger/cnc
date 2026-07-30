@@ -1,0 +1,38 @@
+[
+ {
+  "name": "Go to XY zero",
+  "content": "G90 G0 X0 Y0",
+  "description": "Move to G54 XY origin",
+  "id": "a1b2c3d4-0001-4000-8000-000000000001"
+ },
+ {
+  "name": "Probe Z",
+  "content": "G91 G38.2 Z-30 F100\nG0 Z2\nG38.2 Z-5 F20\nG90 G10 L20 P1 Z19.25\nG0 Z25",
+  "description": "Double-contact Z probe with 19.25mm touch plate",
+  "id": "a1b2c3d4-0001-4000-8000-000000000002"
+ },
+ {
+  "name": "Load Workpiece",
+  "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y0",
+  "description": "Z top, Y to far back for loading workpiece",
+  "id": "a1b2c3d4-0001-4000-8000-000000000003"
+ },
+ {
+  "name": "Park",
+  "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y-378",
+  "description": "Z top, move to home corner",
+  "id": "a1b2c3d4-0001-4000-8000-000000000004"
+ },
+ {
+  "name": "Tool Change",
+  "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-378",
+  "description": "Z top, center-X front-Y for tool access",
+  "id": "a1b2c3d4-0001-4000-8000-000000000005"
+ },
+ {
+  "name": "Center",
+  "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-190",
+  "description": "Z top, move to build area center",
+  "id": "a1b2c3d4-0001-4000-8000-000000000006"
+ }
+]
