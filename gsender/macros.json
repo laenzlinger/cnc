@@ -13,7 +13,7 @@
  },
  {
   "name": "Load Workpiece",
-  "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y0",
+  "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y-2",
   "description": "Z top, Y to far back for loading workpiece",
   "id": "a1b2c3d4-0001-4000-8000-000000000003"
  },
