@@ -51,8 +51,8 @@ $25=500.000
 ; Homing debounce ms
 $26=250
 
-; Homing pull-off mm
-$27=2.000
+; Homing pull-off mm (1mm to match gSender's hardcoded G53 G0 Z-1 safe retract)
+$27=1.000
 
 ; Spindle max RPM
 $30=12000
