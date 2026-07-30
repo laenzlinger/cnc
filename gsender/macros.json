@@ -13,25 +13,25 @@
  },
  {
   "name": "Load Workpiece",
-  "content": "G90 G53 G0 Z0\nG53 G0 X-216 Y-2",
+  "content": "G90 G53 G0 Z-2\nG53 G0 X-216 Y-2",
   "description": "Z top, Y to far back for loading workpiece",
   "id": "a1b2c3d4-0001-4000-8000-000000000003"
  },
  {
   "name": "Park",
-  "content": "G90 G53 G0 Z0\nG53 G0 X-216 Y-376",
+  "content": "G90 G53 G0 Z-2\nG53 G0 X-216 Y-376",
   "description": "Z top, move to home corner",
   "id": "a1b2c3d4-0001-4000-8000-000000000004"
  },
  {
   "name": "Tool Change",
-  "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-376",
+  "content": "G90 G53 G0 Z-2\nG53 G0 X-110 Y-376",
   "description": "Z top, center-X front-Y for tool access",
   "id": "a1b2c3d4-0001-4000-8000-000000000005"
  },
  {
   "name": "Center",
-  "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-190",
+  "content": "G90 G53 G0 Z-2\nG53 G0 X-110 Y-190",
   "description": "Z top, move to build area center",
   "id": "a1b2c3d4-0001-4000-8000-000000000006"
  }
