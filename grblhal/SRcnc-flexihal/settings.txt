@@ -34,8 +34,10 @@ $20=1
 ; Hard limits
 $21=1
 
-; Homing enabled
-$22=1
+; Homing enabled + set machine origin to 0 after homing
+; Bit 0: Enable, Bit 3: Set machine origin to 0
+; After homing: MPos = 0,0,0; X/Y travel positive, Z travel negative
+$22=9
 
 ; Homing direction invert mask
 ; X and Y inverted (due to $3 direction inversion interactions)
@@ -51,19 +53,14 @@ $25=500.000
 ; Homing debounce ms
 $26=250
 
-; Homing pull-off mm (1mm to match gSender's hardcoded G53 G0 Z-1 safe retract)
-$27=1.000
+; Homing pull-off mm
+$27=2.000
 
 ; Spindle max RPM
 $30=12000
 
 ; Spindle min RPM
 $31=0
-
-; Homing machine position (home = 0,0,0)
-$73=0
-$74=0
-$75=0
 
 ; Step idle delay ms (255 = never disable)
 $1=255

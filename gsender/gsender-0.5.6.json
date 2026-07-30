@@ -3,7 +3,7 @@
   "state": {
     "session": {
       "name": "",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU0MTM4MjcsImV4cCI6MTc4ODAwNTgyN30.YOaGRlx-sADj71LR38YJl-SWSlbY2TbN7y7R9Gzb_0c",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU0MTkxMjYsImV4cCI6MTc4ODAxMTEyNn0.1XW0MUR4hF7dARMcTZFaORyguHQjXCujzqhcvHSjrb4",
       "enabled": false
     },
     "workspace": {
@@ -724,45 +724,13 @@
         }
       },
       "park": {
-        "x": 0,
-        "y": 0,
-        "z": 0
+        "x": 20,
+        "y": 2,
+        "z": -2
       },
       "notifications": [],
       "toastDuration": 0,
-      "enableDarkMode": false,
-      "macros": [
-        {
-          "id": 1,
-          "name": "Go to XY zero",
-          "content": "G90 G0 X0 Y0"
-        },
-        {
-          "id": 2,
-          "name": "Probe Z",
-          "content": "G91 G38.2 Z-30 F100\nG0 Z2\nG38.2 Z-5 F20\nG90 G10 L20 P1 Z19.25\nG0 Z25"
-        },
-        {
-          "id": 3,
-          "name": "Load Workpiece",
-          "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y0"
-        },
-        {
-          "id": 4,
-          "name": "Park",
-          "content": "G90 G53 G0 Z0\nG53 G0 X-218 Y-378"
-        },
-        {
-          "id": 5,
-          "name": "Tool Change",
-          "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-378"
-        },
-        {
-          "id": 6,
-          "name": "Center",
-          "content": "G90 G53 G0 Z0\nG53 G0 X-110 Y-190"
-        }
-      ]
+      "enableDarkMode": false
     },
     "widgets": {
       "axes": {
@@ -1447,6 +1415,78 @@
         "cmd": "STOP_LASER_OFF",
         "keys": "",
         "isActive": true
+      },
+      "3fc45281-a426-4ee3-8902-27acb504a830": {
+        "keys": "",
+        "title": "Go to XY zero",
+        "cmd": "3fc45281-a426-4ee3-8902-27acb504a830",
+        "payload": {
+          "macroID": "3fc45281-a426-4ee3-8902-27acb504a830"
+        },
+        "preventDefault": false,
+        "isActive": false,
+        "category": "Macros",
+        "callback": {}
+      },
+      "583b3609-765a-4851-8109-db19cd51edaf": {
+        "keys": "",
+        "title": "Probe Z",
+        "cmd": "583b3609-765a-4851-8109-db19cd51edaf",
+        "payload": {
+          "macroID": "583b3609-765a-4851-8109-db19cd51edaf"
+        },
+        "preventDefault": false,
+        "isActive": false,
+        "category": "Macros",
+        "callback": {}
+      },
+      "331bc1ba-75d4-492d-84e0-73b23b702629": {
+        "keys": "",
+        "title": "Load Workpiece",
+        "cmd": "331bc1ba-75d4-492d-84e0-73b23b702629",
+        "payload": {
+          "macroID": "331bc1ba-75d4-492d-84e0-73b23b702629"
+        },
+        "preventDefault": false,
+        "isActive": false,
+        "category": "Macros",
+        "callback": {}
+      },
+      "9317d99e-4b8f-445d-aa50-3e0904baf265": {
+        "keys": "",
+        "title": "Park",
+        "cmd": "9317d99e-4b8f-445d-aa50-3e0904baf265",
+        "payload": {
+          "macroID": "9317d99e-4b8f-445d-aa50-3e0904baf265"
+        },
+        "preventDefault": false,
+        "isActive": false,
+        "category": "Macros",
+        "callback": {}
+      },
+      "ff653748-3adf-4a7e-9621-0ffe124efd1b": {
+        "keys": "",
+        "title": "Tool Change",
+        "cmd": "ff653748-3adf-4a7e-9621-0ffe124efd1b",
+        "payload": {
+          "macroID": "ff653748-3adf-4a7e-9621-0ffe124efd1b"
+        },
+        "preventDefault": false,
+        "isActive": false,
+        "category": "Macros",
+        "callback": {}
+      },
+      "a80c8bc8-106c-47a6-88ef-6150c7b6cc93": {
+        "keys": "",
+        "title": "Center",
+        "cmd": "a80c8bc8-106c-47a6-88ef-6150c7b6cc93",
+        "payload": {
+          "macroID": "a80c8bc8-106c-47a6-88ef-6150c7b6cc93"
+        },
+        "preventDefault": false,
+        "isActive": false,
+        "category": "Macros",
+        "callback": {}
       },
       "HOMING_PARK": {
         "cmd": "HOMING_PARK",
