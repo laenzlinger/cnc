@@ -25,6 +25,9 @@ $132=95.000
 ; Limit switches (NO, inverted)
 $5=7
 
+; Probe pin invert (NO probes, inverted)
+$6=1
+
 ; Soft limits
 $20=1
 
