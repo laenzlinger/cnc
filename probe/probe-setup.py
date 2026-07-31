@@ -69,9 +69,9 @@ CASE_HALF_HEIGHT = 181.8 / 2.0  # Y half-extent (long axis)
 CASE_HEIGHT_NOMINAL = 30.0      # mm — case wall height (open-side-down)
 XY_PROBE_BELOW_SURFACE = 5.0    # mm — probe this far below case top for XY edges
 
-# Probe approach positions (10mm outside case edge)
-APPROACH_CLEARANCE = 10.0
-PROBE_TRAVEL_XY = 25.0  # mm — max probe travel for X/Y edge finding
+# Probe approach positions (20mm outside case edge)
+APPROACH_CLEARANCE = 20.0
+PROBE_TRAVEL_XY = 35.0  # mm — max probe travel for X/Y edge finding
 PROBE_TRAVEL_Z = 80.0   # mm — max probe travel for Z
 
 # Y positions for angle measurement (probe X- edge at two Y positions)
