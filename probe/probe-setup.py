@@ -697,6 +697,7 @@ def run(args):
         print(f"  ERROR: {e}", file=sys.stderr)
         print(f"  Sending feed hold...", file=sys.stderr)
         grbl.feed_hold()
+        print(f"  Machine is in Hold state. Re-run script to start over (will re-home).", file=sys.stderr)
         print(f"{'!'*60}", file=sys.stderr)
         sys.exit(1)
     finally:
