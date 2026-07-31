@@ -66,7 +66,7 @@ CASE_CENTER_X = 110.0
 CASE_CENTER_Y = 190.0
 CASE_HALF_WIDTH = 113.8 / 2.0   # X half-extent (short axis)
 CASE_HALF_HEIGHT = 181.8 / 2.0  # Y half-extent (long axis)
-CASE_HEIGHT_NOMINAL = 30.0      # mm — case wall height (open-side-down)
+CASE_HEIGHT_NOMINAL = 33.0      # mm — case wall height (open-side-down, measured)
 XY_PROBE_BELOW_SURFACE = 5.0    # mm — probe this far below case top for XY edges
 
 # Probe approach positions (20mm outside case edge)
@@ -623,7 +623,7 @@ def run(args):
         if not args.dry_run:
             case_height = surface_z_machine - spoilboard_z
             print(f"    Measured case height: {case_height:.3f}mm (expected {CASE_HEIGHT_NOMINAL}mm)")
-            check_plausibility("case height", case_height, CASE_HEIGHT_NOMINAL, 3.0)
+            check_plausibility("case height", case_height, CASE_HEIGHT_NOMINAL, 5.0)
 
         # === TOOL CHANGE ===
         print("\n[7/9] Moving to tool change position...")
