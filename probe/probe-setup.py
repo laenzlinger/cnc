@@ -15,7 +15,6 @@ Workflow:
   10. Retract to safe Z
   11. Pause: remove touch plate
   12. Generate top-panel.nc with computed angle
-  13. Launch UGS
 
 Usage:
     python3 probe-setup.py
@@ -23,7 +22,7 @@ Usage:
     python3 probe-setup.py --dry-run   # print commands without connecting
 
 Preconditions:
-    - UGS must be disconnected (script owns the serial port)
+    - gSender must be disconnected (script owns the serial port)
     - Case mounted open-side-down, centered on spoilboard
     - Machine in idle state (not alarmed)
 """
