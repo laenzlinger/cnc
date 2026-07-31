@@ -38,29 +38,32 @@ python3 probe-setup.py --port /tmp/cnc-sim # connect to simulator instead
 
 ### XY Probing Geometry
 
-The script uses 4 edge probes (standard technique: two points on one edge
-for angle, opposing edges for center):
+The script uses 5 edge probes to find center and angle without assuming
+case dimensions (handles manufacturing tolerances and angled sidewalls):
 
 ```
     Y
     ↑
     │
-281 ┊─ ─ ─ ─ ─ ─ ─ ─ ┌───────────────────────┐
-    │                │                       │
-250 ┊─ ─ ─ ②·→→→→→→→→█                       │
-    │       X=43     │                       │
-    │                │                       │
-    │                │       CENTER          │
-190 ┊                │     (110, 190)        █←←←←←←←·③
-    │                │                       │    X=177
-    │                │                       │
-130 ┊─ ─ ─ ①·→→→→→→→→█                       │
-    │     X=43       │                       │
-    │                │                       │
- 99 ┊─ ─ ─ ─ ─ ─ ─ ─ └───────────────────────┘
+    ┊                  ┌───────────────────────┐
+    │                  │                       │
+    │                  │          ·⑤           │
+    │                  │      X=110,Y=291      │
+    │                  │          ↓            │
+250 ┊─ ─ ─ ②·→→→→→→→→→█                       │
+    │       X=43       │                       │
+    │                  │                       │
+    │                  │       CENTER          │
+190 ┊                  │     (110, 190)        █←←←←←←←·③
+    │                  │                       │    X=177
+    │                  │                       │
+130 ┊─ ─ ─ ①·→→→→→→→→→█                       │
+    │       X=43       │                       │
+    │                  │                       │
+    ┊                  └───────────────────────┘
     │                          ↑
     │                          ↑
- 89 ┊                         ·④
+ 89 ┊                          ·④
     │                      X=110
     └──────────────────────────────────────────── → X
    0          43    53                  167  177   220
@@ -75,16 +78,18 @@ for angle, opposing edges for center):
     ② X- back    X=43,  Y=250     → +X       left edge + angle pt 2
     ③ X+ edge    X=177, Y=190     ← -X       right edge
     ④ Y- edge    X=110, Y=89      ↑ +Y       front edge
+    ⑤ Y+ edge    X=110, Y=291     ↓ -Y       back edge
 
-    Calculations:
+    Calculations (no case dimension assumptions):
       X center = (avg(①,②) + ③) / 2
-      Y center = ④ + case_half_height - tip_radius
+      Y center = (④ + ⑤) / 2
       Angle    = atan2(②_x - ①_x, 120mm)
 ```
 
 All probes descend to 5mm below the case top surface before probing
 sideways. Each probe uses double-contact (fast at 100mm/min, slow at
-20mm/min) for accuracy.
+20mm/min) for accuracy. Tip radius cancels when taking midpoints of
+opposing edges.
 
 ### Z Probing
 
