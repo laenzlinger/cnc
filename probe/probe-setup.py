@@ -209,71 +209,50 @@ class GrblConnection:
         raise TimeoutError("Timeout waiting for status report")
 
     def confirm_probe_trigger(self, message, dry_run=False):
-        """Ask user to manually trigger the probe and verify the signal.
+        """Wait for probe to be triggered and released (no Enter needed).
 
-        1. Confirm probe is NOT triggered
-        2. Ask user to trigger it (touch plate, press tip)
-        3. Verify probe IS triggered
-        4. Ask user to release
-        5. Verify probe is NOT triggered again
-
-        Skipped if stdin is not a terminal (piped input in tests).
+        Polls status report until Pn:P appears, then until it disappears.
+        Skipped in dry-run or non-interactive mode.
         """
         if dry_run:
-            print(f"    [dry-run: skipping probe trigger confirmation]")
+            print("    [dry-run: skipping probe trigger confirmation]")
             return
 
-        # Step 1: verify not triggered
         self.check_probe_ready()
 
-        # Skip interactive trigger test if stdin is not a terminal
         if not sys.stdin.isatty():
-            print(f"    [non-interactive: skipping manual trigger test]")
+            print("    [non-interactive: skipping manual trigger test]")
             return
 
-        # Step 2: ask user to trigger
-        print(f"\n{'='*60}")
+        sep = "=" * 60
+        print(f"\n{sep}")
         print(f"  ACTION REQUIRED: {message}")
-        print(f"{'='*60}")
-        input("  Press Enter once you've triggered it...")
+        print(f"  (touch and release to confirm)")
+        print(sep)
 
-        # Step 3: verify triggered
-        self.conn.write(b"?\n")
-        deadline = time.time() + 5.0
-        triggered = False
-        while time.time() < deadline:
-            line = self.conn.readline().decode("ascii", errors="replace").strip()
-            if line.startswith("<"):
-                if "Pn:" in line and "P" in line.split("Pn:")[1].split("|")[0]:
-                    triggered = True
-                break
-        if not triggered:
-            raise RuntimeError(
-                "Probe did NOT trigger! Check wiring and connections.\n"
-                "The probe circuit is not making contact."
-            )
-        print(f"    Probe triggered ✓")
+        # Poll until triggered
+        while True:
+            self.conn.write(b"?\n")
+            time.sleep(0.3)
+            while self.conn.in_waiting:
+                line = self.conn.readline().decode("ascii", errors="replace").strip()
+                if line.startswith("<") and "Pn:" in line:
+                    pn = line.split("Pn:")[1].split("|")[0]
+                    if "P" in pn:
+                        print("    Probe triggered \u2713")
+                        # Now wait for release
+                        time.sleep(0.3)
+                        while True:
+                            self.conn.write(b"?\n")
+                            time.sleep(0.3)
+                            while self.conn.in_waiting:
+                                line2 = self.conn.readline().decode("ascii", errors="replace").strip()
+                                if line2.startswith("<"):
+                                    if "Pn:" not in line2 or "P" not in line2.split("Pn:")[1].split("|")[0]:
+                                        print("    Probe released \u2713 — ready to probe")
+                                        return
+                            time.sleep(0.2)
 
-        # Step 4: ask user to release
-        print(f"\n{'='*60}")
-        print(f"  ACTION REQUIRED: Release the probe.")
-        print(f"{'='*60}")
-        input("  Press Enter once released...")
-
-        # Step 5: verify released
-        self.conn.write(b"?\n")
-        deadline = time.time() + 5.0
-        while time.time() < deadline:
-            line = self.conn.readline().decode("ascii", errors="replace").strip()
-            if line.startswith("<"):
-                if "Pn:" in line and "P" in line.split("Pn:")[1].split("|")[0]:
-                    raise RuntimeError(
-                        "Probe is still triggered after release!\n"
-                        "Check: probe tip stuck? Wiring short?"
-                    )
-                print(f"    Probe released ✓ — ready to probe")
-                return
-        raise TimeoutError("Timeout waiting for status report")
 
 
     def read_g54(self):
