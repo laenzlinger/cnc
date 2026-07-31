@@ -447,51 +447,46 @@ def run(args):
         xy_probe_z = spoilboard_z + CASE_HEIGHT_NOMINAL - XY_PROBE_BELOW_SURFACE
         print(f"    XY probe Z: {xy_probe_z:.3f}mm (spoilboard={spoilboard_z:.3f} + case={CASE_HEIGHT_NOMINAL}mm - {XY_PROBE_BELOW_SURFACE}mm)")
 
-        # Probe X- edge
-        grbl.send(f"G53 G0 X{CASE_CENTER_X - CASE_HALF_WIDTH - APPROACH_CLEARANCE:.3f} Y{CASE_CENTER_Y:.3f}")
-        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
-        x_minus = probe_edge_double(grbl, "X", +1, "X- edge")
-        grbl.send(f"G53 G0 Z0")
-
-        # Probe X+ edge
-        grbl.send(f"G53 G0 X{CASE_CENTER_X + CASE_HALF_WIDTH + APPROACH_CLEARANCE:.3f} Y{CASE_CENTER_Y:.3f}")
-        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
-        x_plus = probe_edge_double(grbl, "X", -1, "X+ edge")
-        grbl.send(f"G53 G0 Z0")
-
-        # Probe Y- edge (front edge, for Y center calculation)
-        grbl.send(f"G53 G0 X{CASE_CENTER_X:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
-        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
-        y_minus = probe_edge_double(grbl, "Y", +1, "Y- edge (center)")
-        grbl.send(f"G53 G0 Z0")
-
-        # Probe X- edge front (for angle)
+        # Probe X- edge at two Y positions (left edge + angle measurement)
         grbl.send(f"G53 G0 X{CASE_CENTER_X - CASE_HALF_WIDTH - APPROACH_CLEARANCE:.3f} Y{ANGLE_PROBE_Y_FRONT:.3f}")
         grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
         x_minus_front = probe_edge_double(grbl, "X", +1, "X- edge (front)")
         grbl.send(f"G53 G0 Z0")
 
-        # Probe X- edge back (for angle)
         grbl.send(f"G53 G0 X{CASE_CENTER_X - CASE_HALF_WIDTH - APPROACH_CLEARANCE:.3f} Y{ANGLE_PROBE_Y_BACK:.3f}")
         grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
         x_minus_back = probe_edge_double(grbl, "X", +1, "X- edge (back)")
         grbl.send(f"G53 G0 Z0")
 
+        # Probe X+ edge (right edge, single point at center Y)
+        grbl.send(f"G53 G0 X{CASE_CENTER_X + CASE_HALF_WIDTH + APPROACH_CLEARANCE:.3f} Y{CASE_CENTER_Y:.3f}")
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
+        x_plus = probe_edge_double(grbl, "X", -1, "X+ edge")
+        grbl.send(f"G53 G0 Z0")
+
+        # Probe Y- edge (front edge, single point at center X for Y center)
+        grbl.send(f"G53 G0 X{CASE_CENTER_X:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
+        y_minus = probe_edge_double(grbl, "Y", +1, "Y- edge")
+        grbl.send(f"G53 G0 Z0")
+
         # === COMPUTE CENTER AND ANGLE ===
         print("\n[5/9] Computing center and angle...")
 
-        # Account for probe tip radius and case geometry
-        # X: probed both sides at center, midpoint (tip radius cancels out)
-        center_x = (x_minus + x_plus) / 2.0
-        # Y: probed Y- edge at center X
+        # X center: average of two X- probes (= left edge) vs X+ probe (= right edge)
+        # Tip radius cancels out when taking midpoint of opposite edges
+        x_minus_avg = (x_minus_front + x_minus_back) / 2.0
+        center_x = (x_minus_avg + x_plus) / 2.0
+
+        # Y center: probed Y- edge, add known half-height
         # contact = case_edge_y + PROBE_TIP_RADIUS (probe approached from -Y toward +Y)
         # case_edge_y = center_y - CASE_HALF_HEIGHT
         # → center_y = contact - PROBE_TIP_RADIUS + CASE_HALF_HEIGHT
         center_y = y_minus - PROBE_TIP_RADIUS + CASE_HALF_HEIGHT
 
-        # Angle from X- edge (two points at known Y separation along the long edge)
-        dy = ANGLE_PROBE_Y_BACK - ANGLE_PROBE_Y_FRONT
-        dx = x_minus_back - x_minus_front
+        # Angle from X- edge: two points on the same (long) edge
+        dy = ANGLE_PROBE_Y_BACK - ANGLE_PROBE_Y_FRONT  # known Y separation (120mm)
+        dx = x_minus_back - x_minus_front               # measured X difference
         angle_deg = math.degrees(math.atan2(dx, dy))
 
         print(f"    Case center: X={center_x:.4f} Y={center_y:.4f}")
@@ -500,13 +495,13 @@ def run(args):
         # Plausibility checks
         if not args.dry_run:
             # X- must be left of X+
-            if x_minus >= x_plus:
+            if x_minus_avg >= x_plus:
                 raise RuntimeError(
-                    f"X- edge ({x_minus:.4f}) is not left of X+ edge ({x_plus:.4f}). "
+                    f"X- edge ({x_minus_avg:.4f}) is not left of X+ edge ({x_plus:.4f}). "
                     "Check case position and probe approach directions."
                 )
 
-            measured_width = abs(x_plus - x_minus) - 2 * PROBE_TIP_RADIUS
+            measured_width = abs(x_plus - x_minus_avg) - 2 * PROBE_TIP_RADIUS
             check_plausibility("case X width", measured_width, EXPECTED_CASE_WIDTH, MAX_WIDTH_ERROR)
             check_plausibility("case center X", center_x, CASE_CENTER_X, MAX_CENTER_ERROR)
             check_plausibility("case center Y", center_y, CASE_CENTER_Y, MAX_CENTER_ERROR)
