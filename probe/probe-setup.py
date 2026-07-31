@@ -46,7 +46,7 @@ except ImportError:
 
 PORT = "/dev/cnc"
 BAUD = 115200
-TIMEOUT = 30.0          # seconds to wait for probe response
+TIMEOUT = 90.0          # seconds to wait for probe response (90mm at 100mm/min = 54s)
 HOMING_TIMEOUT = 120.0  # seconds to wait for homing (slow seek + locate)
 
 # Safe heights and speeds
@@ -168,8 +168,9 @@ class GrblConnection:
                 ok_received = True
                 if prb is not None:
                     return prb  # normal order: PRB then ok
-                # PRB not yet received — wait a bit longer (mock/hardware latency)
-                deadline = time.time() + 0.5
+                # grblHAL sends 'ok' when command is accepted into buffer,
+                # [PRB:] comes later when probe actually triggers.
+                # Keep waiting with full timeout.
             if line.startswith("error"):
                 raise RuntimeError(f"GRBL error during probe: {line}")
         if ok_received and prb is None:
