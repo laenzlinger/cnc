@@ -113,11 +113,12 @@ class GrblConnection:
 
     def _read_startup(self):
         """Consume controller startup messages."""
-        deadline = time.time() + 3.0
+        deadline = time.time() + 5.0
         while time.time() < deadline:
             line = self.conn.readline().decode("ascii", errors="replace").strip()
             if line:
                 print(f"  < {line}")
+                deadline = time.time() + 1.0  # keep reading while data is flowing
 
     def send(self, cmd, timeout=None):
         """Send a G-code command, wait for 'ok' or 'error'."""
@@ -412,8 +413,11 @@ def run(args):
 
         # Safe home: Z first to clear workpiece, then X and Y
         print("\n[2/9] Homing machine (Z first for safety)...")
-        # Unlock if in alarm state (e.g. after power-on or previous abort)
-        grbl.send("$X", timeout=5)
+        # Unlock if in alarm state (ignore errors — may already be idle)
+        try:
+            grbl.send("$X", timeout=5)
+        except (RuntimeError, TimeoutError):
+            pass  # already idle or alarm cleared by reset
         grbl.send("$HZ", timeout=HOMING_TIMEOUT)  # home Z first — clears probe from workpiece
         grbl.send("$HX", timeout=HOMING_TIMEOUT)  # home X
         grbl.send("$HY", timeout=HOMING_TIMEOUT)  # home Y
