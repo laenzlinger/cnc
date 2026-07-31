@@ -42,8 +42,6 @@ The script uses 4 edge probes (standard technique: two points on one edge
 for angle, opposing edges for center):
 
 ```
-              You stand here (Y=0)
-
     Y
     ↑
     │
@@ -66,6 +64,9 @@ for angle, opposing edges for center):
     │                      X=110
     └──────────────────────────────────────────── → X
    0          43    53                  167  177   220
+
+              You stand here (Y=0)
+
 
 
     Probe       Start position    Direction   Purpose
