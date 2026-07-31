@@ -3,7 +3,7 @@
   "state": {
     "session": {
       "name": "",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU1MDEzODksImV4cCI6MTc4ODA5MzM4OX0.c79cziXFakPV6A91XezuT_uVNfaF8C7zyyj0EnyYCBQ",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiIsIm5hbWUiOiIiLCJpYXQiOjE3ODU1MTIwNjMsImV4cCI6MTc4ODEwNDA2M30.qU8bNfeeO_2QZ8RWR3TXNIHf-UWMvyfYG1RpDqhZIXc",
       "enabled": false
     },
     "workspace": {
@@ -62,14 +62,14 @@
         "type": "Custom",
         "version": "1.0",
         "mm": {
-          "width": 220,
           "depth": 380,
-          "height": 95
+          "height": 95,
+          "width": 220
         },
         "in": {
-          "width": 8.66,
           "depth": 14.96,
-          "height": 3.74
+          "height": 3.74,
+          "width": 8.66
         },
         "endstops": true,
         "spindle": true,
@@ -298,6 +298,11 @@
           "$130": "810.000",
           "$131": "855.000",
           "$132": "120.000"
+        },
+        "limits": {
+          "xmax": 220,
+          "ymax": 380,
+          "zmax": 95
         }
       },
       "probeProfile": {
@@ -349,7 +354,13 @@
           "fileName": "top-panel.nc",
           "filePath": "/home/laenzi/projects/gh/pedalboard/pedalboard-case/top-panel.nc",
           "fileSize": 16833,
-          "timeUploaded": 1785358335119
+          "timeUploaded": 1785510838691
+        },
+        {
+          "fileName": "probe-path.nc",
+          "filePath": "/home/laenzi/projects/gh/laenzlinger/cnc/probe/probe-path.nc",
+          "fileSize": 890,
+          "timeUploaded": 1785506684501
         },
         {
           "fileName": "apply-settings.nc",
@@ -781,7 +792,7 @@
         "controller": {
           "type": "grblHAL"
         },
-        "port": "/dev/cnc",
+        "port": "/dev/ttyACM0",
         "baudrate": 115200,
         "connection": {
           "type": "serial",
@@ -1482,6 +1493,11 @@
         "isActive": false,
         "category": "Macros",
         "callback": {}
+      },
+      "HOMING_PARK": {
+        "cmd": "HOMING_PARK",
+        "keys": "",
+        "isActive": true
       }
     }
   }
