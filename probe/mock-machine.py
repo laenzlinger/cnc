@@ -39,8 +39,9 @@ DEFAULT_CASE_CENTER_Y = 190.0
 DEFAULT_CASE_HALF_WIDTH = 113.8 / 2.0   # short axis (X)
 DEFAULT_CASE_HALF_HEIGHT = 181.8 / 2.0  # long axis (Y)
 
-# Spoilboard is at Z = -MACHINE_Z_MAX (machine coord) = 0 in WCS
-SPOILBOARD_Z_MACHINE = -MACHINE_Z_MAX
+# Spoilboard (fixture plate) is elevated — not at machine Z limit
+# Realistic: fixture plate top surface at ~60mm below home
+SPOILBOARD_Z_MACHINE = -60.0
 
 # Probe tip radius (must match probe-setup.py)
 PROBE_TIP_RADIUS = 2.0
