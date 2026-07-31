@@ -145,14 +145,22 @@ class MockMachine:
         contact = list(self.pos)
 
         if axis == "X":
-            edge_x = (self.case_center_x
-                      - DEFAULT_CASE_HALF_WIDTH * direction
-                      - PROBE_TIP_RADIUS * direction)
-            if direction > 0 and self.pos[0] < edge_x <= target:
-                contact[0] = edge_x
+            # X edge contact — apply rotation for angle
+            cos_a = math.cos(-self.angle_rad)
+            sin_a = math.sin(-self.angle_rad)
+            # Probe Y in case-local coords
+            probe_y_local = ((self.pos[0] - self.case_center_x) * sin_a
+                             + (self.pos[1] - self.case_center_y) * cos_a)
+            edge_local_x = -DEFAULT_CASE_HALF_WIDTH * direction
+            edge_machine_x = (self.case_center_x
+                              + edge_local_x * math.cos(self.angle_rad)
+                              - probe_y_local * math.sin(self.angle_rad))
+            contact_x = edge_machine_x + PROBE_TIP_RADIUS * direction
+            if direction > 0 and self.pos[0] < contact_x <= target:
+                contact[0] = contact_x
                 triggered = True
-            elif direction < 0 and target <= edge_x < self.pos[0]:
-                contact[0] = edge_x
+            elif direction < 0 and target <= contact_x < self.pos[0]:
+                contact[0] = contact_x
                 triggered = True
 
         elif axis == "Y":
