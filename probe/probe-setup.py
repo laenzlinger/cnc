@@ -182,47 +182,6 @@ class GrblConnection:
             return
         self.conn.write(b"!")
 
-    def safe_descend(self, z_depth, feed=None):
-        """Descend to z_depth using G38.3 (probe toward, no error if no contact).
-
-        Stops immediately if anything unexpected is in the way.
-        Use instead of G0 Z for all downward moves near the workpiece.
-
-        Args:
-            z_depth: absolute machine Z target (negative = below home)
-            feed: feed rate in mm/min (default: FEED_FAST)
-        """
-        if feed is None:
-            feed = FEED_FAST
-        cmd = f"G53 G38.3 Z{z_depth:.3f} F{feed}"
-        print(f"  > {cmd}  (safe descent)")
-        if self.dry_run:
-            return
-        self.conn.write((cmd + "\n").encode("ascii"))
-        triggered = False
-        deadline = time.time() + TIMEOUT
-        while time.time() < deadline:
-            line = self.conn.readline().decode("ascii", errors="replace").strip()
-            if line:
-                print(f"  < {line}")
-            if "[PRB:" in line and ":1]" in line:
-                triggered = True
-            if line.startswith("ok"):
-                if triggered:
-                    print("  ! safe_descend hit obstacle — retracting 5mm")
-                    self.send("G91")
-                    self.send("G0 Z5")
-                    self.send("G90")
-                    raise RuntimeError(
-                        f"Safe descent to Z{z_depth:.1f} hit an obstacle. "
-                        "Check clearance and probe position."
-                    )
-                # After G38.3 with no contact, send a dwell to clear probe cycle state
-                self.send("G4 P0")
-                return
-            if line.startswith("error"):
-                raise RuntimeError(f"Safe descent stopped unexpectedly: {line}")
-        raise TimeoutError(f"Timeout during safe descent to Z{z_depth}")
 
     def read_g54(self):
         """Query $# and return G54 (x, y, z) offsets, or None on failure."""
