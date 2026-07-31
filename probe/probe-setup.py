@@ -91,7 +91,7 @@ CNS_REPO = SCRIPT_DIR.parent
 PEDALBOARD_REPO = CNS_REPO.parent.parent / "pedalboard" / "pedalboard-case"
 GCODE_GENERATOR = PEDALBOARD_REPO / "parts" / "top-panel-gcode.py"
 GCODE_OUTPUT = PEDALBOARD_REPO / "top-panel.nc"
-UGS_LAUNCH = CNS_REPO / "ugs" / "ugs.sh"
+SENDER_LAUNCH = "/usr/sbin/gsender"
 
 
 # === GRBL PROTOCOL ===
@@ -422,6 +422,14 @@ def run(args):
     try:
         # Verify machine state
         print("\n[1/9] Checking machine state...")
+
+        # Check gSender is not running (it would hold the serial port)
+        if not args.dry_run:
+            result = subprocess.run(["pgrep", "-f", "gsender"], capture_output=True)
+            if result.returncode == 0:
+                print("ERROR: gSender is running. Close it first (it holds the serial port).", file=sys.stderr)
+                sys.exit(1)
+
         grbl.check_state()
 
         # Safe home: Z first to clear workpiece, then X and Y
@@ -615,10 +623,10 @@ def run(args):
         print(f"  G-code: {GCODE_OUTPUT}")
         print("="*60)
 
-        # Launch UGS
-        if not args.dry_run and UGS_LAUNCH.exists():
-            print(f"\nLaunching UGS...")
-            subprocess.Popen([str(UGS_LAUNCH)])
+        # Launch gSender
+        if not args.dry_run and Path(SENDER_LAUNCH).exists():
+            print(f"\nLaunching gSender...")
+            subprocess.Popen([SENDER_LAUNCH])
 
     except Exception as e:
         print(f"\n{'!'*60}", file=sys.stderr)
