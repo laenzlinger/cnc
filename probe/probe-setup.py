@@ -232,8 +232,10 @@ class GrblConnection:
             return
 
         # Step 2: ask user to trigger
-        print(f"\n    >> {message}")
-        input("    >> Press Enter once you've triggered it...")
+        print(f"\n{'='*60}")
+        print(f"  ACTION REQUIRED: {message}")
+        print(f"{'='*60}")
+        input("  Press Enter once you've triggered it...")
 
         # Step 3: verify triggered
         self.conn.write(b"?\n")
@@ -253,7 +255,10 @@ class GrblConnection:
         print(f"    Probe triggered ✓")
 
         # Step 4: ask user to release
-        input("    >> Release the probe, then press Enter...")
+        print(f"\n{'='*60}")
+        print(f"  ACTION REQUIRED: Release the probe.")
+        print(f"{'='*60}")
+        input("  Press Enter once released...")
 
         # Step 5: verify released
         self.conn.write(b"?\n")
