@@ -74,9 +74,10 @@ APPROACH_CLEARANCE = 10.0
 PROBE_TRAVEL_XY = 25.0  # mm — max probe travel for X/Y edge finding
 PROBE_TRAVEL_Z = 90.0   # mm — max probe travel for Z (must reach spoilboard)
 
-# Y positions for angle measurement (probe Y- edge at two X positions)
-ANGLE_PROBE_X_LEFT = CASE_CENTER_X - 60.0
-ANGLE_PROBE_X_RIGHT = CASE_CENTER_X + 60.0
+# Y positions for angle measurement (probe X- edge at two Y positions)
+# Using the long edge (Y direction) for better angle resolution
+ANGLE_PROBE_Y_FRONT = CASE_CENTER_Y - 60.0
+ANGLE_PROBE_Y_BACK = CASE_CENTER_Y + 60.0
 
 # Tool change position (X near home, Y front, Z top)
 TOOL_CHANGE_X = 5.0
@@ -458,34 +459,40 @@ def run(args):
         x_plus = probe_edge_double(grbl, "X", -1, "X+ edge")
         grbl.send(f"G53 G0 Z0")
 
-        # Probe Y- edge left (for angle)
-        grbl.send(f"G53 G0 X{ANGLE_PROBE_X_LEFT:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
+        # Probe Y- edge (front edge, for Y center calculation)
+        grbl.send(f"G53 G0 X{CASE_CENTER_X:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
         grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
-        y_minus_left = probe_edge_double(grbl, "Y", +1, "Y- edge (left)")
+        y_minus = probe_edge_double(grbl, "Y", +1, "Y- edge (center)")
         grbl.send(f"G53 G0 Z0")
 
-        # Probe Y- edge right (for angle)
-        grbl.send(f"G53 G0 X{ANGLE_PROBE_X_RIGHT:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
+        # Probe X- edge front (for angle)
+        grbl.send(f"G53 G0 X{CASE_CENTER_X - CASE_HALF_WIDTH - APPROACH_CLEARANCE:.3f} Y{ANGLE_PROBE_Y_FRONT:.3f}")
         grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
-        y_minus_right = probe_edge_double(grbl, "Y", +1, "Y- edge (right)")
+        x_minus_front = probe_edge_double(grbl, "X", +1, "X- edge (front)")
+        grbl.send(f"G53 G0 Z0")
+
+        # Probe X- edge back (for angle)
+        grbl.send(f"G53 G0 X{CASE_CENTER_X - CASE_HALF_WIDTH - APPROACH_CLEARANCE:.3f} Y{ANGLE_PROBE_Y_BACK:.3f}")
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
+        x_minus_back = probe_edge_double(grbl, "X", +1, "X- edge (back)")
         grbl.send(f"G53 G0 Z0")
 
         # === COMPUTE CENTER AND ANGLE ===
         print("\n[5/9] Computing center and angle...")
 
         # Account for probe tip radius and case geometry
-        # X: probed both sides, center is midpoint (tip radius cancels out)
+        # X: probed both sides at center, midpoint (tip radius cancels out)
         center_x = (x_minus + x_plus) / 2.0
-        # Y: only probed Y- edge from below (+Y direction)
-        # contact = center_y - CASE_HALF_HEIGHT + PROBE_TIP_RADIUS
-        # → center_y = contact + CASE_HALF_HEIGHT - PROBE_TIP_RADIUS
-        y_minus_avg = (y_minus_left + y_minus_right) / 2.0
-        center_y = y_minus_avg + CASE_HALF_HEIGHT - PROBE_TIP_RADIUS
+        # Y: probed Y- edge at center X
+        # contact = case_edge_y + PROBE_TIP_RADIUS (probe approached from -Y toward +Y)
+        # case_edge_y = center_y - CASE_HALF_HEIGHT
+        # → center_y = contact - PROBE_TIP_RADIUS + CASE_HALF_HEIGHT
+        center_y = y_minus - PROBE_TIP_RADIUS + CASE_HALF_HEIGHT
 
-        # Angle from Y- edge (two points at known X separation)
-        dx = ANGLE_PROBE_X_RIGHT - ANGLE_PROBE_X_LEFT
-        dy = y_minus_right - y_minus_left
-        angle_deg = math.degrees(math.atan2(dy, dx))
+        # Angle from X- edge (two points at known Y separation along the long edge)
+        dy = ANGLE_PROBE_Y_BACK - ANGLE_PROBE_Y_FRONT
+        dx = x_minus_back - x_minus_front
+        angle_deg = math.degrees(math.atan2(dx, dy))
 
         print(f"    Case center: X={center_x:.4f} Y={center_y:.4f}")
         print(f"    Rotation angle: {angle_deg:.4f}°")
