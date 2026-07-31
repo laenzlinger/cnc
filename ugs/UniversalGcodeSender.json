@@ -1,7 +1,10 @@
 {
-  "firmwareVersion": "FluidNC",
-  "fileName": "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate/fixture-plate.nc",
+  "firmwareVersion": "GRBL",
+  "fileName": "/home/laenzi/projects/gh/pedalboard/pedalboard-case/parts/plexi-cut.nc",
   "fileHistory": [
+    "/home/laenzi/projects/gh/pedalboard/pedalboard-case/parts/plexi-cut.nc",
+    "/home/laenzi/projects/gh/pedalboard/pedalboard-case/parts/plexi-production.nc",
+    "/home/laenzi/projects/gh/pedalboard/pedalboard-case/top-panel.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate/fixture-plate.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing/surfacing.nc",
     "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing/surfacing.nc",
@@ -10,6 +13,8 @@
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/Coffee-Time.gcode"
   ],
   "dirHistory": [
+    "/home/laenzi/projects/gh/pedalboard/pedalboard-case/parts",
+    "/home/laenzi/projects/gh/pedalboard/pedalboard-case",
     "/home/laenzi/projects/gh/laenzlinger/cnc/parts/fixture-plate",
     "/home/laenzi/projects/gh/laenzlinger/cnc/srcnc/surfacing",
     "/home/laenzi/projects/gh/laenzlinger/cnc/surfacing",
@@ -29,7 +34,7 @@
   "scrollWindowEnabled": true,
   "verboseOutputEnabled": false,
   "commandTableEnabled": false,
-  "confirmResetZero": true,
+  "confirmResetZero": false,
   "mainWindowSettings": {
     "xLocation": 0,
     "yLocation": 0,
@@ -80,23 +85,23 @@
   "fileStats": {
     "minCoordinate": {
       "units": "MM",
-      "x": -88.75,
-      "y": -88.0,
-      "z": -13.2,
+      "x": -2.0,
+      "y": -90.69013364214136,
+      "z": -2.5,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
     "maxCoordinate": {
       "units": "MM",
-      "x": 92.0,
-      "y": 88.0,
-      "z": 5.0,
+      "x": 38.5,
+      "y": 14.0,
+      "z": 15.0,
       "a": NaN,
       "b": NaN,
       "c": NaN
     },
-    "numCommands": 1711
+    "numCommands": 473
   },
   "macros": {
     "1": {
