@@ -359,6 +359,9 @@ def probe_edge_double(grbl, axis, direction, label):
     slow_travel = (PROBE_TRAVEL_XY / 5.0) * direction
     slow_result = grbl.probe(f"G38.2 {axis}{slow_travel:.3f} F{FEED_SLOW}")
 
+    # Retract away from wall before Z retract
+    grbl.send(f"G0 {axis}{retract:.3f}")
+
     grbl.send("G90")  # back to absolute
 
     idx = {"X": 0, "Y": 1, "Z": 2}[axis]
