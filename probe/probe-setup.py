@@ -601,7 +601,9 @@ def run(args):
             print("    Plausibility checks skipped (dry-run)")
 
         # Set G54 X0 Y0 at case center
-        grbl.send(f"G10 L20 P1 X{center_x:.4f} Y{center_y:.4f}")
+        # G10 L2 sets offset directly: work_pos = machine_pos - offset
+        # So offset = center → at center, work = 0
+        grbl.send(f"G10 L2 P1 X{center_x:.4f} Y{center_y:.4f}")
 
         # Verify G54 was accepted — $# must return a parseable G54 entry
         if not args.dry_run:
