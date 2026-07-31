@@ -375,7 +375,7 @@ def probe_z_surface(grbl):
 
     fast_result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z:.3f} F{FEED_FAST}")
     grbl.send("G0 Z2.0")
-    slow_result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z / 5.0:.3f} F{FEED_SLOW}")
+    slow_result = grbl.probe(f"G38.2 Z-5.000 F{FEED_SLOW}")
     grbl.send("G90")
 
     fast_z = fast_result[2]
@@ -406,7 +406,7 @@ def probe_spoilboard(grbl):
 
     fast_result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z:.3f} F{FEED_FAST}")
     grbl.send("G0 Z2.0")
-    slow_result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z / 5.0:.3f} F{FEED_SLOW}")
+    slow_result = grbl.probe(f"G38.2 Z-5.000 F{FEED_SLOW}")
     grbl.send("G90")
 
     fast_z = fast_result[2]
@@ -440,7 +440,7 @@ def probe_z_double(grbl):
     grbl.send("G0 Z2.0")
 
     # Slow probe
-    slow_result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z / 5.0:.3f} F{FEED_SLOW}")
+    slow_result = grbl.probe(f"G38.2 Z-5.000 F{FEED_SLOW}")
 
     grbl.send("G90")
 
@@ -661,7 +661,7 @@ def run(args):
                 grbl.send("G91")
                 result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z:.3f} F{FEED_FAST}")
                 grbl.send("G0 Z2.0")
-                slow_result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z / 5.0:.3f} F{FEED_SLOW}")
+                slow_result = grbl.probe(f"G38.2 Z-5.000 F{FEED_SLOW}")
                 grbl.send("G90")
 
                 feature_z = slow_result[2]
