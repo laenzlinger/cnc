@@ -79,8 +79,8 @@ PROBE_TRAVEL_Z = 80.0   # mm — max probe travel for Z
 ANGLE_PROBE_Y_FRONT = CASE_CENTER_Y - 60.0
 ANGLE_PROBE_Y_BACK = CASE_CENTER_Y + 60.0
 
-# Tool change position (X near home, Y front, Z top)
-TOOL_CHANGE_X = 5.0
+# Tool change position (X center, Y front, Z top)
+TOOL_CHANGE_X = 110.0
 TOOL_CHANGE_Y = 5.0
 
 # Spoilboard probe position (bare spot on fixture plate, left of case)
