@@ -660,22 +660,9 @@ def run(args):
         # surface_z_machine = case_top_z (probe tip center at contact)
         # cutting_tool_z = touch_plate_top_z (tool tip center at contact)
         # touch_plate_top = surface_z_machine + TOUCH_PLATE_THICKNESS
-        # (higher = less negative in machine coords = closer to Z home)
-        if not args.dry_run:
-            expected_tool_z = surface_z_machine + TOUCH_PLATE_THICKNESS
-            z_discrepancy = abs(cutting_tool_z - expected_tool_z)
-            print(f"\n    Z cross-check:")
-            print(f"      3D probe surface Z:    {surface_z_machine:.4f}")
-            print(f"      Expected tool contact: {expected_tool_z:.4f}")
-            print(f"      Actual tool contact:   {cutting_tool_z:.4f}")
-            print(f"      Discrepancy:           {z_discrepancy:.4f}mm")
-            if z_discrepancy > 2.0:
-                raise RuntimeError(
-                    f"Z cross-check failed: discrepancy {z_discrepancy:.4f}mm > 2.0mm\n"
-                    "Possible causes: touch plate on wrong surface, wrong plate thickness, "
-                    "tool not seated in collet, or 3D probe tip radius incorrect."
-                )
-            print(f"      Z cross-check passed ✓")
+        # Cross-check not possible without knowing tool lengths
+        # (3D probe and cutting tool have different lengths)
+        # The touch plate Z probe with G10 L20 sets Z0 correctly regardless.
 
         # === GENERATE G-CODE ===
         print("\n[9/9] Generating G-code...")
