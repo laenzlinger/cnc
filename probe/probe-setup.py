@@ -464,25 +464,27 @@ def run(args):
         x_plus = probe_edge_double(grbl, "X", -1, "X+ edge")
         grbl.send(f"G53 G0 Z0")
 
-        # Probe Y- edge (front edge, single point at center X for Y center)
+        # Probe Y- edge (front edge)
         grbl.send(f"G53 G0 X{CASE_CENTER_X:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
         grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
         y_minus = probe_edge_double(grbl, "Y", +1, "Y- edge")
         grbl.send(f"G53 G0 Z0")
 
+        # Probe Y+ edge (back edge)
+        grbl.send(f"G53 G0 X{CASE_CENTER_X:.3f} Y{CASE_CENTER_Y + CASE_HALF_HEIGHT + APPROACH_CLEARANCE:.3f}")
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
+        y_plus = probe_edge_double(grbl, "Y", -1, "Y+ edge")
+        grbl.send(f"G53 G0 Z0")
+
         # === COMPUTE CENTER AND ANGLE ===
         print("\n[5/9] Computing center and angle...")
 
-        # X center: average of two X- probes (= left edge) vs X+ probe (= right edge)
-        # Tip radius cancels out when taking midpoint of opposite edges
+        # X center: midpoint of opposite edges (tip radius cancels out)
         x_minus_avg = (x_minus_front + x_minus_back) / 2.0
         center_x = (x_minus_avg + x_plus) / 2.0
 
-        # Y center: probed Y- edge, add known half-height
-        # contact = case_edge_y + PROBE_TIP_RADIUS (probe approached from -Y toward +Y)
-        # case_edge_y = center_y - CASE_HALF_HEIGHT
-        # → center_y = contact - PROBE_TIP_RADIUS + CASE_HALF_HEIGHT
-        center_y = y_minus - PROBE_TIP_RADIUS + CASE_HALF_HEIGHT
+        # Y center: midpoint of opposite edges (tip radius cancels out)
+        center_y = (y_minus + y_plus) / 2.0
 
         # Angle from X- edge: two points on the same (long) edge
         dy = ANGLE_PROBE_Y_BACK - ANGLE_PROBE_Y_FRONT  # known Y separation (120mm)

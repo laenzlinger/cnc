@@ -408,7 +408,7 @@ def main():
     slave_name = os.ttyname(slave_fd)
 
     # Create symlink for easy access
-    if os.path.exists(args.symlink):
+    if os.path.exists(args.symlink) or os.path.islink(args.symlink):
         os.remove(args.symlink)
     os.symlink(slave_name, args.symlink)
 
