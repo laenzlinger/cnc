@@ -93,7 +93,6 @@ CNS_REPO = SCRIPT_DIR.parent
 PEDALBOARD_REPO = CNS_REPO.parent.parent / "pedalboard" / "pedalboard-case"
 GCODE_GENERATOR = PEDALBOARD_REPO / "parts" / "top-panel-gcode.py"
 GCODE_OUTPUT = PEDALBOARD_REPO / "top-panel.nc"
-SENDER_LAUNCH = "/usr/sbin/gsender"
 
 
 # === GRBL PROTOCOL ===
@@ -693,10 +692,9 @@ def run(args):
         print(f"  G-code: {GCODE_OUTPUT}")
         print("="*60)
 
-        # Launch gSender
-        if not args.dry_run and Path(SENDER_LAUNCH).exists():
-            print(f"\nLaunching gSender...")
-            subprocess.Popen([SENDER_LAUNCH])
+        # Done — tell user what to do next
+        print(f"\n  Next: open gSender, connect, load and run:")
+        print(f"    {GCODE_OUTPUT}")
 
     except Exception as e:
         print(f"\n{'!'*60}", file=sys.stderr)
