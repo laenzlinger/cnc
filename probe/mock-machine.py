@@ -40,8 +40,8 @@ DEFAULT_CASE_HALF_WIDTH = 113.8 / 2.0   # short axis (X)
 DEFAULT_CASE_HALF_HEIGHT = 181.8 / 2.0  # long axis (Y)
 
 # Spoilboard (fixture plate) is elevated — not at machine Z limit
-# Realistic: fixture plate top surface at ~60mm below home
-SPOILBOARD_Z_MACHINE = -60.0
+# Measured: fixture plate top surface at 65mm below home
+SPOILBOARD_Z_MACHINE = -65.0
 
 # Probe tip radius (must match probe-setup.py)
 PROBE_TIP_RADIUS = 2.0
