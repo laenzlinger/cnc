@@ -42,22 +42,22 @@ The script uses 5 edge probes to find center and angle without assuming
 case dimensions (handles manufacturing tolerances and angled sidewalls):
 
 ```
-    Y
-    ↑
-    │
+    Y                            ·⑤
+    ↑                        X=110,Y=291
+    │                             ↓
     ┊                  ┌───────────────────────┐
     │                  │                       │
-    │                  │          ·⑤           │
-    │                  │      X=110,Y=291      │
-    │                  │          ↓            │
-250 ┊─ ─ ─ ②·→→→→→→→→→█                       │
+    │                  │                       │
+    │                  │                       │
+    │                  │                       │
+250 ┊─ ─ ─ ②· →→→→→→→→→█                       │
     │       X=43       │                       │
     │                  │                       │
     │                  │       CENTER          │
 190 ┊                  │     (110, 190)        █←←←←←←←·③
     │                  │                       │    X=177
     │                  │                       │
-130 ┊─ ─ ─ ①·→→→→→→→→→█                       │
+130 ┊─ ─ ─ ①· →→→→→→→→→█                       │
     │       X=43       │                       │
     │                  │                       │
     ┊                  └───────────────────────┘
@@ -66,7 +66,7 @@ case dimensions (handles manufacturing tolerances and angled sidewalls):
  89 ┊                          ·④
     │                      X=110
     └──────────────────────────────────────────── → X
-   0          43    53                  167  177   220
+   0           43    53                        167   177   220
 
               You stand here (Y=0)
 
