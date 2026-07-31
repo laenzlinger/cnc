@@ -272,7 +272,7 @@ class GrblConnection:
         return None
 
     def check_state(self):
-        """Query machine state, raise if alarmed."""
+        """Query machine state. Handle Hold/Alarm by resetting to Idle."""
         if self.dry_run:
             return
         self.conn.write(b"?\n")
@@ -280,11 +280,17 @@ class GrblConnection:
         while time.time() < deadline:
             line = self.conn.readline().decode("ascii", errors="replace").strip()
             if line.startswith("<"):
+                if "Hold" in line:
+                    print("  Machine in Hold state — sending soft reset...")
+                    self.conn.write(b"\x18")  # Ctrl+X soft reset
+                    time.sleep(2)
+                    # Consume reset messages
+                    while self.conn.in_waiting:
+                        self.conn.readline()
+                    return
                 if "Alarm" in line:
-                    raise RuntimeError(
-                        f"Machine is in alarm state: {line}\n"
-                        "Send $X to clear alarm or home the machine first."
-                    )
+                    print("  Machine in Alarm state — will unlock and re-home...")
+                    return  # $X unlock happens next in the flow
                 return
         raise TimeoutError("Timeout waiting for machine state response")
 
