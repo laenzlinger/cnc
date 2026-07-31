@@ -92,6 +92,7 @@ CNS_REPO = SCRIPT_DIR.parent
 PEDALBOARD_REPO = CNS_REPO.parent.parent / "pedalboard" / "pedalboard-case"
 GCODE_GENERATOR = PEDALBOARD_REPO / "parts" / "top-panel-gcode.py"
 GCODE_OUTPUT = PEDALBOARD_REPO / "top-panel.nc"
+Z_OFFSETS_FILE = PEDALBOARD_REPO / "z-offsets.json"
 
 
 # === GRBL PROTOCOL ===
@@ -479,7 +480,7 @@ def run(args):
         print("\n[1/9] Checking machine state...")
 
         # Check gSender is not running (it would hold the serial port)
-        if not args.dry_run:
+        if not args.dry_run and args.port == PORT:
             result = subprocess.run(["pgrep", "-f", "gsender"], capture_output=True)
             if result.returncode == 0:
                 print("ERROR: gSender is running. Close it first (it holds the serial port).", file=sys.stderr)
@@ -614,8 +615,7 @@ def run(args):
         print("    G54 X0 Y0 set at case center")
 
         # === Z SURFACE PROBE (3D probe still installed) ===
-        # Z probe position: offset 10mm from center to avoid existing holes
-        z_probe_x = center_x - 10.0
+        z_probe_x = center_x
         z_probe_y = center_y
 
         print("\n[6/9] Probing case top surface with 3D probe...")
@@ -630,6 +630,54 @@ def run(args):
             case_height = surface_z_machine - spoilboard_z
             print(f"    Measured case height: {case_height:.3f}mm (expected {CASE_HEIGHT_NOMINAL}mm)")
             check_plausibility("case height", case_height, CASE_HEIGHT_NOMINAL, 5.0)
+
+        # === PER-FEATURE Z PROBING ===
+        print("\n[6b/9] Probing Z at each feature center...")
+
+        # Load feature positions (same coords the G-code generator uses)
+        sys.path.insert(0, str(PEDALBOARD_REPO / "parts"))
+        from panel_coords import load_coords, cnc_coords
+        panel_data = load_coords(str(PEDALBOARD_REPO / "parts" / "top-panel-coords.json"))
+        panel_coords = cnc_coords(panel_data, origin="center", angle_deg=angle_deg)
+
+        feature_groups = [
+            ("single_leds", panel_coords["single_leds"]),
+            ("buttons", panel_coords["buttons"]),
+            ("encoders", panel_coords["encoders"]),
+            ("displays", panel_coords["displays"]),
+        ]
+
+        z_offsets = {}
+        for group_name, positions in feature_groups:
+            offsets = []
+            for i, (fx, fy) in enumerate(positions):
+                # Move to feature center in work coords (G54)
+                grbl.send(f"G53 G0 Z0")
+                # Convert work coords to machine coords for G53 move
+                grbl.send(f"G90 G0 X{fx:.3f} Y{fy:.3f}")
+                grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")
+
+                # Probe Z
+                grbl.send("G91")
+                result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z:.3f} F{FEED_FAST}")
+                grbl.send("G0 Z2.0")
+                slow_result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z / 5.0:.3f} F{FEED_SLOW}")
+                grbl.send("G90")
+
+                feature_z = slow_result[2]
+                offset = feature_z - surface_z_machine
+                offsets.append(round(offset, 3))
+                print(f"    {group_name}[{i}]: Z={feature_z:.3f} offset={offset:.3f}mm")
+
+            z_offsets[group_name] = offsets
+
+        # Save offsets to file
+        if not args.dry_run:
+            import json
+            Z_OFFSETS_FILE.write_text(json.dumps(z_offsets, indent=2))
+            print(f"    Saved Z offsets to {Z_OFFSETS_FILE}")
+
+        grbl.send(f"G53 G0 Z0")
 
         # === TOOL CHANGE ===
         print("\n[7/9] Moving to tool change position...")
@@ -677,6 +725,7 @@ def run(args):
             str(GCODE_GENERATOR),
             "--origin", "center",
             "--angle", f"{angle_deg:.4f}",
+            "--z-offsets", str(Z_OFFSETS_FILE),
         ]
         print(f"    Running: {' '.join(cmd)}")
         if not args.dry_run:
