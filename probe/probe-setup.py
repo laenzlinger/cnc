@@ -47,6 +47,7 @@ except ImportError:
 PORT = "/dev/cnc"
 BAUD = 115200
 TIMEOUT = 30.0          # seconds to wait for probe response
+HOMING_TIMEOUT = 120.0  # seconds to wait for homing (slow seek + locate)
 
 # Safe heights and speeds
 SAFE_Z = 10.0           # mm — safe Z for rapids
@@ -71,7 +72,7 @@ XY_PROBE_BELOW_SURFACE = 5.0    # mm — probe this far below case top for XY ed
 # Probe approach positions (10mm outside case edge)
 APPROACH_CLEARANCE = 10.0
 PROBE_TRAVEL_XY = 25.0  # mm — max probe travel for X/Y edge finding
-PROBE_TRAVEL_Z = 80.0   # mm — max probe travel for Z (must reach spoilboard)
+PROBE_TRAVEL_Z = 90.0   # mm — max probe travel for Z (must reach spoilboard)
 
 # Y positions for angle measurement (probe Y- edge at two X positions)
 ANGLE_PROBE_X_LEFT = CASE_CENTER_X - 60.0
@@ -81,9 +82,9 @@ ANGLE_PROBE_X_RIGHT = CASE_CENTER_X + 60.0
 TOOL_CHANGE_X = 5.0
 TOOL_CHANGE_Y = 5.0
 
-# Spoilboard probe position (bare spot, front-left corner near home)
-SPOILBOARD_PROBE_X = 5.0
-SPOILBOARD_PROBE_Y = 5.0
+# Spoilboard probe position (bare spot on fixture plate, left of case)
+SPOILBOARD_PROBE_X = 10.0
+SPOILBOARD_PROBE_Y = 190.0
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
@@ -117,13 +118,15 @@ class GrblConnection:
             if line:
                 print(f"  < {line}")
 
-    def send(self, cmd):
+    def send(self, cmd, timeout=None):
         """Send a G-code command, wait for 'ok' or 'error'."""
+        if timeout is None:
+            timeout = TIMEOUT
         print(f"  > {cmd}")
         if self.dry_run:
             return
         self.conn.write((cmd + "\n").encode("ascii"))
-        deadline = time.time() + TIMEOUT
+        deadline = time.time() + timeout
         while time.time() < deadline:
             line = self.conn.readline().decode("ascii", errors="replace").strip()
             if line:
@@ -196,12 +199,26 @@ class GrblConnection:
         if self.dry_run:
             return
         self.conn.write((cmd + "\n").encode("ascii"))
+        triggered = False
         deadline = time.time() + TIMEOUT
         while time.time() < deadline:
             line = self.conn.readline().decode("ascii", errors="replace").strip()
             if line:
                 print(f"  < {line}")
+            if "[PRB:" in line and ":1]" in line:
+                triggered = True
             if line.startswith("ok"):
+                if triggered:
+                    print("  ! safe_descend hit obstacle — retracting 5mm")
+                    self.send("G91")
+                    self.send("G0 Z5")
+                    self.send("G90")
+                    raise RuntimeError(
+                        f"Safe descent to Z{z_depth:.1f} hit an obstacle. "
+                        "Check clearance and probe position."
+                    )
+                # After G38.3 with no contact, send a dwell to clear probe cycle state
+                self.send("G4 P0")
                 return
             if line.startswith("error"):
                 raise RuntimeError(f"Safe descent stopped unexpectedly: {line}")
@@ -434,9 +451,11 @@ def run(args):
 
         # Safe home: Z first to clear workpiece, then X and Y
         print("\n[2/9] Homing machine (Z first for safety)...")
-        grbl.send("$HZ")  # home Z first — clears probe from workpiece
-        grbl.send("$HX")  # home X
-        grbl.send("$HY")  # home Y
+        # Unlock if in alarm state (e.g. after power-on or previous abort)
+        grbl.send("$X", timeout=5)
+        grbl.send("$HZ", timeout=HOMING_TIMEOUT)  # home Z first — clears probe from workpiece
+        grbl.send("$HX", timeout=HOMING_TIMEOUT)  # home X
+        grbl.send("$HY", timeout=HOMING_TIMEOUT)  # home Y
 
         # Probe spoilboard at reference position (3D probe not yet installed —
         # use touch plate clipped to a known conductive surface, or install probe first)
@@ -455,7 +474,7 @@ def run(args):
         # === SPOILBOARD PROBE ===
         print("\n[3/9] Probing spoilboard reference surface...")
         grbl.send(f"G53 G0 X{SPOILBOARD_PROBE_X:.3f} Y{SPOILBOARD_PROBE_Y:.3f}")
-        grbl.safe_descend(-(SAFE_Z + 5))  # lower to probing height safely
+        grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")  # descend to safe height above spoilboard
         spoilboard_z = probe_spoilboard(grbl)
         grbl.send(f"G53 G0 Z0")
 
@@ -470,25 +489,25 @@ def run(args):
 
         # Probe X- edge
         grbl.send(f"G53 G0 X{CASE_CENTER_X - CASE_HALF_WIDTH - APPROACH_CLEARANCE:.3f} Y{CASE_CENTER_Y:.3f}")
-        grbl.safe_descend(xy_probe_z)  # lower to probing height safely
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
         x_minus = probe_edge_double(grbl, "X", +1, "X- edge")
         grbl.send(f"G53 G0 Z0")
 
         # Probe X+ edge
         grbl.send(f"G53 G0 X{CASE_CENTER_X + CASE_HALF_WIDTH + APPROACH_CLEARANCE:.3f} Y{CASE_CENTER_Y:.3f}")
-        grbl.safe_descend(xy_probe_z)  # lower to probing height safely
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
         x_plus = probe_edge_double(grbl, "X", -1, "X+ edge")
         grbl.send(f"G53 G0 Z0")
 
         # Probe Y- edge left (for angle)
         grbl.send(f"G53 G0 X{ANGLE_PROBE_X_LEFT:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
-        grbl.safe_descend(xy_probe_z)  # lower to probing height safely
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
         y_minus_left = probe_edge_double(grbl, "Y", +1, "Y- edge (left)")
         grbl.send(f"G53 G0 Z0")
 
         # Probe Y- edge right (for angle)
         grbl.send(f"G53 G0 X{ANGLE_PROBE_X_RIGHT:.3f} Y{CASE_CENTER_Y - CASE_HALF_HEIGHT - APPROACH_CLEARANCE:.3f}")
-        grbl.safe_descend(xy_probe_z)  # lower to probing height safely
+        grbl.send(f"G53 G0 Z{xy_probe_z:.3f}")
         y_minus_right = probe_edge_double(grbl, "Y", +1, "Y- edge (right)")
         grbl.send(f"G53 G0 Z0")
 
@@ -545,7 +564,7 @@ def run(args):
         print("\n[6/9] Probing case top surface with 3D probe...")
         grbl.send(f"G53 G0 Z0")  # full Z retract before lateral move
         grbl.send(f"G53 G0 X{center_x:.3f} Y{center_y:.3f}")
-        grbl.safe_descend(-(SAFE_Z + 5))  # lower to probing height safely
+        grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")  # descend to safe height above case
         surface_z_machine = probe_z_surface(grbl)
         grbl.send(f"G53 G0 Z0")  # retract to Z home before tool change
 
@@ -567,7 +586,7 @@ def run(args):
         # Full Z retract before lateral move (unknown tool length after change)
         grbl.send(f"G53 G0 Z0")
         grbl.send(f"G53 G0 X{center_x:.3f} Y{center_y:.3f}")
-        grbl.safe_descend(-(SAFE_Z + 5))  # lower to probing height safely
+        grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")  # descend to safe height above case
 
         pause(f"Place touch plate ({TOUCH_PLATE_THICKNESS}mm) on workpiece at case center. Clip ground wire to cutting tool.", dry_run=args.dry_run)
 

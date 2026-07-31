@@ -35,9 +35,9 @@ $20=1
 $21=1
 
 ; Homing enabled + set machine origin to 0 after homing
-; Bit 0: Enable, Bit 3: Set machine origin to 0
+; Bit 0: Enable, Bit 1: Single axis commands, Bit 3: Set machine origin to 0
 ; After homing: MPos = 0,0,0; X/Y travel positive, Z travel negative
-$22=9
+$22=11
 
 ; Homing direction invert mask
 ; X and Y inverted (due to $3 direction inversion interactions)
