@@ -185,6 +185,91 @@ class GrblConnection:
             return
         self.conn.write(b"!")
 
+    def check_probe_ready(self):
+        """Verify probe input is NOT triggered (ready for G38.2).
+
+        Queries status report and checks for Pn:P flag.
+        Raises if probe is already triggered.
+        """
+        if self.dry_run:
+            return
+        self.conn.write(b"?\n")
+        deadline = time.time() + 5.0
+        while time.time() < deadline:
+            line = self.conn.readline().decode("ascii", errors="replace").strip()
+            if line.startswith("<"):
+                if "Pn:" in line and "P" in line.split("Pn:")[1].split("|")[0]:
+                    raise RuntimeError(
+                        "Probe input is already triggered!\n"
+                        "Check: is the probe tip pressed against something?\n"
+                        "Check: is the probe wiring correct ($6 inversion)?"
+                    )
+                print(f"    Probe input OK (not triggered)")
+                return
+        raise TimeoutError("Timeout waiting for status report")
+
+    def confirm_probe_trigger(self, message, dry_run=False):
+        """Ask user to manually trigger the probe and verify the signal.
+
+        1. Confirm probe is NOT triggered
+        2. Ask user to trigger it (touch plate, press tip)
+        3. Verify probe IS triggered
+        4. Ask user to release
+        5. Verify probe is NOT triggered again
+
+        Skipped if stdin is not a terminal (piped input in tests).
+        """
+        if dry_run:
+            print(f"    [dry-run: skipping probe trigger confirmation]")
+            return
+
+        # Step 1: verify not triggered
+        self.check_probe_ready()
+
+        # Skip interactive trigger test if stdin is not a terminal
+        if not sys.stdin.isatty():
+            print(f"    [non-interactive: skipping manual trigger test]")
+            return
+
+        # Step 2: ask user to trigger
+        print(f"\n    >> {message}")
+        input("    >> Press Enter once you've triggered it...")
+
+        # Step 3: verify triggered
+        self.conn.write(b"?\n")
+        deadline = time.time() + 5.0
+        triggered = False
+        while time.time() < deadline:
+            line = self.conn.readline().decode("ascii", errors="replace").strip()
+            if line.startswith("<"):
+                if "Pn:" in line and "P" in line.split("Pn:")[1].split("|")[0]:
+                    triggered = True
+                break
+        if not triggered:
+            raise RuntimeError(
+                "Probe did NOT trigger! Check wiring and connections.\n"
+                "The probe circuit is not making contact."
+            )
+        print(f"    Probe triggered ✓")
+
+        # Step 4: ask user to release
+        input("    >> Release the probe, then press Enter...")
+
+        # Step 5: verify released
+        self.conn.write(b"?\n")
+        deadline = time.time() + 5.0
+        while time.time() < deadline:
+            line = self.conn.readline().decode("ascii", errors="replace").strip()
+            if line.startswith("<"):
+                if "Pn:" in line and "P" in line.split("Pn:")[1].split("|")[0]:
+                    raise RuntimeError(
+                        "Probe is still triggered after release!\n"
+                        "Check: probe tip stuck? Wiring short?"
+                    )
+                print(f"    Probe released ✓ — ready to probe")
+                return
+        raise TimeoutError("Timeout waiting for status report")
+
 
     def read_g54(self):
         """Query $# and return G54 (x, y, z) offsets, or None on failure."""
@@ -436,6 +521,13 @@ def run(args):
         grbl.send("G90")
         grbl.send(f"G53 G0 Z0")
 
+        # Verify probe is connected and working (manual trigger test)
+        print("\n    Checking probe...")
+        grbl.confirm_probe_trigger(
+            "Touch the 3D probe tip to confirm it triggers.",
+            dry_run=args.dry_run
+        )
+
         # === SPOILBOARD PROBE ===
         print("\n[3/9] Probing spoilboard reference surface...")
         grbl.send(f"G53 G0 X{SPOILBOARD_PROBE_X:.3f} Y{SPOILBOARD_PROBE_Y:.3f}")
@@ -557,6 +649,13 @@ def run(args):
         grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")  # descend to safe height above case
 
         pause(f"Place touch plate ({TOUCH_PLATE_THICKNESS}mm) on workpiece at case center. Clip ground wire to cutting tool.", dry_run=args.dry_run)
+
+        # Verify probe/touch plate circuit is working (manual trigger test)
+        print("\n    Checking touch plate...")
+        grbl.confirm_probe_trigger(
+            "Touch the cutting tool to the touch plate to confirm circuit.",
+            dry_run=args.dry_run
+        )
 
         cutting_tool_z = probe_z_double(grbl)
 
