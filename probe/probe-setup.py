@@ -608,9 +608,13 @@ def run(args):
         print("    G54 X0 Y0 set at case center")
 
         # === Z SURFACE PROBE (3D probe still installed) ===
+        # Z probe position: offset 10mm from center to avoid existing holes
+        z_probe_x = center_x - 10.0
+        z_probe_y = center_y
+
         print("\n[6/9] Probing case top surface with 3D probe...")
         grbl.send(f"G53 G0 Z0")  # full Z retract before lateral move
-        grbl.send(f"G53 G0 X{center_x:.3f} Y{center_y:.3f}")
+        grbl.send(f"G53 G0 X{z_probe_x:.3f} Y{z_probe_y:.3f}")
         grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")  # descend to safe height above case
         surface_z_machine = probe_z_surface(grbl)
         grbl.send(f"G53 G0 Z0")  # retract to Z home before tool change
@@ -632,7 +636,7 @@ def run(args):
 
         # Full Z retract before lateral move (unknown tool length after change)
         grbl.send(f"G53 G0 Z0")
-        grbl.send(f"G53 G0 X{center_x:.3f} Y{center_y:.3f}")
+        grbl.send(f"G53 G0 X{z_probe_x:.3f} Y{z_probe_y:.3f}")
         grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")  # descend to safe height above case
 
         pause(f"Place touch plate ({TOUCH_PLATE_THICKNESS}mm) on workpiece at case center. Clip ground wire to cutting tool.", dry_run=args.dry_run)
