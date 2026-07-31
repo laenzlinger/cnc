@@ -649,18 +649,19 @@ def run(args):
         ]
 
         z_offsets = {}
+        # Stay 3mm above the known surface for lateral moves between features
+        feature_probe_z = surface_z_machine + 3.0  # 3mm above case top
+
         for group_name, positions in feature_groups:
             offsets = []
             for i, (fx, fy) in enumerate(positions):
-                # Move to feature center in work coords (G54)
-                grbl.send(f"G53 G0 Z0")
-                # Convert work coords to machine coords for G53 move
+                # Move laterally at safe height above case, then lower to probe height
+                grbl.send(f"G53 G0 Z{feature_probe_z:.3f}")
                 grbl.send(f"G90 G0 X{fx:.3f} Y{fy:.3f}")
-                grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")
 
-                # Probe Z
+                # Probe Z (only need 10mm travel from 3mm above surface)
                 grbl.send("G91")
-                result = grbl.probe(f"G38.2 Z-{PROBE_TRAVEL_Z:.3f} F{FEED_FAST}")
+                result = grbl.probe(f"G38.2 Z-10.000 F{FEED_FAST}")
                 grbl.send("G0 Z2.0")
                 slow_result = grbl.probe(f"G38.2 Z-5.000 F{FEED_SLOW}")
                 grbl.send("G90")
