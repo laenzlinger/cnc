@@ -616,10 +616,17 @@ def run(args):
         print("    G54 X0 Y0 set at case center")
 
         # === Z SURFACE PROBE (3D probe still installed) ===
-        z_probe_x = center_x
-        z_probe_y = center_y
+        # Use custom position if center has a hole from previous cuts
+        if args.z_probe_offset:
+            # Work coords → machine coords (add G54 offset = center)
+            z_probe_x = center_x + args.z_probe_offset[0]
+            z_probe_y = center_y + args.z_probe_offset[1]
+            print(f"\n[6/9] Probing case top surface at offset X={args.z_probe_offset[0]} Y={args.z_probe_offset[1]}...")
+        else:
+            z_probe_x = center_x
+            z_probe_y = center_y
+            print("\n[6/9] Probing case top surface at center...")
 
-        print("\n[6/9] Probing case top surface with 3D probe...")
         grbl.send(f"G53 G0 Z0")  # full Z retract before lateral move
         grbl.send(f"G53 G0 X{z_probe_x:.3f} Y{z_probe_y:.3f}")
         grbl.send(f"G53 G0 Z-{SAFE_Z:.3f}")  # descend to safe height above case
@@ -633,51 +640,54 @@ def run(args):
             check_plausibility("case height", case_height, CASE_HEIGHT_NOMINAL, 5.0)
 
         # === PER-FEATURE Z PROBING ===
-        print("\n[6b/9] Probing Z at each feature center...")
+        if args.skip_feature_probing:
+            print("\n[6b/9] Skipping per-feature Z probing (reusing existing z-offsets.json)")
+        else:
+            print("\n[6b/9] Probing Z at each feature center...")
 
-        # Load feature positions (same coords the G-code generator uses)
-        sys.path.insert(0, str(PEDALBOARD_REPO / "parts"))
-        from panel_coords import load_coords, cnc_coords
-        panel_data = load_coords(str(PEDALBOARD_REPO / "parts" / "top-panel-coords.json"))
-        panel_coords = cnc_coords(panel_data, origin="center", angle_deg=angle_deg)
+            # Load feature positions (same coords the G-code generator uses)
+            sys.path.insert(0, str(PEDALBOARD_REPO / "parts"))
+            from panel_coords import load_coords, cnc_coords
+            panel_data = load_coords(str(PEDALBOARD_REPO / "parts" / "top-panel-coords.json"))
+            panel_coords = cnc_coords(panel_data, origin="center", angle_deg=angle_deg)
 
-        feature_groups = [
-            ("single_leds", panel_coords["single_leds"]),
-            ("buttons", panel_coords["buttons"]),
-            ("encoders", panel_coords["encoders"]),
-            ("displays", panel_coords["displays"]),
-        ]
+            feature_groups = [
+                ("single_leds", panel_coords["single_leds"]),
+                ("buttons", panel_coords["buttons"]),
+                ("encoders", panel_coords["encoders"]),
+                ("displays", panel_coords["displays"]),
+            ]
 
-        z_offsets = {}
-        # Stay 3mm above the known surface for lateral moves between features
-        feature_probe_z = surface_z_machine + 3.0  # 3mm above case top
+            z_offsets = {}
+            # Stay 3mm above the known surface for lateral moves between features
+            feature_probe_z = surface_z_machine + 3.0  # 3mm above case top
 
-        for group_name, positions in feature_groups:
-            offsets = []
-            for i, (fx, fy) in enumerate(positions):
-                # Move laterally at safe height above case, then lower to probe height
-                grbl.send(f"G53 G0 Z{feature_probe_z:.3f}")
-                grbl.send(f"G90 G0 X{fx:.3f} Y{fy:.3f}")
+            for group_name, positions in feature_groups:
+                offsets = []
+                for i, (fx, fy) in enumerate(positions):
+                    # Move laterally at safe height above case, then lower to probe height
+                    grbl.send(f"G53 G0 Z{feature_probe_z:.3f}")
+                    grbl.send(f"G90 G0 X{fx:.3f} Y{fy:.3f}")
 
-                # Probe Z (only need 10mm travel from 3mm above surface)
-                grbl.send("G91")
-                result = grbl.probe(f"G38.2 Z-10.000 F{FEED_FAST}")
-                grbl.send("G0 Z2.0")
-                slow_result = grbl.probe(f"G38.2 Z-5.000 F{FEED_SLOW}")
-                grbl.send("G90")
+                    # Probe Z (only need 10mm travel from 3mm above surface)
+                    grbl.send("G91")
+                    result = grbl.probe(f"G38.2 Z-10.000 F{FEED_FAST}")
+                    grbl.send("G0 Z2.0")
+                    slow_result = grbl.probe(f"G38.2 Z-5.000 F{FEED_SLOW}")
+                    grbl.send("G90")
 
-                feature_z = slow_result[2]
-                offset = feature_z - surface_z_machine
-                offsets.append(round(offset, 3))
-                print(f"    {group_name}[{i}]: Z={feature_z:.3f} offset={offset:.3f}mm")
+                    feature_z = slow_result[2]
+                    offset = feature_z - surface_z_machine
+                    offsets.append(round(offset, 3))
+                    print(f"    {group_name}[{i}]: Z={feature_z:.3f} offset={offset:.3f}mm")
 
-            z_offsets[group_name] = offsets
+                z_offsets[group_name] = offsets
 
-        # Save offsets to file
-        if not args.dry_run:
-            import json
-            Z_OFFSETS_FILE.write_text(json.dumps(z_offsets, indent=2))
-            print(f"    Saved Z offsets to {Z_OFFSETS_FILE}")
+            # Save offsets to file
+            if not args.dry_run:
+                import json
+                Z_OFFSETS_FILE.write_text(json.dumps(z_offsets, indent=2))
+                print(f"    Saved Z offsets to {Z_OFFSETS_FILE}")
 
         grbl.send(f"G53 G0 Z0")
 
@@ -729,6 +739,8 @@ def run(args):
             "--angle", f"{angle_deg:.4f}",
             "--z-offsets", str(Z_OFFSETS_FILE),
         ]
+        if args.skip_feature_probing:
+            cmd.append("--displays-only")
         print(f"    Running: {' '.join(cmd)}")
         if not args.dry_run:
             result = subprocess.run(cmd, capture_output=True, text=True)
@@ -766,6 +778,12 @@ def parse_args():
                    help=f"Serial port (default: {PORT})")
     p.add_argument("--dry-run", action="store_true",
                    help="Print commands without connecting to machine")
+    p.add_argument("--skip-feature-probing", action="store_true",
+                   help="Skip per-feature Z probing (reuse existing z-offsets.json)")
+    p.add_argument("--z-probe-offset", type=float, nargs=2, default=None,
+                   metavar=("X", "Y"),
+                   help="Work coordinates for Z surface probe (default: case center). "
+                        "Use when center has a hole from previous cuts.")
     return p.parse_args()
 
 
