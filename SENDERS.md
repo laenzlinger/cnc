@@ -96,42 +96,60 @@ Spindle: 0–12000 RPM (manual router, no VFD)
 
 ## Top Panel Setup (pedalboard case)
 
-For full automated setup (center finding, angle correction, Z probe, G-code generation):
+Scripts live in the `pedalboard-case` repo under `cnc/`.
+The sender must be disconnected before running (scripts own the serial port).
+
+### 1. Cut holes — probe-setup.py
 
 ```bash
-cd probe/
-make install   # first time only
+cd /path/to/pedalboard-case/cnc
+make install          # first time only (pip install pyserial)
 python3 probe-setup.py
 ```
 
-The sender must be disconnected before running. The script runs 9 steps:
+Steps: home → install 3D probe → spoilboard Z ref → 5 edge probes (centre +
+angle) → per-feature Z at 12 points → swap to cutting tool → touch plate Z →
+generate `top-panel.nc`.
 
-1. Check machine state (no alarm)
-2. Safe home Z→X→Y, move to tool change position
-3. **PAUSE** — install 3D probe (HLTNC)
-4. Probe spoilboard at X5 Y5 (reference surface)
-5. Probe X-, X+, Y- left, Y- right edges (double contact each)
-6. Compute case center + rotation angle, set G54 X0 Y0
-7. Probe case top surface with 3D probe
-8. **PAUSE** — remove 3D probe, install cutting tool
-9. **PAUSE** — place touch plate, clip wire to tool
-10. Probe Z (double contact), cross-check against 3D probe reference
-11. Retract, **PAUSE** — remove touch plate
-12. Generate `top-panel.nc` with angle correction
-13. Launch sender automatically
+```bash
+# Then in gSender: load top-panel.nc, dial 1, WD-40, run at 150% feed
+```
+
+### 2. Engrave labels — engrave-setup.py
+
+Runs independently — no need to run probe-setup.py first.
+
+```bash
+python3 engrave-setup.py
+```
+
+Steps: home → install 3D probe → spoilboard Z ref → 5 edge probes (centre +
+angle) → 6×10 surface height map (38 points, skips all holes) → generate
+`engraving.nc` via plates.py → swap to V-bit → touch plate Z.
+
+```bash
+# Then in gSender: load engraving.nc, run
+```
 
 Options:
 ```bash
-python3 probe-setup.py --dry-run          # print commands without connecting
-python3 probe-setup.py --port /dev/ttyUSB0  # override serial port
+python3 probe-setup.py --dry-run           # print commands without connecting
+python3 engrave-setup.py --dry-run
+python3 probe-setup.py --port /tmp/cnc-sim # test with simulator
+python3 engrave-setup.py --port /tmp/cnc-sim
 ```
 
 ### Testing with simulator
 
 ```bash
 # Terminal 1 — start simulator
-python3 mock-machine.py --angle 0.3 --offset-x 1.5
+python3 mock-machine.py --angle 0.3 --crown 0.3
 
-# Terminal 2 — run setup against simulator
+# Terminal 2 — run setup
 python3 probe-setup.py --port /tmp/cnc-sim
+python3 engrave-setup.py --port /tmp/cnc-sim
+
+# Or use the test runner:
+make test           # probe-setup against simulator
+make test-engrave   # engrave-setup with 0.3mm crown
 ```
